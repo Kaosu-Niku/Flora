@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Monster
+  - cut
+  - Image
+  - Floor
+  - PlayerAttack
+  - UI
+  - MonsterAttack
+  - Hurt
+  - Suck
+  - Wall
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Ground
+  - Player
+  - Particle
+  - PostProcessing
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: "\u80CC\u666F"
+    uniqueID: 1298135903
+    locked: 0
+  - name: "\u8FD1\u666F"
+    uniqueID: 3104689053
+    locked: 0
+  - name: "\u5730\u677F\u5F8C"
+    uniqueID: 3837542087
+    locked: 0
+  - name: "\u5730\u677F"
+    uniqueID: 109357543
+    locked: 0
+  - name: "\u5730\u677F\u4E0A"
+    uniqueID: 2444543343
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: "\u5730\u677F\u524D"
+    uniqueID: 588769411
+    locked: 0
+  - name: UI
+    uniqueID: 2200015997
+    locked: 0

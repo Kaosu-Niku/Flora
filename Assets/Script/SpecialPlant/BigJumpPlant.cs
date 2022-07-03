@@ -11,7 +11,6 @@ public class BigJumpPlant : SpecialPlantSystem
     GameObject GetPlayer;
     Rigidbody2D GetPlayerRigid;
     [SerializeField] Transform TargetCameraLookTrans;
-    CameraController GetCameraControl;
 
     new void OnTriggerEnter2D(Collider2D other)
     {
@@ -28,19 +27,15 @@ public class BigJumpPlant : SpecialPlantSystem
     private IEnumerator Doing()
     {
         CanUse = false;
-        if (GetPlayerRigid != null)
-        {
-            GetPlayerRigid.Sleep();
-            GetPlayerRigid.AddForce(transform.up * Power);
-        }
         if (GetAnimator != null)
         {
             GetAnimator.SetTrigger("Jump");
         }
-        if(GetCameraControl != null)
+        yield return new WaitForSeconds(0.25f);
+        if (GetPlayerRigid != null)
         {
-            GetCameraControl.AddTarget(GetPlayer.transform, 1, 20, 1);
-            GetCameraControl.AddTarget(TargetCameraLookTrans, 1, 25, 1);
+            GetPlayerRigid.Sleep();
+            GetPlayerRigid.AddForce(transform.up * Power);
         }
         yield return new WaitForSeconds(0.25f);
         CanUse = true;
@@ -49,6 +44,5 @@ public class BigJumpPlant : SpecialPlantSystem
     {
         GetPlayer = GameObject.FindGameObjectWithTag("Player");
         GetPlayerRigid = GetPlayer.GetComponent<Rigidbody2D>();
-        GetCameraControl = GameObject.Find("CameraControl").GetComponent<CameraController>();
     }
 }

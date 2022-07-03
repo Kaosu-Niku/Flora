@@ -1,48 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CameraController : MonoBehaviour
 {
-    public static CameraController instance;
-
-    public Transform target;
-
-    public Transform farBackground, middleBackground;
-
-    public float minHeight, maxHeight;
-
-    public bool stopFollow;
-
-    private Vector2 lastPos;
-
-    private void Awake()
+    [SerializeField] GameObject TargetCamera;
+    [SerializeField] CinemachineTargetGroup CTG;
+    public void AddTarget(Transform t, float w, float r, float time)
     {
-        instance = this;
+        StartCoroutine(AddTargetIEnum(t, w, r, time));
     }
-
-    void Start()
+    IEnumerator AddTargetIEnum(Transform t, float w, float r, float time)
     {
-        lastPos = transform.position;
+        CTG.AddMember(t, w, r);
+        TargetCamera.SetActive(true);
+        yield return new WaitForSeconds(time);
+        CTG.RemoveMember(t);
+        TargetCamera.SetActive(false);
     }
-
-    void Update()
+    private void Start()
     {
-        /* transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
-
-        float clampedY = Mathf.Clamp(transform.position.y, minHeight, maxHeight);
-        transform.position = new Vector3(transform.position.x, clampedY, transform.position.z); */
-
-        if (!stopFollow)
-        {
-            transform.position = new Vector3(target.position.x, Mathf.Clamp(target.position.y, minHeight, maxHeight), transform.position.z);
-
-            Vector2 amountToMove = new Vector2(transform.position.x - lastPos.x, transform.position.y - lastPos.y);
-
-            farBackground.position = farBackground.position + new Vector3(amountToMove.x, amountToMove.y, 0f);
-            middleBackground.position += new Vector3(amountToMove.x, amountToMove.y, 0f) * .5f;
-
-            lastPos = transform.position;
-        }
+        TargetCamera.SetActive(false);
     }
 }

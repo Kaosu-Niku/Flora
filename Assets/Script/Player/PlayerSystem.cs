@@ -429,23 +429,20 @@ public class PlayerSystem : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.transform.CompareTag("Floor"))//? 接觸地板可以跳躍
+        Vector2 contactsNormal = other.contacts[0].normal;//? 取得碰撞點的法線向量
+        float colAngle = (Mathf.Atan(contactsNormal.y / contactsNormal.x)) * 180 / Mathf.PI;//? 換算成能理解的角度
+        if (WallJumping == true)//? 處於蹬牆跳時，接觸到任何牆壁或地板時解除
+            WallJumping = false;
+        Anima.SetInteger("jump", 0);
+        if (colAngle < 105 && colAngle > 75)//? 檢查角度判定是否是踩到地板
         {
             CanJump = true;
-            if (WallJumping == true)//? 處於蹬牆跳時，接觸到任何牆壁或地板時解除
-                WallJumping = false;
-            Anima.SetInteger("jump", 0);
         }
-        if (other.transform.CompareTag("Wall"))//? 接觸特定牆壁可以蹬牆跳
+        if (colAngle < 10 && colAngle > -10)//? 檢查角度判定是否可以蹬牆跳
         {
-            CanJump = true;
-            if (WallJumping == true)//? 處於蹬牆跳時，接觸到任何牆壁或地板時解除
-                WallJumping = false;
-            Anima.SetInteger("jump", 0);
-            Vector2 contactsNormal = other.contacts[0].normal;//? 取得碰撞點的法線向量
-            float colAngle = (Mathf.Atan(contactsNormal.y / contactsNormal.x)) * 180 / Mathf.PI;//? 換算成能理解的角度
-            if (colAngle < 10 && colAngle > -10)//? 檢查角度判定是否可以蹬牆跳
+            if (other.transform.CompareTag("Wall"))//? 接觸特定牆壁才可以蹬牆跳
             {
+                CanJump = true;
                 if (other.contacts[0].point.x < transform.position.x)
                     transform.rotation = Quaternion.Euler(0, 180, 0);
                 else

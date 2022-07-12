@@ -10,7 +10,6 @@ public class BigJumpPlant : SpecialPlantSystem
     [SerializeField] Animator GetAnimator;
     GameObject GetPlayer;
     Rigidbody2D GetPlayerRigid;
-    [SerializeField] Transform TargetCameraLookTrans;
 
     new void OnTriggerEnter2D(Collider2D other)
     {
@@ -19,10 +18,6 @@ public class BigJumpPlant : SpecialPlantSystem
             if (CanUse == true)
                 StartCoroutine(Doing());
         }
-    }
-    new void OnTriggerExit2D(Collider2D other)
-    {
-
     }
     private IEnumerator Doing()
     {

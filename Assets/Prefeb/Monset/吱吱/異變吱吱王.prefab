@@ -142,6 +142,7 @@ MonoBehaviour:
     useCustomMixMode: 1
     layerMixModes: 01000000
     layerBlendModes: 01000000
+  updateTiming: 1
 --- !u!1 &1187075903903120868
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +156,7 @@ GameObject:
   - component: {fileID: 1187075903903120870}
   - component: {fileID: 1187075903903120871}
   m_Layer: 0
-  m_Name: "\u5927\u5431\u5431"
+  m_Name: "\u7570\u8B8A\u5431\u5431\u738B"
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,13 +193,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b431b96f046971f4e8a0635566a7de91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 10
-  HitRecover: 30
+  MaxHp: 100
+  MaxHitRecover: 30
   MaxDis: 50
-  HurtTime: 2
   DropMoney: 2550
   DropMp: 0
-  DesTime: 1.5
   Anima: {fileID: 1187075903155258307}
   GetGameObjectPool: {fileID: 11400000, guid: abd16d1e429bc484fbce61b21f876bb2, type: 2}
   HpSliderMove: {x: 0, y: 11}
@@ -306,6 +305,7 @@ MonoBehaviour:
   followBoneRotation: 1
   followSkeletonFlip: 1
   followLocalScale: 0
+  followParentWorldScale: 0
   maintainedAxisOrientation: 1
   initializeOnAwake: 1
 --- !u!114 &778491967352972383
@@ -421,6 +421,7 @@ MonoBehaviour:
   followBoneRotation: 1
   followSkeletonFlip: 1
   followLocalScale: 0
+  followParentWorldScale: 0
   maintainedAxisOrientation: 1
   initializeOnAwake: 1
 --- !u!60 &6400302009016132572
@@ -520,6 +521,7 @@ MonoBehaviour:
   followBoneRotation: 1
   followSkeletonFlip: 1
   followLocalScale: 0
+  followParentWorldScale: 0
   maintainedAxisOrientation: 1
   initializeOnAwake: 1
 --- !u!60 &5105787415053460424
@@ -638,6 +640,7 @@ MonoBehaviour:
   followBoneRotation: 1
   followSkeletonFlip: 1
   followLocalScale: 0
+  followParentWorldScale: 0
   maintainedAxisOrientation: 1
   initializeOnAwake: 1
 --- !u!114 &5031080802721842011
@@ -829,6 +832,7 @@ MonoBehaviour:
   followBoneRotation: 1
   followSkeletonFlip: 1
   followLocalScale: 0
+  followParentWorldScale: 0
   maintainedAxisOrientation: 1
   initializeOnAwake: 1
 --- !u!61 &234159682045376096

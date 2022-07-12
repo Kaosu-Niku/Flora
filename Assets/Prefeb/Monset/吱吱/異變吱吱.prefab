@@ -212,6 +212,7 @@ MonoBehaviour:
     useCustomMixMode: 1
     layerMixModes: 01000000
     layerBlendModes: 01000000
+  updateTiming: 1
 --- !u!1 &2238650943575149021
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,7 +226,7 @@ GameObject:
   - component: {fileID: 2238650943575148995}
   - component: {fileID: 2238650943575149020}
   m_Layer: 0
-  m_Name: "\u5927\u5431\u5431\u8B8A\u8EAB\u524D"
+  m_Name: "\u7570\u8B8A\u5431\u5431"
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -259,11 +260,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84b2ce6dc9d34134f8436f434273d869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 9999
-  HitRecover: 9999
+  MaxHp: 999
+  MaxHitRecover: 1
   MaxDis: 50
-  HurtTime: 0.1
-  DesTime: 1
+  DropMoney: 0
+  DropMp: 0
   Anima: {fileID: 2238650943463323404}
   GetGameObjectPool: {fileID: 11400000, guid: abd16d1e429bc484fbce61b21f876bb2, type: 2}
   HpSliderMove: {x: 0, y: 5}

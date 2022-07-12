@@ -21,11 +21,11 @@ public class PlayerAttack : MonoBehaviour
     }
     protected void Start()
     {
-        TureDamage = ((int)(PlayerDataSO.PlayerNowAtk * DamageMagn));
-        HitDamage = ((int)(PlayerDataSO.PlayerNowHit * HitMagn));
+        TureDamage = ((int)(PlayerSystemSO.GetPlayerInvoke().NowAtk * DamageMagn));
+        HitDamage = ((int)(PlayerSystemSO.GetPlayerInvoke().NowHit * HitMagn));
         Col.enabled = false;
         transform.Translate(MovePos.x, MovePos.y, 0);
-        PlayerSystem.AttackTrigger(this);//? (增傷效果)(光華刀刃效果)
+        PlayerSystemSO.GetPlayerInvoke().AttackTrigger(this);//? (增傷效果)(光華刀刃效果)
         UseAttack();
     }
     private void UseAttack()
@@ -46,7 +46,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (other.transform.CompareTag("Hurt") && other.transform.root.transform.CompareTag("Monster"))
         {
-            PlayerSystem.AttackHurtEnemyTrigger(this); //? (彼岸花效果)
+            PlayerSystemSO.GetPlayerInvoke().AttackHurtEnemyTrigger(this); //? (彼岸花效果)
         }
     }
 }

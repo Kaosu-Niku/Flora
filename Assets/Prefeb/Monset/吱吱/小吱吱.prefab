@@ -93,7 +93,7 @@ Animator:
   m_GameObject: {fileID: 2567321374222835107}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2d9179421672f024ebfea72e5a1050b0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 25eca158c233b8c41a2af19d2370e4a3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -142,6 +142,7 @@ MonoBehaviour:
     useCustomMixMode: 1
     layerMixModes: 01000000
     layerBlendModes: 01000000
+  updateTiming: 1
 --- !u!1 &2567321374243382129
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,12 +191,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf165e86b6454bf49ba3322957089edf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 50
-  HitRecover: 10
+  MaxHp: 30
+  MaxHitRecover: 1
   MaxDis: 50
-  HurtTime: 1
-  DropMp: 50
-  DesTime: 1
+  DropMoney: 0
+  DropMp: 0
   Anima: {fileID: 2567321374222835104}
   GetGameObjectPool: {fileID: 11400000, guid: abd16d1e429bc484fbce61b21f876bb2, type: 2}
   HpSliderMove: {x: 0, y: 4}

@@ -15,11 +15,11 @@ public class TalkUI : MonoBehaviour
     }
     private void OnEnable()
     {
-        GameRunSO.NpcTalkEvent += ToTalk;
+        UiSystem.TalkPanelAction += ToTalk;
     }
     private void OnDisable()
     {
-        GameRunSO.NpcTalkEvent -= ToTalk;
+        UiSystem.TalkPanelAction -= ToTalk;
     }
     private void ToTalk(string what, float time)
     {

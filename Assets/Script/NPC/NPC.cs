@@ -40,14 +40,14 @@ public class NPC : MonoBehaviour
         {
             if (TalkNum >= TalkString.Count)
             {
-                GameRunSO.NpcTalkTrigger(null, 1);
+                UiSystem.TalkPanelInvoke(null, 1);
                 TalkNum = 0;
                 if (MyAnimator)
                     MyAnimator.SetBool("talk", false);
             }
             else
             {
-                GameRunSO.NpcTalkTrigger(TalkString[TalkNum], TalkTime[TalkNum]);
+                UiSystem.TalkPanelInvoke(TalkString[TalkNum], TalkTime[TalkNum]);
                 TalkNum++;
                 if (MyAnimator)
                     MyAnimator.SetBool("talk", true);

@@ -36,6 +36,6 @@ public class MonsterAttack : MonoBehaviour
     protected void OnTriggerEnter2D(Collider2D other)
     {
         if (other.transform.CompareTag("Player"))
-            GameRunSO.PlayerHurtTrigger(damage);
+            PlayerSystemSO.GetPlayerInvoke().Hurt(damage);
     }
 }

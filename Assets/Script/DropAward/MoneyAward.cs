@@ -7,8 +7,7 @@ public class MoneyAward : DropAward
     [SerializeField] int Much;
     protected override IEnumerator GetIEnum()
     {
-        PlayerDataSO.PlayerMoney += Much;
-        PlayerDataSO.AddMoneyTrigger(Much);
+        PlayerSystemSO.GetPlayerInvoke().AddMoney(Much);
         Destroy(this.gameObject);
         yield break;
     }

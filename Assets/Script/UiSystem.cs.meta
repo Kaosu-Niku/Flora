@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 4dadd83613697934490581bbdbf1a994
+guid: d36dfa5d231985748961e4d4fbb588a0
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - GetAllEvent: {fileID: 11400000, guid: 2ca83877e3019e640b05282ec85dcc0e, type: 2}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

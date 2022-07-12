@@ -6,30 +6,49 @@ public class Monster3 : Monster
 {
     [SerializeField] float Speed;
     [SerializeField] MonsterAttack CollideAttack;
-    protected override IEnumerator OnActionIEnum()
+
+    protected override IEnumerator CustomDefaultAction()
     {
-        if (Mathf.Abs(transform.position.x - PlayerDataSO.PlayerTrans.position.x) > 5)
-            yield return StartCoroutine(MoveIEnum());
-        else
-            yield return StartCoroutine(OnCollideAttackIEnum());
+        yield return StartCoroutine(Move());
     }
-    private IEnumerator MoveIEnum()//? 持續往玩家移動
+
+    protected override IEnumerator CustomDie()
     {
-        if (PlayerDataSO.PlayerTrans.position.x > transform.position.x)
+        yield break;
+    }
+
+    protected override IEnumerator CustomHitRecover()
+    {
+        yield break;
+    }
+
+    protected override IEnumerator CustomHurt()
+    {
+        yield break;
+    }
+
+    protected override IEnumerator CustomIdleAction()
+    {
+        IsFight = true;
+        yield break;
+    }
+    private IEnumerator Move()//? 持續往玩家移動,接近玩家後使出衝撞攻擊
+    {
+        if (PlayerSystemSO.GetPlayerInvoke().transform.position.x > transform.position.x)
             transform.rotation = Quaternion.identity;
         else
             transform.rotation = Quaternion.Euler(0, 180, 0);
         Anima.SetInteger("Move", 1);
-        while (Mathf.Abs(transform.position.x - PlayerDataSO.PlayerTrans.position.x) > 5)//? 接近玩家後使出衝撞攻擊
+        while (Mathf.Abs(transform.position.x - PlayerSystemSO.GetPlayerInvoke().transform.position.x) > 5)
         {
             transform.Translate(Speed * Time.deltaTime, 0, 0);
             yield return 0;
         }
-        yield return StartCoroutine(OnCollideAttackIEnum());
+        yield return StartCoroutine(ColliderAttack());
     }
-    private IEnumerator OnCollideAttackIEnum()//? 衝撞攻擊
+    private IEnumerator ColliderAttack()//? 衝撞攻擊
     {
-        if (PlayerDataSO.PlayerTrans.position.x > transform.position.x)
+        if (PlayerSystemSO.GetPlayerInvoke().transform.position.x > transform.position.x)
             transform.rotation = Quaternion.identity;
         else
             transform.rotation = Quaternion.Euler(0, 180, 0);
@@ -38,11 +57,5 @@ public class Monster3 : Monster
         Rigid.AddRelativeForce(Vector2.up * 500);
         Anima.SetTrigger("Attack");
         yield return new WaitForSeconds(2);
-        OnAction();
-        yield break;
-    }
-    private void Start()
-    {
-        HpObject.SetActive(true);
     }
 }

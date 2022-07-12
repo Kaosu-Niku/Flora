@@ -2,22 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+public abstract class Monster : MonoBehaviour
 {
-    [SerializeField] protected float Hp;
-    protected float MaxHp;
-    [SerializeField] float HitRecover;//* 硬直累積量
-    float MaxHitRecover;
+
+    [SerializeField] protected float MaxHp;
+    protected float Hp;
+    [SerializeField] protected float MaxHitRecover;
+    protected float HitRecover;//* 硬直累積量
+
     [SerializeField] float MaxDis;//* 最大範圍限制
     protected float LeftDis;//* 最左邊
     protected float RightDis;//* 最右邊
-    [SerializeField] protected float HurtTime;//* 受傷的硬直時間，配合受傷動畫
-    bool Super;//* 是否無敵
-    protected bool IsDeath = false;//* 是否死亡
+    protected float GetPlayerDistance()//? 立即取得與玩家的距離
+    {
+        return Mathf.Abs(transform.position.x - PlayerSystemSO.GetPlayerInvoke().transform.position.x);
+    }
+    protected bool Super;//* 是否無敵
+    private bool _IsFight;//* 是否進入戰鬥
+    protected bool IsFight { get => _IsFight; set { _IsFight = value; HpObject.SetActive(value); } }
     [SerializeField] protected float DropMoney;//* 死亡掉落多少錢
-    [SerializeField] protected float DropMp;//* 死亡掉落多少魔力   
-    [SerializeField] protected float DesTime;//* 死亡幾秒後刪除
-
+    [SerializeField] protected float DropMp;//* 死亡掉落多少魔力  
     protected Rigidbody2D Rigid;
     [SerializeField] protected Animator Anima;
     //* 其他組件
@@ -25,99 +29,84 @@ public class Monster : MonoBehaviour
     [HideInInspector] protected GameObject HpObject;//* 血條物件(存放在物件池MyGameObjectPool)
     [HideInInspector] protected Transform HpSlider;//* 真正的血條
     [SerializeField] Vector2 HpSliderMove;//* 血條初始化移動
-    protected GameObject GetPlayer;
-
-    protected void OnAction()//? 重置行動
+    Coroutine CurrentAction;//? 敵人正在執行的當前行動
+    private void ChangeAction(IEnumerator nextAction)
     {
-        if (PlayerDataSO.CantFindPlayer == false)
-            StartCoroutine(OnActionIEnum());
-        else
-            StartCoroutine(DontActionIEnum());
+        //? 要切換每一個動作行動時只能透過調用該方法來達成切換行動
+        //? 會立即停止正在執行的行動並執行參數指定的行動
+        if (CurrentAction != null)
+            StopCoroutine(CurrentAction);
+        CurrentAction = StartCoroutine(nextAction);
     }
+    private void OnAction()//? 重置行動
+    {
+        if (IsFight == true && PlayerSystemSO.GetPlayerInvoke().CanFind == true)
+            ChangeAction(DefaultAction());
+        else
+            ChangeAction(IdleAction());
+    }
+    protected abstract IEnumerator CustomIdleAction();//? 自定義閒置行動
+    private IEnumerator IdleAction()//? 沒有與玩家互動就迴圈該行為
+    {
+        yield return StartCoroutine(CustomIdleAction());
+        OnAction();
+    }
+    protected abstract IEnumerator CustomDefaultAction();//? 自定義起始行動
+    private IEnumerator DefaultAction()//? 與玩家互動就迴圈該行為
+    {
+        yield return StartCoroutine(CustomDefaultAction());
+        OnAction();
+    }
+
+
+
     public void Hurt(float damage, float hitValue)//? 受傷
     {
-        StartCoroutine(HitIEnum(hitValue));
-        StartCoroutine(HurtIEnum(damage));
-        StartCoroutine(CustomHurtIEnum());
-    }
-    protected void Hit()//? 硬直
-    {
-        StartCoroutine(ResetAction(HurtTime));
-        StartCoroutine(CustomHitRecoverIEnum());
-    }
-    protected void Die()//? 死亡
-    {
-        StartCoroutine(DieIEnum());
-        StartCoroutine(CustomDieIEnum());
-    }
-    protected virtual IEnumerator DontActionIEnum()//? 無行為行動
-    {
-        yield return new WaitForSeconds(1);
-        OnAction();
-        yield break;
-    }
-    protected virtual IEnumerator OnActionIEnum()//? 自定義行動邏輯
-    {
-        yield break;
-    }
-    protected virtual IEnumerator CustomHurtIEnum()//? 自定義受傷行為
-    {
-        yield break;
-    }
-    protected virtual IEnumerator CustomHitRecoverIEnum()//? 自定義硬直行為
-    {
-        yield break;
-    }
-    protected virtual IEnumerator CustomDieIEnum()//? 自定義死亡行為
-    {
-        yield break;
-    }
-    private IEnumerator HitIEnum(float hitValue)//? 達到最大硬直就中斷所有執行中協程
-    {
-        if (Super == false)
-        {
-            HitRecover -= hitValue;
-            if (HitRecover <= 0)
-            {
-                HitRecover = MaxHitRecover;
-                StopAllCoroutines();
-                Hit();
-                yield break;
-            }
-        }
-        else
-            yield break;
-    }
-    private IEnumerator ResetAction(float time)//? 硬直後的行動重置
-    {
-        yield return 0;
-        Super = true;
-        yield return new WaitForSeconds(time);
-        Super = false;
-        OnAction();
-        yield break;
-    }
-    private IEnumerator HurtIEnum(float damage)
-    {
+        //? 先確認是否有無敵
         if (Super == false)
         {
             Hp -= damage;
             HpSlider.localScale = new Vector3(Hp / MaxHp, 1, 0);
-            yield return 0;
+            HitRecover -= hitValue;
             if (Hp <= 0)
-                Die();
-            yield break;
+            {
+                StartCoroutine(DieAction());
+                return;
+            }
+            if (HitRecover > 0)//? 無造成硬直
+            {
+                StartCoroutine(HurtAction());
+            }
+            else
+            {
+                HitRecover = MaxHitRecover;
+                StartCoroutine(HitRecoverAction());
+            }
         }
-        else
-            yield break;
-
     }
-    private IEnumerator DieIEnum()
+    protected abstract IEnumerator CustomHurt();//? 自定義受傷行為
+    private IEnumerator HurtAction()
     {
-        IsDeath = true;
+        Super = true;
+        yield return StartCoroutine(HurtAction());//? 等待自定義受傷行動完畢
+        //? 受傷行動並不會中斷當前行動，所以不調用 ChangeAction()
+        Super = false;
+    }
+
+    protected abstract IEnumerator CustomHitRecover();//? 自定義硬直行為
+    private IEnumerator HitRecoverAction()
+    {
+        Super = true;
+        ChangeAction(CustomHitRecover());
+        yield return CurrentAction;//? 等待自定義硬直行動完畢
+        Super = false;
+        OnAction();//? 重新開始執行行動
+    }
+    protected abstract IEnumerator CustomDie();//? 自定義死亡行為
+    private IEnumerator DieAction()
+    {
         Super = true;
         HpObject.transform.localScale = Vector3.zero;
-        Rigid.gravityScale = 0;
         while (DropMoney > 1000)
         {
             Instantiate(GetGameObjectPool.GetGameObject(5, transform.position, Quaternion.identity));
@@ -133,22 +122,20 @@ public class Monster : MonoBehaviour
             Instantiate(GetGameObjectPool.GetGameObject(3, transform.position, Quaternion.identity));
             DropMoney -= 10;
         }
-        Destroy(this.gameObject, DesTime);
-        StopAllCoroutines();
-        yield break;
+        ChangeAction(CustomDie());
+        yield return CurrentAction;//? 等待自定義死亡行動完畢
     }
     private void Awake()
     {
         LeftDis = transform.position.x - MaxDis / 2;
         RightDis = transform.position.x + MaxDis / 2;
-        MaxHp = Hp;
+        Hp = MaxHp;
         MaxHitRecover = HitRecover;
         Rigid = GetComponent<Rigidbody2D>();
         HpObject = GetGameObjectPool.GetGameObject(2, new Vector3(transform.position.x + HpSliderMove.x, transform.position.y + HpSliderMove.y, 0), Quaternion.identity);
         HpObject.transform.parent = transform;
         HpSlider = HpObject.transform.GetChild(1).transform;
         HpObject.SetActive(false);
-        GetPlayer = GameObject.FindGameObjectWithTag("Player");
         Invoke("OnAction", Time.deltaTime);
     }
 }

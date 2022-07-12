@@ -261,6 +261,7 @@ MonoBehaviour:
     useCustomMixMode: 1
     layerMixModes: 01000000
     layerBlendModes: 01000000
+  updateTiming: 1
 --- !u!1 &6610466531673255015
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +312,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd5908353127b7048bbd68c665958f2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "\u904A\u6232\u904B\u884C\u901F\u5EA6\u8ABF\u6574": 1
   GetGameObjectPool: {fileID: 11400000, guid: abd16d1e429bc484fbce61b21f876bb2, type: 2}
   DashTime: 0.75
   CanDash: 1
@@ -332,7 +332,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95d14b237fedfb447a7d067765e6fd91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GetPlayerSkill: {fileID: 11400000, guid: 249721081dc13e847a6ec5eb27702756, type: 2}
   Skill7Attack: {fileID: 3051647786821295535, guid: d7388de37bdc1054280124de018db2d2, type: 3}
   Skill9Attack: {fileID: 8637036879617758224, guid: 1f91128256320f243b8f70ac9b10e79d, type: 3}
 --- !u!114 &1331363660

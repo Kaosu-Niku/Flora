@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3752871928031138844}
   - component: {fileID: 3752871928031138845}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: "\u5716"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,8 +71,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 1, g: 1, b: 0, a: 1}
+  m_Sprite: {fileID: 1726089838454832299, guid: 7ee51ceb9124d51419253e6d5f2d4f34, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 493731562104694026}
   - component: {fileID: 3752871928855952382}
   m_Layer: 0
-  m_Name: "\u91D1\u9322\u6389\u843D\u7269"
+  m_Name: SmallMoney
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,6 +128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33128a79faae4014ea186f64ca21ee3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MyTag: 
+  CloseTime: 10
+  Much: 10
 --- !u!50 &493731562104694026
 Rigidbody2D:
   serializedVersion: 4
@@ -143,7 +146,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 1
-  m_GravityScale: 0.1
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -164,4 +167,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.4

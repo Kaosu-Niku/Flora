@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class MpAward : DropAward
 {
-    protected override IEnumerator GetIEnum()
+    protected override void CustomGet()
     {
         PlayerSystemSO.GetPlayerInvoke().AddNowMp(10);
-        Destroy(this.gameObject);
-        yield break;
     }
 }

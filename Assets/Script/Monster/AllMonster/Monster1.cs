@@ -6,7 +6,7 @@ public class Monster1 : Monster
 {
     [SerializeField] float Speed;
     bool MoveDir = true;
-    protected override IEnumerator CustomIdleAction()
+    protected override IEnumerator CustomIdle()
     {
         //? 左右隨機移動
         int moveTime = Random.Range(1, 4);
@@ -28,14 +28,9 @@ public class Monster1 : Monster
         yield break;
     }
     [SerializeField] GameObject Big;
-    protected override IEnumerator CustomDefaultAction()
+    protected override IEnumerator CustomDefault()
     {
-        //? 變成大吱吱
-        Anima.SetTrigger("Change");
-        yield return new WaitForSeconds(1);
-        Instantiate(Big, transform.position, transform.rotation);
-        yield return 0;
-        Destroy(this.gameObject);
+        yield break;
     }
 
     protected override IEnumerator CustomHurt()
@@ -45,12 +40,16 @@ public class Monster1 : Monster
 
     protected override IEnumerator CustomHitRecover()
     {
-        IsFight = true;
         yield break;
     }
 
     protected override IEnumerator CustomDie()
     {
-        yield break;
+        //? 變成大吱吱
+        Anima.SetTrigger("Change");
+        yield return new WaitForSeconds(1);
+        Instantiate(Big, transform.position, transform.rotation);
+        yield return 0;
+        Destroy(this.gameObject);
     }
 }

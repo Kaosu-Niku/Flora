@@ -193,14 +193,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b431b96f046971f4e8a0635566a7de91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHp: 100
-  MaxHitRecover: 30
+  MaxHp: 1000
+  MaxHitRecover: 20
   MaxDis: 50
   DropMoney: 2550
   DropMp: 0
   Anima: {fileID: 1187075903155258307}
-  GetGameObjectPool: {fileID: 11400000, guid: abd16d1e429bc484fbce61b21f876bb2, type: 2}
-  HpSliderMove: {x: 0, y: 11}
+  HpSliderMove: {x: 0, y: 11, z: 0}
   Speed: 5
   SmallMonster: {fileID: 2567321374243382129, guid: 73c8f561c4b268b41a876740c5dfaf1a, type: 3}
   FastPrickAttack: {fileID: 5031080802721842011}
@@ -320,12 +319,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a13e93c81b11924aa917ffbb05a64d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MyTag: 
   damage: 1
   StartTime: 0.8
   OverTime: 1.2
-  IsDestroy: 0
-  DesTime: 0
-  MovePos: {x: 0, y: 0}
+  CloseTime: 0
 --- !u!60 &5392109212398437133
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -655,12 +653,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a13e93c81b11924aa917ffbb05a64d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MyTag: 
   damage: 1
   StartTime: 0.6
   OverTime: 0.8
-  IsDestroy: 0
-  DesTime: 0
-  MovePos: {x: 0, y: 0}
+  CloseTime: 0
 --- !u!60 &4351382251337793984
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -736,12 +733,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a13e93c81b11924aa917ffbb05a64d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MyTag: 
   damage: 1
   StartTime: 1
   OverTime: 1.2
-  IsDestroy: 0
-  DesTime: 0
-  MovePos: {x: 0, y: 0}
+  CloseTime: 0
 --- !u!61 &617553420494807019
 BoxCollider2D:
   m_ObjectHideFlags: 0

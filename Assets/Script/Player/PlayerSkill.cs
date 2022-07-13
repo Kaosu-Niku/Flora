@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerSkill : MonoBehaviour
 {
-    [SerializeField] GameObject Skill7Attack;
-    [SerializeField] GameObject Skill9Attack;
+    [SerializeField] DefaultObject PlayerSkill7Attack;
+    [SerializeField] DefaultObject PlayerSkill9Attack;
     bool FirstDieCheck = false;
     void OnEnable()
     {
@@ -17,6 +17,8 @@ public class PlayerSkill : MonoBehaviour
         {//? (吸引1) 吸取掉落物範圍增加(初始為3，增加後為10)
             if (PlayerSkillSO.AllSkill[0] == true)
                 PlayerSystemSO.GetPlayerInvoke().SuckAwardCol.radius = 10;
+            else
+                PlayerSystemSO.GetPlayerInvoke().SuckAwardCol.radius = 3;
         }
         {//? (閃避1) 閃避時間增加0.25秒
             if (PlayerSkillSO.AllSkill[1] == true)
@@ -95,7 +97,7 @@ public class PlayerSkill : MonoBehaviour
     }
     private void Skill6()//? 無形攻擊效果
     {
-        Instantiate(Skill7Attack, transform.position, transform.rotation, transform);
+        PlayerSkill7Attack.gameObject.SetActive(true);
     }
     private void Skill7(PlayerAttack p)//? 光華刀刃效果
     {
@@ -105,7 +107,7 @@ public class PlayerSkill : MonoBehaviour
     }
     private void Skill8()//? 傷害反彈效果
     {
-        Instantiate(Skill9Attack, transform.position, transform.rotation, transform);
+        PlayerSkill9Attack.gameObject.SetActive(true);
     }
     private void Skill9(int much)//? 魔力吸取效果
     {

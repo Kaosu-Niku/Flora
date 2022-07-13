@@ -40,4 +40,9 @@ public class BigJumpPlant : SpecialPlantSystem
         GetPlayer = GameObject.FindGameObjectWithTag("Player");
         GetPlayerRigid = GetPlayer.GetComponent<Rigidbody2D>();
     }
+
+    protected override void DoSomething(InputAction.CallbackContext context)
+    {
+
+    }
 }

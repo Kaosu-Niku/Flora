@@ -21,6 +21,10 @@ public class TalkUI : MonoBehaviour
     {
         UiSystem.TalkPanelAction -= ToTalk;
     }
+    private void Start()
+    {
+        TalkPanel.SetActive(false);
+    }
     private void ToTalk(string what, float time)
     {
         if (TalkPanel != null)

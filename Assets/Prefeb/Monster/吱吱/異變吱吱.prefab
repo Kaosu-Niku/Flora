@@ -260,14 +260,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84b2ce6dc9d34134f8436f434273d869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHp: 999
-  MaxHitRecover: 1
+  MaxHp: 1
+  MaxHitRecover: 0
   MaxDis: 50
   DropMoney: 0
   DropMp: 0
   Anima: {fileID: 2238650943463323404}
-  GetGameObjectPool: {fileID: 11400000, guid: abd16d1e429bc484fbce61b21f876bb2, type: 2}
-  HpSliderMove: {x: 0, y: 5}
+  HpSliderMove: {x: 0, y: 5, z: 0}
   Speed: 3
   Big: {fileID: 1187075903903120868, guid: 6c34f7b146974d34fb4898d76a9942e6, type: 3}
 --- !u!50 &2238650943575148995

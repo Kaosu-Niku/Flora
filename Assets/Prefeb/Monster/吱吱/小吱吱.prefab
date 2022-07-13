@@ -197,10 +197,9 @@ MonoBehaviour:
   DropMoney: 0
   DropMp: 0
   Anima: {fileID: 2567321374222835104}
-  GetGameObjectPool: {fileID: 11400000, guid: abd16d1e429bc484fbce61b21f876bb2, type: 2}
-  HpSliderMove: {x: 0, y: 4}
+  HpSliderMove: {x: 0, y: 4, z: 0}
   Speed: 3
-  CollideAttack: {fileID: 2567321375075624273}
+  Attack: {fileID: 2567321375075624273}
 --- !u!50 &2567321374243382127
 Rigidbody2D:
   serializedVersion: 4
@@ -292,12 +291,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a13e93c81b11924aa917ffbb05a64d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MyTag: 
   damage: 1
   StartTime: 0
   OverTime: 1
-  IsDestroy: 0
-  DesTime: 0
-  MovePos: {x: 0, y: 0}
+  CloseTime: 0
 --- !u!61 &2567321375075624274
 BoxCollider2D:
   m_ObjectHideFlags: 0

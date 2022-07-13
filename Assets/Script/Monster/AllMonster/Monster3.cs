@@ -5,9 +5,9 @@ using UnityEngine;
 public class Monster3 : Monster
 {
     [SerializeField] float Speed;
-    [SerializeField] MonsterAttack CollideAttack;
+    [SerializeField] MonsterAttack Attack;
 
-    protected override IEnumerator CustomDefaultAction()
+    protected override IEnumerator CustomDefault()
     {
         yield return StartCoroutine(Move());
     }
@@ -27,7 +27,7 @@ public class Monster3 : Monster
         yield break;
     }
 
-    protected override IEnumerator CustomIdleAction()
+    protected override IEnumerator CustomIdle()
     {
         IsFight = true;
         yield break;
@@ -52,10 +52,10 @@ public class Monster3 : Monster
             transform.rotation = Quaternion.identity;
         else
             transform.rotation = Quaternion.Euler(0, 180, 0);
-        CollideAttack.UseAttack();
+        Attack.gameObject.SetActive(true);
         Rigid.AddRelativeForce(transform.right * 1000);
         Rigid.AddRelativeForce(Vector2.up * 500);
-        Anima.SetTrigger("Attack");
+        //Anima.SetTrigger("Attack");
         yield return new WaitForSeconds(2);
     }
 }

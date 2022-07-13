@@ -8,7 +8,6 @@ using Spine.Unity;
 
 public class PlayerSystem : MonoBehaviour
 {
-    [SerializeField] GameObjectPoolSO GetGameObjectPool;
     private PlayerSystem GetPlayer()
     {
         return this;
@@ -100,11 +99,12 @@ public class PlayerSystem : MonoBehaviour
     Rigidbody2D Rigid;
     Collider2D Col;
     public CircleCollider2D SuckAwardCol;//* 吸取道具用的圓形碰撞體
-    CinemachineImpulseSource MyImpulseSetting;
+    [SerializeField] GameObject PlayerHint;
+    [SerializeField] DefaultObject PlayerAttack01;
     [SerializeField] Animator Anima;
-    [SerializeField] GameObject OneAttack;
-    GameObject WallJumpHint;
+    CinemachineImpulseSource MyImpulseSetting;
     MyInput GetInput;
+
     private void OnMove(InputAction.CallbackContext context)//? 左右移動
     {
         if (CanControl)
@@ -221,13 +221,13 @@ public class PlayerSystem : MonoBehaviour
             WallJumping = true;
             Rigid.Sleep();
             yield return 0;
-            if (WallJumpHint.transform.eulerAngles.z > 90 && WallJumpHint.transform.eulerAngles.z < 270)
+            if (PlayerHint.transform.eulerAngles.z > 90 && PlayerHint.transform.eulerAngles.z < 270)
                 transform.rotation = Quaternion.Euler(0, 180, 0);
             else
                 transform.rotation = Quaternion.identity;
-            Rigid.AddForce(WallJumpHint.transform.rotation * Vector2.right * 2800);//? 根據指示箭頭方向決定彈出去的方向
+            Rigid.AddForce(PlayerHint.transform.rotation * Vector2.right * 2800);//? 根據指示箭頭方向決定彈出去的方向
             Anima.SetInteger("jump", 1);
-            WallJumpHint.transform.Translate(0, 1000, 0);
+            PlayerHint.gameObject.SetActive(false);
             yield return new WaitForSeconds(0.25f);
             CanControl = true;
             CanJump = true;
@@ -246,18 +246,18 @@ public class PlayerSystem : MonoBehaviour
         bool dir = false;
         CanWallJump = true;
         CanControl = false;
-        WallPos = transform.position;
-        WallJumpHint.transform.position = transform.position + Vector3.up * 2.1f;
+
         if (canAll == false)
         {
+            PlayerHint.gameObject.SetActive(true);
             if (transform.eulerAngles.y > 90)
             {
-                WallJumpHint.transform.rotation = Quaternion.Euler(0, 0, 45);
+                PlayerHint.transform.rotation = Quaternion.Euler(0, 0, 45);
                 dir = true;
             }
             else
             {
-                WallJumpHint.transform.rotation = Quaternion.Euler(0, 0, 135);
+                PlayerHint.transform.rotation = Quaternion.Euler(0, 0, 135);
                 dir = false;
             }
         }
@@ -267,24 +267,24 @@ public class PlayerSystem : MonoBehaviour
         {
             transform.position = WallPos;
             if (GetInput.Player.Move.ReadValue<float>() > 0)
-                WallJumpHint.transform.Rotate(0, 0, -2);
+                PlayerHint.transform.Rotate(0, 0, -2);
             if (GetInput.Player.Move.ReadValue<float>() < 0)
-                WallJumpHint.transform.Rotate(0, 0, 2);
+                PlayerHint.transform.Rotate(0, 0, 2);
             if (canAll == false)
             {
                 if (dir == false)
                 {
-                    if (WallJumpHint.transform.eulerAngles.z < 100)
-                        WallJumpHint.transform.rotation = Quaternion.Euler(0, 0, 100);
-                    else if (WallJumpHint.transform.eulerAngles.z > 260)
-                        WallJumpHint.transform.rotation = Quaternion.Euler(0, 0, 260);
+                    if (PlayerHint.transform.eulerAngles.z < 100)
+                        PlayerHint.transform.rotation = Quaternion.Euler(0, 0, 100);
+                    else if (PlayerHint.transform.eulerAngles.z > 260)
+                        PlayerHint.transform.rotation = Quaternion.Euler(0, 0, 260);
                 }
                 else
                 {
-                    if (WallJumpHint.transform.eulerAngles.z > 80 && WallJumpHint.transform.eulerAngles.z < 180)
-                        WallJumpHint.transform.rotation = Quaternion.Euler(0, 0, 80);
-                    else if (WallJumpHint.transform.eulerAngles.z < 280 && WallJumpHint.transform.eulerAngles.z > 180)
-                        WallJumpHint.transform.rotation = Quaternion.Euler(0, 0, 280);
+                    if (PlayerHint.transform.eulerAngles.z > 80 && PlayerHint.transform.eulerAngles.z < 180)
+                        PlayerHint.transform.rotation = Quaternion.Euler(0, 0, 80);
+                    else if (PlayerHint.transform.eulerAngles.z < 280 && PlayerHint.transform.eulerAngles.z > 180)
+                        PlayerHint.transform.rotation = Quaternion.Euler(0, 0, 280);
                 }
             }
             if (GetInput.Player.Jump.triggered)//? 跳躍
@@ -342,7 +342,8 @@ public class PlayerSystem : MonoBehaviour
     {
         CanAttack = false;
         CanControl = false;
-        Instantiate(OneAttack, transform.position, transform.rotation);
+        PlayerAttack01.gameObject.SetActive(true);
+        PlayerAttack01.transform.position = transform.position + transform.right * 1.5f + Vector3.up * 2;
         Anima.SetTrigger("attack");
         yield return new WaitForSeconds(0.5f);//? 0.5秒可以再攻擊
         CanAttack = true;
@@ -460,33 +461,30 @@ public class PlayerSystem : MonoBehaviour
     public UnityAction HurtEvent;//? 受傷事件
     private void Awake()
     {
+        PlayerSystemSO.GetPlayerFunc += GetPlayer;
         //transform.position = new Vector3(GameDataSO.ResetPoint[0], GameDataSO.ResetPoint[1], 0);
         Rigid = GetComponent<Rigidbody2D>();
         Col = GetComponent<Collider2D>();
+        PlayerHint.SetActive(false);
         MyImpulseSetting = GetComponent<CinemachineImpulseSource>();
         GetInput = new MyInput();
-        WallJumpHint = GetGameObjectPool.GetGameObject(0, transform.position, Quaternion.identity);
-        WallJumpHint.transform.Translate(0, 1000, 0);
-        PlayerSystemSO.GetPlayerFunc += GetPlayer;
     }
     private void OnEnable()
     {
+        PlayerSystemSO.GetPlayerFunc += GetPlayer;
         //? Data數值初始化
         MaxHp = PlayerDataSO.MaxHp;
         MaxMp = PlayerDataSO.MaxMp;
         MaxAtk = PlayerDataSO.MaxAtk;
         MaxHit = PlayerDataSO.MaxHit;
         MaxSpeed = PlayerDataSO.MaxSpeed;
-        StartCoroutine(LateTrigger());
-
-        PlayerSystemSO.GetPlayerFunc += GetPlayer;
         GetInput.Enable();
         GetInput.Player.Move.started += OnMove;
         GetInput.Player.Jump.started += OnJump;
         GetInput.Player.Dash.started += OnDash;
         GetInput.Player.Restore.started += OnRestore;
         GetInput.Player.Attack.started += OnOneAttack;
-
+        StartCoroutine(LateTrigger());
     }
     private void OnDisable()
     {
@@ -498,6 +496,10 @@ public class PlayerSystem : MonoBehaviour
         GetInput.Player.Dash.started -= OnDash;
         GetInput.Player.Restore.started -= OnRestore;
         GetInput.Player.Attack.started -= OnOneAttack;
+
+    }
+    private void Start()
+    {
 
     }
     private void OnCollisionEnter2D(Collision2D other)
@@ -528,10 +530,15 @@ public class PlayerSystem : MonoBehaviour
     {
         yield return 0;
         yield return 0;
+        MaxHp = PlayerDataSO.MaxHp;
         NowHp = MaxHp;
-        NowMp = MaxMp; Debug.Log(NowMp);
+        MaxMp = PlayerDataSO.MaxMp;
+        NowMp = MaxMp;
+        MaxAtk = PlayerDataSO.MaxAtk;
         NowAtk = MaxAtk;
+        MaxHit = PlayerDataSO.MaxHit;
         NowHit = MaxHit;
+        MaxSpeed = PlayerDataSO.MaxSpeed;
         NowSpeed = MaxSpeed;
         CanControl = true;
     }

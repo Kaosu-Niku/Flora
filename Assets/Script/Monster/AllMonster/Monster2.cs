@@ -12,12 +12,12 @@ public class Monster2 : Monster
     float CallSmallTime;//* 召喚小吱吱的時間
     bool TwoStage;//* 第二階段
     float ThreeStageTime = 100;//* 第三階段大招間隔時間
-    protected override IEnumerator CustomIdleAction()
+    protected override IEnumerator CustomIdle()
     {
         IsFight = true;
         yield break;
     }
-    protected override IEnumerator CustomDefaultAction()
+    protected override IEnumerator CustomDefault()
     {
         if (CallSmallTime > 20)//? 每超過20秒必定優先召喚一隻小吱吱
             yield return StartCoroutine(CallSmallMonster());
@@ -44,7 +44,7 @@ public class Monster2 : Monster
     }
     private IEnumerator Move()//? 招式起手式
     {
-        if (Hp > MaxHp * 0.7f)//? 第一階段 
+        if (true)//? 第一階段  Hp > MaxHp * 0.7f
         {
             Anima.SetInteger("Move", 1);
             if (transform.position.x <= PlayerSystemSO.GetPlayerInvoke().transform.position.x)
@@ -167,7 +167,7 @@ public class Monster2 : Monster
     }
     private IEnumerator FastPrick()//? 快速刺擊
     {
-        FastPrickAttack.UseAttack();
+        FastPrickAttack.gameObject.SetActive(true);
         Anima.SetInteger("Move", 0);
         Anima.SetTrigger("Attack");
         Anima.SetInteger("WhichAttack", 0);
@@ -176,8 +176,8 @@ public class Monster2 : Monster
     }
     private IEnumerator SlowPrick()//? 慢速刺擊
     {
-        SlowPrickAttack.UseAttack();
-        SlowPrickFloorAttack.UseAttack();
+        SlowPrickAttack.gameObject.SetActive(true);
+        SlowPrickFloorAttack.gameObject.SetActive(true);
         Anima.SetInteger("Move", 0);
         Anima.SetTrigger("Attack");
         Anima.SetInteger("WhichAttack", 1);
@@ -210,8 +210,9 @@ public class Monster2 : Monster
             yield return 0;
         }
     }
-    private void Start()
+    new void Start()
     {
+        base.Start();
         StartCoroutine(CallTime());
     }
 }

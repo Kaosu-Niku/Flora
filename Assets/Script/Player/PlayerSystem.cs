@@ -8,6 +8,7 @@ using Spine.Unity;
 
 public class PlayerSystem : MonoBehaviour
 {
+    [SerializeField] SkeletonAnimationSystem skeletonAnimationSystem;
     private PlayerSystem GetPlayer()
     {
         return this;
@@ -101,7 +102,6 @@ public class PlayerSystem : MonoBehaviour
     public CircleCollider2D SuckAwardCol;//* 吸取道具用的圓形碰撞體
     [SerializeField] GameObject PlayerHint;
     [SerializeField] DefaultObject PlayerAttack01;
-    [SerializeField] Animator Anima;
     CinemachineImpulseSource MyImpulseSetting;
     MyInput GetInput;
 
@@ -151,7 +151,7 @@ public class PlayerSystem : MonoBehaviour
             transform.rotation = Quaternion.identity;
             dir = true;
         }
-        Anima.SetInteger("speed", 1);
+        skeletonAnimationSystem.ChangeSkeletonAnimation(0, "Walk", true);
         if (dir == true)
         {
             while (context.ReadValue<float>() > 0)
@@ -159,7 +159,6 @@ public class PlayerSystem : MonoBehaviour
                 transform.Translate(PlayerDataSO.MaxSpeed * Time.deltaTime, 0, 0);
                 yield return 0;
             }
-            Anima.SetInteger("speed", 0);
             yield break;
         }
         else
@@ -169,7 +168,6 @@ public class PlayerSystem : MonoBehaviour
                 transform.Translate(PlayerDataSO.MaxSpeed * Time.deltaTime, 0, 0);
                 yield return 0;
             }
-            Anima.SetInteger("speed", 0);
             yield break;
         }
     }
@@ -180,7 +178,7 @@ public class PlayerSystem : MonoBehaviour
         {
             float pressTime = 0;
             Rigid.Sleep();
-            Anima.SetInteger("jump", 1);
+            skeletonAnimationSystem.ChangeSkeletonAnimation(0, "Jump", false);
             while (GetInput.Player.Jump.ReadValue<float>() == 1)
             {
                 pressTime += Time.deltaTime;
@@ -194,7 +192,7 @@ public class PlayerSystem : MonoBehaviour
                         yield return 0;
                     }
                     JumpHigh = -1000;
-                    Anima.SetInteger("jump", -1);
+                    skeletonAnimationSystem.ChangeSkeletonAnimation(0, "JumpLoop", true);
                     yield break;
                 }
                 yield return 0;
@@ -212,7 +210,7 @@ public class PlayerSystem : MonoBehaviour
                 yield return 0;
             }
             JumpHigh = -1000;
-            Anima.SetInteger("jump", -1);
+            skeletonAnimationSystem.ChangeSkeletonAnimation(0, "JumpLoop", true);
             yield break;
         }
         else//? 蹬牆跳
@@ -226,7 +224,7 @@ public class PlayerSystem : MonoBehaviour
             else
                 transform.rotation = Quaternion.identity;
             Rigid.AddForce(PlayerHint.transform.rotation * Vector2.right * 2800);//? 根據指示箭頭方向決定彈出去的方向
-            Anima.SetInteger("jump", 1);
+            skeletonAnimationSystem.ChangeSkeletonAnimation(0, "Jump", false);
             PlayerHint.gameObject.SetActive(false);
             yield return new WaitForSeconds(0.25f);
             CanControl = true;
@@ -237,7 +235,7 @@ public class PlayerSystem : MonoBehaviour
                 yield return 0;
             }
             JumpHigh = -1000;
-            Anima.SetInteger("jump", -1);
+            skeletonAnimationSystem.ChangeSkeletonAnimation(0, "JumpLoop", true);
             yield break;
         }
     }
@@ -261,7 +259,7 @@ public class PlayerSystem : MonoBehaviour
                 dir = false;
             }
         }
-        Anima.SetTrigger("wall");
+        skeletonAnimationSystem.ChangeSkeletonAnimation(0, "Wall", true);
         StopCoroutine(JumpIEnum());
         while (true)//? 按右鍵一律順時針旋轉，左鍵則為逆時針旋轉
         {
@@ -304,7 +302,7 @@ public class PlayerSystem : MonoBehaviour
             Rigid.AddForce(Vector2.right * DashPower, ForceMode2D.Impulse);
         else
             Rigid.AddForce(Vector2.left * DashPower, ForceMode2D.Impulse);
-        Anima.SetTrigger("dash");
+        skeletonAnimationSystem.ChangeSkeletonAnimation(0, "Flash", false);
         yield return new WaitForSeconds(DashTime);
         Super = false;
         yield return new WaitForSeconds(1.5f - DashTime);
@@ -321,12 +319,12 @@ public class PlayerSystem : MonoBehaviour
             CanControl = false;
             if (FastRestore == false)
             {
-                Anima.SetTrigger("restore");
+                //! 回血動畫
                 yield return new WaitForSeconds(1);
             }
             else
             {
-                Anima.SetTrigger("fastRestore");
+                //! 回血動畫
                 yield return new WaitForSeconds(0.5f);
             }
             CanRestore = true;
@@ -344,7 +342,7 @@ public class PlayerSystem : MonoBehaviour
         CanControl = false;
         PlayerAttack01.gameObject.SetActive(true);
         PlayerAttack01.transform.position = transform.position + transform.right * 1.5f + Vector3.up * 2;
-        Anima.SetTrigger("attack");
+        skeletonAnimationSystem.ChangeSkeletonAnimation(0, "Attack", false);
         yield return new WaitForSeconds(0.5f);//? 0.5秒可以再攻擊
         CanAttack = true;
         CanControl = true;
@@ -402,7 +400,7 @@ public class PlayerSystem : MonoBehaviour
                 HurtEvent.Invoke();
             Super = true;
             CanControl = false;
-            Anima.SetTrigger("hit");
+            skeletonAnimationSystem.ChangeSkeletonAnimation(0, "Hurt", false);
             //MyImpulseSetting.GenerateImpulse();//? 鏡頭震動            
             yield return 0;
             if (NowHp < 1)
@@ -419,7 +417,7 @@ public class PlayerSystem : MonoBehaviour
         CanControl = false;
         Destroy(Col);
         Rigid.gravityScale = 0;
-        Anima.SetTrigger("die");
+        skeletonAnimationSystem.ChangeSkeletonAnimation(0, "Die", false);
         StopAllCoroutines();
         yield return 0;
     }
@@ -432,7 +430,7 @@ public class PlayerSystem : MonoBehaviour
     public void PublicWallJump(bool canAll)//? 蹬牆跳的外部接口
     {
         CanJump = true;
-        Anima.SetInteger("jump", 0);
+        skeletonAnimationSystem.ChangeSkeletonAnimation(0, "JumpDown", false);
         StartCoroutine(WallJumpIEnum(canAll));
     }
     public void PublicDontControl(float stopTime)//? 停止控制玩家的外部接口
@@ -508,7 +506,7 @@ public class PlayerSystem : MonoBehaviour
         float colAngle = (Mathf.Atan(contactsNormal.y / contactsNormal.x)) * 180 / Mathf.PI;//? 換算成能理解的角度
         if (WallJumping == true)//? 處於蹬牆跳時，接觸到任何牆壁或地板時解除
             WallJumping = false;
-        Anima.SetInteger("jump", 0);
+        skeletonAnimationSystem.ChangeSkeletonAnimation(0, "JumpDown", false);
         if (colAngle < 105 && colAngle > 75)//? 檢查角度判定是否是踩到地板
         {
             CanJump = true;

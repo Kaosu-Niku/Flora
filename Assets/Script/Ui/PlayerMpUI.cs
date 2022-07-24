@@ -8,14 +8,14 @@ public class PlayerMpUI : MonoBehaviour
     [SerializeField] Image PlayerMpImage;
     private void ChangePlayerMp()
     {
-        PlayerMpImage.fillAmount = PlayerDataSO.PlayerNowMp / PlayerDataSO.PlayerMaxMp;
+        PlayerMpImage.fillAmount = PlayerSystemSO.GetPlayerInvoke().NowMp / PlayerDataSO.MaxMp;
     }
     private void OnEnable()
     {
-        GameRunSO.ChangePlayerMpEvent += ChangePlayerMp;
+        UiSystem.ChangePlayerMpAction += ChangePlayerMp;
     }
     private void OnDisable()
     {
-        GameRunSO.ChangePlayerMpEvent -= ChangePlayerMp;
+        UiSystem.ChangePlayerMpAction -= ChangePlayerMp;
     }
 }

@@ -17,28 +17,28 @@ public class PlayerHpUI : MonoBehaviour
     private IEnumerator ChangePlayerHpIEnum()
     {
         yield return 0;
-        for (int x = 0; x < PlayerDataSO.PlayerMaxHp / 2; x++)
+        for (int x = 0; x < PlayerDataSO.MaxHp / 2; x++)
         {
             if (MaxHpImage[x].activeInHierarchy == true)
                 MaxHpImage[x].SetActive(false);
             if (HalfHpImage[x].activeInHierarchy == true)
                 HalfHpImage[x].SetActive(false);
         }
-        for (int x = 0; x < PlayerDataSO.PlayerNowHp / 2; x++)
+        for (int x = 0; x < PlayerSystemSO.GetPlayerInvoke().NowHp / 2; x++)
             MaxHpImage[x].SetActive(true);
-        if (PlayerDataSO.PlayerNowHp % 2 == 1)
+        if (PlayerSystemSO.GetPlayerInvoke().NowHp % 2 == 1)
         {
-            MaxHpImage[((int)PlayerDataSO.PlayerNowHp / 2)].SetActive(false);
-            HalfHpImage[((int)PlayerDataSO.PlayerNowHp / 2)].SetActive(true);
+            MaxHpImage[((int)PlayerSystemSO.GetPlayerInvoke().NowHp / 2)].SetActive(false);
+            HalfHpImage[((int)PlayerSystemSO.GetPlayerInvoke().NowHp / 2)].SetActive(true);
         }
     }
     private void OnEnable()
     {
-        GameRunSO.ChangePlayerHpEvent += ChangePlayerHp;
+        UiSystem.ChangePlayerHpAction += ChangePlayerHp;
     }
     private void OnDisable()
     {
-        GameRunSO.ChangePlayerHpEvent -= ChangePlayerHp;
+        UiSystem.ChangePlayerHpAction -= ChangePlayerHp;
     }
     private void Start()
     {
@@ -48,14 +48,14 @@ public class PlayerHpUI : MonoBehaviour
             MaxHpImage[x].SetActive(false);
             HalfHpImage[x].SetActive(false);
         }
-        for (int x = 0; x < PlayerDataSO.PlayerMaxHp / 2; x++)
+        for (int x = 0; x < PlayerDataSO.MaxHp / 2; x++)
         {
             NullHpImage[x].SetActive(true);
             MaxHpImage[x].SetActive(true);
-            if (PlayerDataSO.PlayerMaxHp % 2 == 1)
+            if (PlayerDataSO.MaxHp % 2 == 1)
             {
-                MaxHpImage[((int)PlayerDataSO.PlayerMaxHp / 2)].SetActive(false);
-                HalfHpImage[((int)PlayerDataSO.PlayerMaxHp / 2)].SetActive(true);
+                MaxHpImage[((int)PlayerDataSO.MaxHp / 2)].SetActive(false);
+                HalfHpImage[((int)PlayerDataSO.MaxHp / 2)].SetActive(true);
             }
         }
     }

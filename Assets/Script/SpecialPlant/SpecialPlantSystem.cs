@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SpecialPlantSystem : MonoBehaviour
+public abstract class SpecialPlantSystem : MonoBehaviour
 {
     MyInput GetInput;
-    protected virtual void DoSomething(InputAction.CallbackContext context)
-    {
-        //? 要做的事
-    }
-    protected void Awake()
+    protected abstract void DoSomething(InputAction.CallbackContext context);//? 要做的事
+    private void Awake()
     {
         GetInput = new MyInput();
     }

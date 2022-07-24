@@ -6,10 +6,9 @@ using UnityEngine.InputSystem;
 
 public class NPC : MonoBehaviour
 {
-    [SerializeField] GameObjectPoolSO GetGameObjectPool;
     [SerializeField] Animator MyAnimator;
-    GameObject HintButton;//* 提示按鈕
-    [SerializeField] Vector2 ButtonMove;//* 按鈕位置微調 
+    PoolObject NpcHintButton;//* 提示按鈕
+    [SerializeField] Vector3 ButtonMove;//* 按鈕位置微調 
     [SerializeField] List<string> TalkString = new List<string>();//* 對話內容
     [SerializeField] List<float> TalkTime = new List<float>();//* 對話秒數
     int TalkNum;//* 對話次數
@@ -17,21 +16,17 @@ public class NPC : MonoBehaviour
     MyInput GetInput;
     private void Awake()
     {
-        HintButton = GetGameObjectPool.GetGameObject(1, new Vector3(transform.position.x + ButtonMove.x, transform.position.y + ButtonMove.y, 0), Quaternion.identity);
-        HintButton.SetActive(false);
         GetInput = new MyInput();
     }
     private void OnEnable()
     {
         GetInput.Enable();
+        GetInput.Player.Action.started += OnTalk;
     }
     private void OnDisable()
     {
         GetInput.Disable();
-    }
-    private void Start()
-    {
-        GetInput.Player.Action.started += OnTalk;
+        GetInput.Player.Action.started -= OnTalk;
     }
 
     private void OnTalk(InputAction.CallbackContext context)
@@ -40,14 +35,14 @@ public class NPC : MonoBehaviour
         {
             if (TalkNum >= TalkString.Count)
             {
-                GameRunSO.NpcTalkTrigger(null, 1);
+                UiSystem.TalkPanelInvoke(null, 1);
                 TalkNum = 0;
                 if (MyAnimator)
                     MyAnimator.SetBool("talk", false);
             }
             else
             {
-                GameRunSO.NpcTalkTrigger(TalkString[TalkNum], TalkTime[TalkNum]);
+                UiSystem.TalkPanelInvoke(TalkString[TalkNum], TalkTime[TalkNum]);
                 TalkNum++;
                 if (MyAnimator)
                     MyAnimator.SetBool("talk", true);
@@ -60,7 +55,8 @@ public class NPC : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))//? 玩家進入範圍
         {
             CanTalk = true;
-            HintButton.SetActive(true);
+            NpcHintButton = GameObjectPoolSO.GetObject("NpcHintButton", transform.position + ButtonMove, transform.rotation);
+            NpcHintButton.gameObject.SetActive(true);
         }
     }
 
@@ -70,7 +66,8 @@ public class NPC : MonoBehaviour
         {
             CanTalk = false;
             TalkNum = 0;
-            HintButton.SetActive(false);
+            if (NpcHintButton != null)
+                NpcHintButton.gameObject.SetActive(false);
         }
     }
 

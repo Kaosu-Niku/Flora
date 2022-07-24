@@ -8,8 +8,84 @@ using Spine.Unity;
 
 public class PlayerSystem : MonoBehaviour
 {
-    [SerializeField] float 遊戲運行速度調整;
-    [SerializeField] GameObjectPoolSO GetGameObjectPool;
+    [SerializeField] SkeletonAnimationSystem skeletonAnimationSystem;
+    private PlayerSystem GetPlayer()
+    {
+        return this;
+    }
+
+    int _MaxHp;//* 最大血量
+    public int MaxHp { get => _MaxHp; private set { if (value > 40) _MaxHp = 40; else _MaxHp = value; } }
+    int _NowHp;//* 當前血量
+    public int NowHp { get => _NowHp; private set { if (_NowHp > PlayerDataSO.MaxHp) _NowHp = PlayerDataSO.MaxHp; else _NowHp = value; UiSystem.ChangePlayerHpInvoke(); } }
+    public void AddNowHp(int much)
+    {
+        NowHp += much;
+    }
+    int _MaxMp;//* 最大魔力
+    public int MaxMp { get => _MaxMp; private set { _MaxMp = value; } }
+    public void AddMaxMp(int much)
+    {
+        MaxMp += much;
+    }
+    int _NowMp;//* 當前魔力
+    public int NowMp { get => _NowMp; private set { if (_NowMp > PlayerDataSO.MaxMp) _NowMp = PlayerDataSO.MaxMp; else _NowMp = value; UiSystem.ChangePlayerMpInvoke(); } }
+    public void AddNowMp(int much)
+    {
+        NowMp += much;
+        if (AddMpEvent != null)
+            AddMpEvent.Invoke(much);
+    }
+    public UnityAction<int> AddMpEvent;//? 增加魔力事件 (魔力吸取技能訂閱)
+    int _MaxAtk;//* 最大攻擊力
+    public int MaxAtk { get => _MaxAtk; private set { _MaxAtk = value; } }
+    int _NowAtk;//* 當前攻擊力
+    public int NowAtk { get => _NowAtk; private set { if (_NowAtk > PlayerDataSO.MaxAtk) _NowAtk = PlayerDataSO.MaxAtk; _NowAtk = value; } }
+    public void AddNowAtk(int much)
+    {
+        NowAtk += much;
+    }
+    int _MaxHit;//* 最大硬直力
+    public int MaxHit { get => _MaxHit; private set { _MaxHit = value; } }
+    int _NowHit;//* 當前硬直力
+    public int NowHit { get => _NowHit; private set { if (_NowHit > PlayerDataSO.MaxHit) _NowHit = PlayerDataSO.MaxHit; _NowHit = value; } }
+    public void AddNowHit(int much)
+    {
+        NowHit += much;
+    }
+    int _MaxSpeed;//* 最大速度
+    public int MaxSpeed { get => _MaxSpeed; private set { _MaxSpeed = value; } }
+    int _NowSpeed;//* 當前速度
+    public int NowSpeed { get => _NowSpeed; private set { _NowSpeed = value; } }
+    public void AddNowSpeed(int much)
+    {
+        NowSpeed += much;
+    }
+    public UnityAction<int> AddMoneyEvent;//? 增加金錢事件 (拜金技能訂閱)
+    public void AddMoney(int much)
+    {
+        PlayerDataSO.Money += much;
+        if (AddMoneyEvent != null)
+            AddMoneyEvent.Invoke(much);
+    }
+    bool _CanControl;//* 玩家是否能控制
+    public bool CanControl { get => _CanControl; private set { _CanControl = value; } }
+    public void SetCanControl(bool value)
+    {
+        CanControl = value;
+    }
+    bool _super = false;//* 無敵狀態
+    public bool Super { get => _super; private set { _super = value; } }
+    public void SetSuper(bool value)
+    {
+        Super = value;
+    }
+    bool _CanFind = true;//* 怪物是否能找到玩家
+    public bool CanFind { get => _CanFind; private set { _CanFind = value; } }
+    public void SetCanFind(bool value)
+    {
+        CanFind = value;
+    }
     bool CanJump = true;//* 可以跳躍
     float JumpHigh;//* 跳躍高度檢查
     bool CanWallJump = false;//* 可以蹬牆跳
@@ -20,41 +96,41 @@ public class PlayerSystem : MonoBehaviour
     [SerializeField] float DashPower;//* 閃避力道
     bool CanRestore = true;//* 可以恢復生命
     [HideInInspector] public bool FastRestore = true;//* 恢復生命的動作是否加快(配合某個技能)
-    bool CanAttack = true;//* 可以攻擊        
+    bool CanAttack = true;//* 可以攻擊  
     Rigidbody2D Rigid;
     Collider2D Col;
     public CircleCollider2D SuckAwardCol;//* 吸取道具用的圓形碰撞體
+    [SerializeField] GameObject PlayerHint;
+    [SerializeField] DefaultObject PlayerAttack01;
     CinemachineImpulseSource MyImpulseSetting;
-    [SerializeField] Animator Anima;
-    [SerializeField] GameObject OneAttack;
-    GameObject WallJumpHint;
     MyInput GetInput;
+
     private void OnMove(InputAction.CallbackContext context)//? 左右移動
     {
-        if (PlayerDataSO.CanControl)
+        if (CanControl)
             StartCoroutine(MoveIEnum(context));
     }
     private void OnJump(InputAction.CallbackContext context)//? 跳躍
     {
-        if (PlayerDataSO.CanControl && CanJump)
+        if (CanControl && CanJump)
             StartCoroutine(JumpIEnum());
     }
     private void OnDash(InputAction.CallbackContext context)//? 閃避
     {
-        if (PlayerDataSO.CanControl && CanDash)
+        if (CanControl && CanDash)
             StartCoroutine(DashIEnum());
     }
     private void OnRestore(InputAction.CallbackContext context)//? 恢復生命
     {
-        if (PlayerDataSO.CanControl && CanRestore)
+        if (CanControl && CanRestore)
             StartCoroutine(RestoreIEnum());
     }
     private void OnOneAttack(InputAction.CallbackContext context)//? 攻擊
     {
-        if (PlayerDataSO.CanControl && CanAttack)
+        if (CanControl && CanAttack)
             StartCoroutine(OneAttackIEnum());
     }
-    private void Hurt(int damage)//? 受傷
+    public void Hurt(int damage)//? 受傷
     {
         StartCoroutine(HurtIEnum(damage));
     }
@@ -75,25 +151,23 @@ public class PlayerSystem : MonoBehaviour
             transform.rotation = Quaternion.identity;
             dir = true;
         }
-        Anima.SetInteger("speed", 1);
+        skeletonAnimationSystem.ChangeSkeletonAnimation(0, "Walk", true);
         if (dir == true)
         {
             while (context.ReadValue<float>() > 0)
             {
-                transform.Translate(PlayerDataSO.PlayerMaxSpeed * Time.deltaTime, 0, 0);
+                transform.Translate(PlayerDataSO.MaxSpeed * Time.deltaTime, 0, 0);
                 yield return 0;
             }
-            Anima.SetInteger("speed", 0);
             yield break;
         }
         else
         {
             while (context.ReadValue<float>() < 0)
             {
-                transform.Translate(PlayerDataSO.PlayerMaxSpeed * Time.deltaTime, 0, 0);
+                transform.Translate(PlayerDataSO.MaxSpeed * Time.deltaTime, 0, 0);
                 yield return 0;
             }
-            Anima.SetInteger("speed", 0);
             yield break;
         }
     }
@@ -104,7 +178,7 @@ public class PlayerSystem : MonoBehaviour
         {
             float pressTime = 0;
             Rigid.Sleep();
-            Anima.SetInteger("jump", 1);
+            skeletonAnimationSystem.ChangeSkeletonAnimation(0, "Jump", false);
             while (GetInput.Player.Jump.ReadValue<float>() == 1)
             {
                 pressTime += Time.deltaTime;
@@ -118,7 +192,7 @@ public class PlayerSystem : MonoBehaviour
                         yield return 0;
                     }
                     JumpHigh = -1000;
-                    Anima.SetInteger("jump", -1);
+                    skeletonAnimationSystem.ChangeSkeletonAnimation(0, "JumpLoop", true);
                     yield break;
                 }
                 yield return 0;
@@ -136,7 +210,7 @@ public class PlayerSystem : MonoBehaviour
                 yield return 0;
             }
             JumpHigh = -1000;
-            Anima.SetInteger("jump", -1);
+            skeletonAnimationSystem.ChangeSkeletonAnimation(0, "JumpLoop", true);
             yield break;
         }
         else//? 蹬牆跳
@@ -145,15 +219,15 @@ public class PlayerSystem : MonoBehaviour
             WallJumping = true;
             Rigid.Sleep();
             yield return 0;
-            if (WallJumpHint.transform.eulerAngles.z > 90 && WallJumpHint.transform.eulerAngles.z < 270)
+            if (PlayerHint.transform.eulerAngles.z > 90 && PlayerHint.transform.eulerAngles.z < 270)
                 transform.rotation = Quaternion.Euler(0, 180, 0);
             else
                 transform.rotation = Quaternion.identity;
-            Rigid.AddForce(WallJumpHint.transform.rotation * Vector2.right * 2800);//? 根據指示箭頭方向決定彈出去的方向
-            Anima.SetInteger("jump", 1);
-            WallJumpHint.transform.Translate(0, 1000, 0);
+            Rigid.AddForce(PlayerHint.transform.rotation * Vector2.right * 2800);//? 根據指示箭頭方向決定彈出去的方向
+            skeletonAnimationSystem.ChangeSkeletonAnimation(0, "Jump", false);
+            PlayerHint.gameObject.SetActive(false);
             yield return new WaitForSeconds(0.25f);
-            PlayerDataSO.CanControl = true;
+            CanControl = true;
             CanJump = true;
             while (transform.position.y >= JumpHigh)
             {
@@ -161,7 +235,7 @@ public class PlayerSystem : MonoBehaviour
                 yield return 0;
             }
             JumpHigh = -1000;
-            Anima.SetInteger("jump", -1);
+            skeletonAnimationSystem.ChangeSkeletonAnimation(0, "JumpLoop", true);
             yield break;
         }
     }
@@ -169,46 +243,46 @@ public class PlayerSystem : MonoBehaviour
     {
         bool dir = false;
         CanWallJump = true;
-        PlayerDataSO.CanControl = false;
-        WallPos = transform.position;
-        WallJumpHint.transform.position = transform.position + Vector3.up * 2.1f;
+        CanControl = false;
+
         if (canAll == false)
         {
+            PlayerHint.gameObject.SetActive(true);
             if (transform.eulerAngles.y > 90)
             {
-                WallJumpHint.transform.rotation = Quaternion.Euler(0, 0, 45);
+                PlayerHint.transform.rotation = Quaternion.Euler(0, 0, 45);
                 dir = true;
             }
             else
             {
-                WallJumpHint.transform.rotation = Quaternion.Euler(0, 0, 135);
+                PlayerHint.transform.rotation = Quaternion.Euler(0, 0, 135);
                 dir = false;
             }
         }
-        Anima.SetTrigger("wall");
+        skeletonAnimationSystem.ChangeSkeletonAnimation(0, "Wall", true);
         StopCoroutine(JumpIEnum());
         while (true)//? 按右鍵一律順時針旋轉，左鍵則為逆時針旋轉
         {
             transform.position = WallPos;
             if (GetInput.Player.Move.ReadValue<float>() > 0)
-                WallJumpHint.transform.Rotate(0, 0, -2);
+                PlayerHint.transform.Rotate(0, 0, -2);
             if (GetInput.Player.Move.ReadValue<float>() < 0)
-                WallJumpHint.transform.Rotate(0, 0, 2);
+                PlayerHint.transform.Rotate(0, 0, 2);
             if (canAll == false)
             {
                 if (dir == false)
                 {
-                    if (WallJumpHint.transform.eulerAngles.z < 100)
-                        WallJumpHint.transform.rotation = Quaternion.Euler(0, 0, 100);
-                    else if (WallJumpHint.transform.eulerAngles.z > 260)
-                        WallJumpHint.transform.rotation = Quaternion.Euler(0, 0, 260);
+                    if (PlayerHint.transform.eulerAngles.z < 100)
+                        PlayerHint.transform.rotation = Quaternion.Euler(0, 0, 100);
+                    else if (PlayerHint.transform.eulerAngles.z > 260)
+                        PlayerHint.transform.rotation = Quaternion.Euler(0, 0, 260);
                 }
                 else
                 {
-                    if (WallJumpHint.transform.eulerAngles.z > 80 && WallJumpHint.transform.eulerAngles.z < 180)
-                        WallJumpHint.transform.rotation = Quaternion.Euler(0, 0, 80);
-                    else if (WallJumpHint.transform.eulerAngles.z < 280 && WallJumpHint.transform.eulerAngles.z > 180)
-                        WallJumpHint.transform.rotation = Quaternion.Euler(0, 0, 280);
+                    if (PlayerHint.transform.eulerAngles.z > 80 && PlayerHint.transform.eulerAngles.z < 180)
+                        PlayerHint.transform.rotation = Quaternion.Euler(0, 0, 80);
+                    else if (PlayerHint.transform.eulerAngles.z < 280 && PlayerHint.transform.eulerAngles.z > 180)
+                        PlayerHint.transform.rotation = Quaternion.Euler(0, 0, 280);
                 }
             }
             if (GetInput.Player.Jump.triggered)//? 跳躍
@@ -223,14 +297,14 @@ public class PlayerSystem : MonoBehaviour
     {
         DashTrigger();//? (無形攻擊效果)
         CanDash = false;
-        PlayerDataSO.Super = true;
+        Super = true;
         if (transform.eulerAngles.y == 0)
             Rigid.AddForce(Vector2.right * DashPower, ForceMode2D.Impulse);
         else
             Rigid.AddForce(Vector2.left * DashPower, ForceMode2D.Impulse);
-        Anima.SetTrigger("dash");
+        skeletonAnimationSystem.ChangeSkeletonAnimation(0, "Flash", false);
         yield return new WaitForSeconds(DashTime);
-        PlayerDataSO.Super = false;
+        Super = false;
         yield return new WaitForSeconds(1.5f - DashTime);
         CanDash = true;
         yield return 0;
@@ -238,24 +312,24 @@ public class PlayerSystem : MonoBehaviour
     private IEnumerator RestoreIEnum()//? 消耗固定10魔力恢復生命
     {
 
-        if (PlayerDataSO.PlayerNowMp > 9)
+        if (NowMp > 9)
         {
-            PlayerDataSO.PlayerNowMp -= 10;
+            NowMp -= 10;
             CanRestore = false;
-            PlayerDataSO.CanControl = false;
+            CanControl = false;
             if (FastRestore == false)
             {
-                Anima.SetTrigger("restore");
+                //! 回血動畫
                 yield return new WaitForSeconds(1);
             }
             else
             {
-                Anima.SetTrigger("fastRestore");
+                //! 回血動畫
                 yield return new WaitForSeconds(0.5f);
             }
             CanRestore = true;
-            PlayerDataSO.CanControl = true;
-            PlayerDataSO.PlayerNowHp += 1;
+            CanControl = true;
+            NowHp += 1;
             yield break;
 
         }
@@ -265,12 +339,13 @@ public class PlayerSystem : MonoBehaviour
     private IEnumerator OneAttackIEnum()//? 一般攻擊
     {
         CanAttack = false;
-        PlayerDataSO.CanControl = false;
-        Instantiate(OneAttack, transform.position, transform.rotation);
-        Anima.SetTrigger("attack");
+        CanControl = false;
+        PlayerAttack01.gameObject.SetActive(true);
+        PlayerAttack01.transform.position = transform.position + transform.right * 1.5f + Vector3.up * 2;
+        skeletonAnimationSystem.ChangeSkeletonAnimation(0, "Attack", false);
         yield return new WaitForSeconds(0.5f);//? 0.5秒可以再攻擊
         CanAttack = true;
-        PlayerDataSO.CanControl = true;
+        CanControl = true;
     }
     // IEnumerator ThreeAttackIEnum()//? 三連擊
     // {
@@ -317,43 +392,45 @@ public class PlayerSystem : MonoBehaviour
     // }
     private IEnumerator HurtIEnum(int damage)
     {
-        if (PlayerDataSO.Super == false)
+        if (Super == false)
         {
-            PlayerDataSO.PlayerNowHp -= damage;
-            HurtTrigger();//? (減傷效果)(增傷負面效果)(傷害反彈效果)(根性效果)
-            PlayerDataSO.Super = true;
-            PlayerDataSO.CanControl = false;
-            Anima.SetTrigger("hit");
+            NowHp -= damage;
+            //? (減傷效果)(增傷負面效果)(傷害反彈效果)(根性效果)
+            if (HurtEvent != null)
+                HurtEvent.Invoke();
+            Super = true;
+            CanControl = false;
+            skeletonAnimationSystem.ChangeSkeletonAnimation(0, "Hurt", false);
             //MyImpulseSetting.GenerateImpulse();//? 鏡頭震動            
             yield return 0;
-            if (PlayerDataSO.PlayerNowHp < 1)
+            if (NowHp < 1)
                 Die();
             yield return new WaitForSeconds(0.5f);
-            PlayerDataSO.Super = false;
-            PlayerDataSO.CanControl = true;
+            Super = false;
+            CanControl = true;
         }
         else
             yield break;
     }
     private IEnumerator DieIEnum()
     {
-        PlayerDataSO.CanControl = false;
+        CanControl = false;
         Destroy(Col);
         Rigid.gravityScale = 0;
-        Anima.SetTrigger("die");
+        skeletonAnimationSystem.ChangeSkeletonAnimation(0, "Die", false);
         StopAllCoroutines();
         yield return 0;
     }
     private IEnumerator DontControl(float stopTime)
     {
-        PlayerDataSO.CanControl = false;
+        CanControl = false;
         yield return new WaitForSeconds(stopTime);
-        PlayerDataSO.CanControl = true;
+        CanControl = true;
     }
     public void PublicWallJump(bool canAll)//? 蹬牆跳的外部接口
     {
         CanJump = true;
-        Anima.SetInteger("jump", 0);
+        skeletonAnimationSystem.ChangeSkeletonAnimation(0, "JumpDown", false);
         StartCoroutine(WallJumpIEnum(canAll));
     }
     public void PublicDontControl(float stopTime)//? 停止控制玩家的外部接口
@@ -361,91 +438,84 @@ public class PlayerSystem : MonoBehaviour
         CanJump = true;
         StartCoroutine(DontControl(stopTime));
     }
-    public static UnityAction DashEvent;//? 閃避事件
+    public UnityAction DashEvent;//? 閃避事件
     private void DashTrigger()//? 閃避事件觸發
     {
         if (DashEvent != null)
             DashEvent.Invoke();
     }
-    public static UnityAction<PlayerAttack> AttackEvent;//? 攻擊事件
-    public static void AttackTrigger(PlayerAttack p)//? 攻擊事件觸發
+    public UnityAction<PlayerAttack> AttackEvent;//? 攻擊事件
+    public void AttackTrigger(PlayerAttack p)//? 攻擊事件觸發
     {
         if (AttackEvent != null)
             AttackEvent.Invoke(p);
     }
-    public static UnityAction<PlayerAttack> AttackHurtEnemyEvent;//? 攻擊成功擊中敵人事件
-    public static void AttackHurtEnemyTrigger(PlayerAttack p)//? 攻擊成功擊中敵人事件觸發
+    public UnityAction<PlayerAttack> AttackHurtEnemyEvent;//? 攻擊成功擊中敵人事件
+    public void AttackHurtEnemyTrigger(PlayerAttack p)//? 攻擊成功擊中敵人事件觸發
     {
         if (AttackEvent != null)
             AttackEvent.Invoke(p);
     }
-    public static UnityAction HurtEvent;//? 受傷事件
-    public void HurtTrigger()//? 受傷事件觸發
-    {
-        if (HurtEvent != null)
-            HurtEvent.Invoke();
-    }
+    public UnityAction HurtEvent;//? 受傷事件
     private void Awake()
     {
-        //? Data數值初始化
-        PlayerDataSO.PlayerMaxHp = 20;
-        PlayerDataSO.PlayerMaxMp = 100;
-        PlayerDataSO.PlayerMaxAtk = 10;
-        PlayerDataSO.PlayerMaxHit = 10;
-        PlayerDataSO.PlayerNowHp = PlayerDataSO.PlayerMaxHp;
-        PlayerDataSO.PlayerNowMp = PlayerDataSO.PlayerMaxMp;
-        PlayerDataSO.PlayerNowAtk = PlayerDataSO.PlayerMaxAtk;
-        PlayerDataSO.PlayerNowHit = PlayerDataSO.PlayerMaxHit;
-        PlayerDataSO.PlayerTrans = transform;
+        PlayerSystemSO.GetPlayerFunc += GetPlayer;
         //transform.position = new Vector3(GameDataSO.ResetPoint[0], GameDataSO.ResetPoint[1], 0);
-        PlayerDataSO.CanControl = true;
         Rigid = GetComponent<Rigidbody2D>();
         Col = GetComponent<Collider2D>();
+        PlayerHint.SetActive(false);
         MyImpulseSetting = GetComponent<CinemachineImpulseSource>();
         GetInput = new MyInput();
-        WallJumpHint = GetGameObjectPool.GetGameObject(0, transform.position, Quaternion.identity);
-        WallJumpHint.transform.Translate(0, 1000, 0);
-        Time.timeScale = 遊戲運行速度調整;
     }
     private void OnEnable()
     {
+        PlayerSystemSO.GetPlayerFunc += GetPlayer;
+        //? Data數值初始化
+        MaxHp = PlayerDataSO.MaxHp;
+        MaxMp = PlayerDataSO.MaxMp;
+        MaxAtk = PlayerDataSO.MaxAtk;
+        MaxHit = PlayerDataSO.MaxHit;
+        MaxSpeed = PlayerDataSO.MaxSpeed;
         GetInput.Enable();
         GetInput.Player.Move.started += OnMove;
         GetInput.Player.Jump.started += OnJump;
         GetInput.Player.Dash.started += OnDash;
         GetInput.Player.Restore.started += OnRestore;
         GetInput.Player.Attack.started += OnOneAttack;
-        GameRunSO.PlayerHurtEvent += Hurt;
+        StartCoroutine(LateTrigger());
     }
     private void OnDisable()
     {
+        CanControl = false;
+        PlayerSystemSO.GetPlayerFunc -= GetPlayer;
         GetInput.Disable();
         GetInput.Player.Move.started -= OnMove;
         GetInput.Player.Jump.started -= OnJump;
         GetInput.Player.Dash.started -= OnDash;
         GetInput.Player.Restore.started -= OnRestore;
         GetInput.Player.Attack.started -= OnOneAttack;
-        GameRunSO.PlayerHurtEvent -= Hurt;
+
+    }
+    private void Start()
+    {
+
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.transform.CompareTag("Floor"))//? 接觸地板可以跳躍
+        Vector2 contactsNormal = other.contacts[0].normal;//? 取得碰撞點的法線向量
+        float colAngle = (Mathf.Atan(contactsNormal.y / contactsNormal.x)) * 180 / Mathf.PI;//? 換算成能理解的角度
+        if (WallJumping == true)//? 處於蹬牆跳時，接觸到任何牆壁或地板時解除
+            WallJumping = false;
+        skeletonAnimationSystem.ChangeSkeletonAnimation(0, "JumpDown", false);
+        if (colAngle < 105 && colAngle > 75)//? 檢查角度判定是否是踩到地板
         {
             CanJump = true;
-            if (WallJumping == true)//? 處於蹬牆跳時，接觸到任何牆壁或地板時解除
-                WallJumping = false;
-            Anima.SetInteger("jump", 0);
         }
-        if (other.transform.CompareTag("Wall"))//? 接觸特定牆壁可以蹬牆跳
+        if (colAngle < 10 && colAngle > -10)//? 檢查角度判定是否可以蹬牆跳
         {
-            CanJump = true;
-            if (WallJumping == true)//? 處於蹬牆跳時，接觸到任何牆壁或地板時解除
-                WallJumping = false;
-            Anima.SetInteger("jump", 0);
-            Vector2 contactsNormal = other.contacts[0].normal;//? 取得碰撞點的法線向量
-            float colAngle = (Mathf.Atan(contactsNormal.y / contactsNormal.x)) * 180 / Mathf.PI;//? 換算成能理解的角度
-            if (colAngle < 10 && colAngle > -10)//? 檢查角度判定是否可以蹬牆跳
+            if (other.transform.CompareTag("Wall"))//? 接觸特定牆壁才可以蹬牆跳
             {
+                CanJump = true;
                 if (other.contacts[0].point.x < transform.position.x)
                     transform.rotation = Quaternion.Euler(0, 180, 0);
                 else
@@ -453,5 +523,21 @@ public class PlayerSystem : MonoBehaviour
                 StartCoroutine(WallJumpIEnum(false));
             }
         }
+    }
+    IEnumerator LateTrigger()
+    {
+        yield return 0;
+        yield return 0;
+        MaxHp = PlayerDataSO.MaxHp;
+        NowHp = MaxHp;
+        MaxMp = PlayerDataSO.MaxMp;
+        NowMp = MaxMp;
+        MaxAtk = PlayerDataSO.MaxAtk;
+        NowAtk = MaxAtk;
+        MaxHit = PlayerDataSO.MaxHit;
+        NowHit = MaxHit;
+        MaxSpeed = PlayerDataSO.MaxSpeed;
+        NowSpeed = MaxSpeed;
+        CanControl = true;
     }
 }

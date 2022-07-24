@@ -7,6 +7,7 @@ public class BigJumpPlant : SpecialPlantSystem
 {
     bool CanUse = true;
     [SerializeField] int Power;
+    [SerializeField] Animator GetAnimator;
     GameObject GetPlayer;
     Rigidbody2D GetPlayerRigid;
 
@@ -18,15 +19,17 @@ public class BigJumpPlant : SpecialPlantSystem
                 StartCoroutine(Doing());
         }
     }
-    new void OnTriggerExit2D(Collider2D other)
-    {
-
-    }
     private IEnumerator Doing()
     {
         CanUse = false;
+        if (GetAnimator != null)
+        {
+            GetAnimator.SetTrigger("Jump");
+        }
+        yield return new WaitForSeconds(0.25f);
         if (GetPlayerRigid != null)
         {
+            GetPlayerRigid.Sleep();
             GetPlayerRigid.AddForce(transform.up * Power);
         }
         yield return new WaitForSeconds(0.25f);
@@ -36,5 +39,10 @@ public class BigJumpPlant : SpecialPlantSystem
     {
         GetPlayer = GameObject.FindGameObjectWithTag("Player");
         GetPlayerRigid = GetPlayer.GetComponent<Rigidbody2D>();
+    }
+
+    protected override void DoSomething(InputAction.CallbackContext context)
+    {
+
     }
 }

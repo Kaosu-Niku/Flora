@@ -15,15 +15,15 @@ public class HideHole : SpecialPlantSystem
         if (CanUse == true)
         {
             CanUse = false;
-            PlayerDataSO.CantFindPlayer = true;
-            PlayerDataSO.CanControl = false;
+            PlayerSystemSO.GetPlayerInvoke().SetCanFind(false);
+            PlayerSystemSO.GetPlayerInvoke().SetCanControl(false);
             Doing = StartCoroutine(DoingIEnum());
         }
         else
         {
             CanUse = true;
-            PlayerDataSO.CantFindPlayer = false;
-            PlayerDataSO.CanControl = true;
+            PlayerSystemSO.GetPlayerInvoke().SetCanFind(true);
+            PlayerSystemSO.GetPlayerInvoke().SetCanControl(true);
             StopCoroutine(Doing);
         }
 

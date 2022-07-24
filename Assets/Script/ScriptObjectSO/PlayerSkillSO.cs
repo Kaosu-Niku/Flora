@@ -21,25 +21,29 @@ public class PlayerSkillSO : ScriptableObject
         魔彼岸花 = 11,//* (3) 普通攻擊有5%機率吸取攻擊力10%的魔力
         根性 = 12,//* (4) 承受致命傷害，鎖血一滴
     }
-    [SerializeField] List<bool> _allSkill = new List<bool>(15);//* 各技能是否開啟
-    public List<bool> AllSkill { get => _allSkill; private set { _allSkill = value; } }
-    List<int> _skillDepletePoint = new List<int>(15) { 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4 };//* 各技能的點數消耗
-    public List<int> SkillDepletePoint { get => _skillDepletePoint; private set { _skillDepletePoint = value; } }
-    public void UseSkill(int whichSkill)
+    static int _skillMaxPoint;//* 最大技能點數
+    public static int SkillMaxPoint { get => _skillMaxPoint; set { if (value > 10) _skillMaxPoint = 10; else _skillMaxPoint = value; } }
+    static int _skillNowPoint;//* 已消耗的技能點數
+    public static int SkillNowPoint { get => _skillNowPoint; set { _skillNowPoint = value; } }
+    public static bool[] _AllSkill = new bool[15];//* 各技能是否開啟
+    public static bool[] AllSkill { get => _AllSkill; set { _AllSkill = value; } }//* 各技能是否開啟
+    static int[] _SkillDepletePoint = new int[] { 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4 };//* 各技能的點數消耗
+    public static int[] SkillDepletePoint { get => _SkillDepletePoint; private set { _SkillDepletePoint = value; } }
+    public static void UseSkill(int whichSkill)
     {
         if (whichSkill < 15)
         {
             if (AllSkill[whichSkill] == false)//? 技能未開啟
             {
-                if (PlayerDataSO.SkillNowPoint + SkillDepletePoint[whichSkill] <= PlayerDataSO.SkillMaxPoint)//? 當前技能點數超過最大數將無法安裝
+                if (SkillNowPoint + SkillDepletePoint[whichSkill] <= SkillMaxPoint)//? 當前技能點數超過最大數將無法安裝
                 {
-                    PlayerDataSO.SkillNowPoint += SkillDepletePoint[whichSkill];
+                    SkillNowPoint += SkillDepletePoint[whichSkill];
                     AllSkill[whichSkill] = true;
                 }
             }
             else//? 技能已開啟
             {
-                PlayerDataSO.SkillNowPoint -= SkillDepletePoint[whichSkill];
+                SkillNowPoint -= SkillDepletePoint[whichSkill];
                 AllSkill[whichSkill] = false;
             }
         }

@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using Spine.Unity;
 
 public class NPC : MonoBehaviour
 {
-    [SerializeField] Animator MyAnimator;
+    Transform PlayerTransform;
+    [SerializeField] Transform LeftEye;
+    [SerializeField] Transform RightEye;
+    [SerializeField] SkeletonAnimationSystem skeletonAnimationSystem;
     PoolObject NpcHintButton;//* 提示按鈕
     [SerializeField] Vector3 ButtonMove;//* 按鈕位置微調 
     [SerializeField] List<string> TalkString = new List<string>();//* 對話內容
@@ -37,16 +40,23 @@ public class NPC : MonoBehaviour
             {
                 UiSystem.TalkPanelInvoke(null, 1);
                 TalkNum = 0;
-                if (MyAnimator)
-                    MyAnimator.SetBool("talk", false);
+                skeletonAnimationSystem.ChangeSkeletonAnimation(0, "Talk", true);
             }
             else
             {
                 UiSystem.TalkPanelInvoke(TalkString[TalkNum], TalkTime[TalkNum]);
                 TalkNum++;
-                if (MyAnimator)
-                    MyAnimator.SetBool("talk", true);
+                skeletonAnimationSystem.ChangeSkeletonAnimation(0, "Talk", true);
             }
+        }
+    }
+    IEnumerator LookPlayer()
+    {
+        while (true)
+        {
+            LeftEye.position = Vector3.Lerp(LeftEye.position, PlayerTransform.position, Time.deltaTime);
+            RightEye.position = Vector3.Lerp(RightEye.position, PlayerTransform.position, Time.deltaTime);
+            yield return 0;
         }
     }
 
@@ -57,6 +67,8 @@ public class NPC : MonoBehaviour
             CanTalk = true;
             NpcHintButton = GameObjectPoolSO.GetObject("NpcHintButton", transform.position + ButtonMove, transform.rotation);
             NpcHintButton.gameObject.SetActive(true);
+            PlayerTransform = other.transform.root.transform;
+            StartCoroutine(LookPlayer());
         }
     }
 

@@ -515,7 +515,7 @@ MonoBehaviour:
   skeletonAnimationSystem: {fileID: 3153177311767479616}
   DashTime: 0.75
   CanDash: 1
-  DashPower: 25
+  DashPower: 50
   FastRestore: 0
   SuckAwardCol: {fileID: 2550601293450544737}
   PlayerHint: {fileID: 2253118171366471108}
@@ -5536,7 +5536,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 97ffee88409359941bae0a073178b11f, type: 2}
+  - {fileID: 2100000, guid: b2aac96df2a4fc24a9ec52cbcd580340, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5570,7 +5570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 2e614c3adf243bf48863769428d3df32, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 99e147083a81c994692fb057f0bb2249, type: 2}
   initialSkinName: 
   fixPrefabOverrideViaMeshFilter: 2
   initialFlipX: 0

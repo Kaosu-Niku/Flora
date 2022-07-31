@@ -29,7 +29,7 @@ public class PlayerSystem : MonoBehaviour
         MaxMp += much;
     }
     int _NowMp;//* 當前魔力
-    public int NowMp { get => _NowMp; private set { if (_NowMp > PlayerDataSO.MaxMp) _NowMp = PlayerDataSO.MaxMp; else _NowMp = value; UiSystem.ChangePlayerMpInvoke(); } }
+    public int NowMp { get => _NowMp; private set { if (_NowMp > PlayerDataSO.MaxMp) _NowMp = PlayerDataSO.MaxMp; else if (NowMp > 0) _NowMp = value; else _NowMp = 0; UiSystem.ChangePlayerMpInvoke(); } }
     public void AddNowMp(int much)
     {
         NowMp += much;
@@ -80,6 +80,7 @@ public class PlayerSystem : MonoBehaviour
     {
         Super = value;
     }
+    int WhichAttack;
     bool _CanFind = true;//* 怪物是否能找到玩家
     public bool CanFind { get => _CanFind; private set { _CanFind = value; } }
     public void SetCanFind(bool value)
@@ -125,10 +126,15 @@ public class PlayerSystem : MonoBehaviour
         if (CanControl && CanRestore)
             StartCoroutine(RestoreIEnum());
     }
+    Coroutine AttackCoroutine;
     private void OnOneAttack(InputAction.CallbackContext context)//? 攻擊
     {
         if (CanControl && CanAttack)
-            StartCoroutine(OneAttackIEnum());
+        {
+            if (AttackCoroutine != null)
+                StopCoroutine(AttackCoroutine);
+            AttackCoroutine = StartCoroutine(OneAttackIEnum());
+        }
     }
     public void Hurt(int damage)//? 受傷
     {
@@ -312,19 +318,19 @@ public class PlayerSystem : MonoBehaviour
     private IEnumerator RestoreIEnum()//? 消耗固定10魔力恢復生命
     {
 
-        if (NowMp > 9)
+        if (true)//NowMp > 9
         {
             NowMp -= 10;
             CanRestore = false;
             CanControl = false;
             if (FastRestore == false)
             {
-                //! 回血動畫
-                yield return new WaitForSeconds(1);
+                skeletonAnimationSystem.ChangeSkeletonAnimation(0, "HP+++", true);
+                yield return new WaitForSeconds(1.5f);
             }
             else
             {
-                //! 回血動畫
+                skeletonAnimationSystem.ChangeSkeletonAnimation(0, "HP+++", true);
                 yield return new WaitForSeconds(0.5f);
             }
             CanRestore = true;
@@ -340,56 +346,43 @@ public class PlayerSystem : MonoBehaviour
     {
         CanAttack = false;
         CanControl = false;
-        PlayerAttack01.gameObject.SetActive(true);
-        PlayerAttack01.transform.position = transform.position + transform.right * 1.5f + Vector3.up * 2;
-        skeletonAnimationSystem.ChangeSkeletonAnimation(0, "Attack", false);
-        yield return new WaitForSeconds(0.5f);//? 0.5秒可以再攻擊
-        CanAttack = true;
-        CanControl = true;
+        switch (WhichAttack)
+        {
+            case 0:
+                PlayerAttack01.gameObject.SetActive(true);
+                PlayerAttack01.transform.position = transform.position + transform.right * 1.5f + Vector3.up * 2;
+                skeletonAnimationSystem.ChangeSkeletonAnimation(0, "Attack1", false);
+                yield return new WaitForSeconds(0.75f);
+                WhichAttack = 1;
+                CanAttack = true;
+                CanControl = true;
+                yield return new WaitForSeconds(1);
+                WhichAttack = 0;
+                break;
+            case 1:
+                PlayerAttack01.gameObject.SetActive(true);
+                PlayerAttack01.transform.position = transform.position + transform.right * 1.5f + Vector3.up * 2;
+                skeletonAnimationSystem.ChangeSkeletonAnimation(0, "Attack2", false);
+                yield return new WaitForSeconds(0.75f);
+                WhichAttack = 2;
+                CanAttack = true;
+                CanControl = true;
+                yield return new WaitForSeconds(1);
+                WhichAttack = 0;
+                break;
+            case 2:
+                PlayerAttack01.gameObject.SetActive(true);
+                PlayerAttack01.transform.position = transform.position + transform.right * 1.5f + Vector3.up * 2;
+                skeletonAnimationSystem.ChangeSkeletonAnimation(0, "Attack3", false);
+                yield return new WaitForSeconds(1);
+                WhichAttack = 0;
+                CanAttack = true;
+                CanControl = true;
+                break;
+        }
+
+        yield break;
     }
-    // IEnumerator ThreeAttackIEnum()//? 三連擊
-    // {
-    //     //? 第一擊
-    //     CanAttack = false;
-    //     CanControl = false;
-    //     Instantiate(OneAttack, transform.position, transform.rotation);
-    //     Anima.SetInteger("whichAttack", 1);
-    //     Anima.SetTrigger("attack");
-    //     yield return new WaitForSeconds(0.5f);//? 0.5秒後在1秒內可以使出第二擊
-    //     CanControl = true;
-    //     for (float x = 0; x < 1; x += Time.deltaTime)
-    //     {
-    //         if (GetInput.Player.Attack.triggered)//? 第二次攻擊
-    //         {
-    //             CanControl = false;
-    //             Instantiate(OneAttack, transform.position, transform.rotation);
-    //             Anima.SetInteger("whichAttack", 2);
-    //             Anima.SetTrigger("attack");
-    //             yield return new WaitForSeconds(0.5f);//? 0.5秒後在1秒內可以使出第三擊
-    //             CanControl = true;
-    //             for (float y = 0; y < 1; y += Time.deltaTime)
-    //             {
-    //                 if (GetInput.Player.Attack.triggered)//? 第三次攻擊
-    //                 {
-    //                     CanControl = false;
-    //                     Instantiate(OneAttack, transform.position, transform.rotation);
-    //                     Anima.SetInteger("whichAttack", 3);
-    //                     Anima.SetTrigger("attack");
-    //                     yield return new WaitForSeconds(1);//? 1秒後可以重新開始3連擊
-    //                     CanControl = true;
-    //                     CanAttack = true;
-    //                     yield break;
-    //                 }
-    //                 yield return 0;
-    //             }
-    //             CanAttack = true;
-    //             yield break;
-    //         }
-    //         yield return 0;
-    //     }
-    //     CanAttack = true;
-    //     yield break;
-    // }
     private IEnumerator HurtIEnum(int damage)
     {
         if (Super == false)
@@ -494,10 +487,6 @@ public class PlayerSystem : MonoBehaviour
         GetInput.Player.Dash.started -= OnDash;
         GetInput.Player.Restore.started -= OnRestore;
         GetInput.Player.Attack.started -= OnOneAttack;
-
-    }
-    private void Start()
-    {
 
     }
     private void OnCollisionEnter2D(Collision2D other)

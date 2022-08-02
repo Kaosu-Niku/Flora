@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class 編輯者模式 : MonoBehaviour
 {
+    [SerializeField] float 運行時間;
     [SerializeField] int 玩家最大血量;
     [SerializeField] int 玩家最大魔力;
     [SerializeField] int 玩家最大攻擊力;
@@ -25,6 +26,7 @@ public class 編輯者模式 : MonoBehaviour
     [SerializeField] bool 根性;
     void Awake()
     {
+        Time.timeScale = 運行時間;
         PlayerDataSO.MaxHp = 玩家最大血量;
         PlayerDataSO.MaxMp = 玩家最大魔力;
         PlayerDataSO.MaxAtk = 玩家最大攻擊力;

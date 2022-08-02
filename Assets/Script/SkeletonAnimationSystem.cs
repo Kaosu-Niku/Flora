@@ -4,26 +4,25 @@ using UnityEngine;
 using Spine;
 using Spine.Unity;
 
-[RequireComponent(typeof(SkeletonAnimation))]
 public abstract class SkeletonAnimationSystem : MonoBehaviour
 {
-    private SkeletonAnimation skeletonAnimation;
-    protected SkeletonAnimation GetSkeletonAnimation { get => skeletonAnimation; }
-    protected abstract string DefaultAnimation { get; }//? 初始預設動畫(若沒有接續動畫則會自動接續該預設動畫)
-    private void Awake()
+    protected abstract SkeletonAnimation skeletonAnimation { get; }
+    protected void Start()
     {
-        skeletonAnimation = GetComponent<SkeletonAnimation>();
-        GetSkeletonAnimation.AnimationState.Complete += AnimationCompleteCallBack;//? 所有動畫結束時皆會調用
-        GetSkeletonAnimation.AnimationState.Event += AnimationEventCallBack;//? Spine動畫發出事件時調用
+        //? 所有動畫結束時皆會調用
+        skeletonAnimation.AnimationState.Complete += AnimationCompleteCallBack;
+        //? Spine動畫發出事件時調用
+        skeletonAnimation.AnimationState.Event += AnimationEventCallBack;
     }
     private void AnimationCompleteCallBack(TrackEntry trackEntry)
     {
-        skeletonAnimation.AnimationState.SetAnimation(0, DefaultAnimation, true);
-    }
-
-    public void ChangeSkeletonAnimation(int mix, string animationName, bool loop)//? 更改Spine動畫(1.動畫混合、2.動畫名稱、3.是否循環)
-    {
-        skeletonAnimation.AnimationState.SetAnimation(mix, animationName, loop);
+        if (trackEntry.Next == null)
+        {
+            //? 第0通道始終會保持著有動畫接續的狀態(無動作就切換回預設動作並循環)
+            //? 非第0通道的其他通道都是為了做混合動畫，其他通道不需要預設動作，直接清除軌道就好。
+            if (trackEntry.TrackIndex != 0)
+                skeletonAnimation.AnimationState.ClearTrack(trackEntry.TrackIndex);
+        }
     }
     protected abstract void AnimationEventCallBack(TrackEntry trackEntry, Spine.Event e);
 }

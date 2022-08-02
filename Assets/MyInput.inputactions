@@ -1,5 +1,5 @@
 {
-    "name": "InputSystem",
+    "name": "MyInput",
     "maps": [
         {
             "name": "Player",
@@ -33,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Dash",
+                    "name": "Flash",
                     "type": "Button",
                     "id": "959e108c-ca31-48fa-9e04-20db21f142b8",
                     "expectedControlType": "Button",
@@ -112,18 +112,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "01275bf9-c85e-48b7-bab8-4a329a6cb457",
-                    "path": "<Gamepad>/rightStick/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dash",
+                    "action": "Flash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

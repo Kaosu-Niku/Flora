@@ -22,7 +22,7 @@ public class PlayerSkill : MonoBehaviour
         }
         {//? (閃避1) 閃避時間增加0.25秒
             if (PlayerSkillSO.AllSkill[1] == true)
-                PlayerSystemSO.GetPlayerInvoke().DashTime += 0.25f;
+                PlayerSystemSO.GetPlayerInvoke().SetFlashTime(true);
         }
         {//? (減傷2) 所受傷害皆減少1點
             if (PlayerSkillSO.AllSkill[2] == true)
@@ -49,8 +49,8 @@ public class PlayerSkill : MonoBehaviour
         {//? (無形攻擊2) 使用閃避可對閃避期間接觸的怪物造成10點傷害 & 閃避時間減少0.25秒
             if (PlayerSkillSO.AllSkill[6] == true)
             {
-                PlayerSystemSO.GetPlayerInvoke().DashTime -= 0.25f;
-                PlayerSystemSO.GetPlayerInvoke().DashEvent += Skill6;
+                PlayerSystemSO.GetPlayerInvoke().SetFlashTime(false);
+                PlayerSystemSO.GetPlayerInvoke().FlashEvent += Skill6;
             }
         }
         {//? (光華刀刃3) 每次攻擊有10%機率提高傷害(1.5倍)

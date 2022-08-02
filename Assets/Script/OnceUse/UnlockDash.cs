@@ -8,12 +8,12 @@ public class UnlockDash : SpecialPlantSystem
     PlayerSystem GetPS;
     protected override void DoSomething(InputAction.CallbackContext context)
     {
-        GetPS.CanDash = true;
-        Destroy(this.gameObject);
+        GetPS.SetCanFlash(true);
+        Destroy(gameObject);
     }
     private void Start()
     {
         GetPS = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerSystem>();
-        GetPS.CanDash = false;
+        GetPS.SetCanFlash(false);
     }
 }

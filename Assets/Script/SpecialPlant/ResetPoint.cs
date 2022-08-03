@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using Spine;
 
 public class ResetPoint : SpecialPlantSystem
 {
@@ -17,6 +18,14 @@ public class ResetPoint : SpecialPlantSystem
         GameDataSO.ResetPoint[1] = transform.position.y;
         AllEventSO.LoadSceneAsyncTrigger(GameDataSO.LastScene);
         yield break;
+    }
+    protected override void AnimationEventCallBack(TrackEntry trackEntry, Spine.Event e)
+    {
+        if (e.Data.Name == "JumpOut")
+        {
+            skeletonAnimation.AnimationState.SetAnimation(0, "a", true);
+            return;
+        }
     }
 }
 

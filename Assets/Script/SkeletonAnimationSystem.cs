@@ -6,13 +6,17 @@ using Spine.Unity;
 
 public abstract class SkeletonAnimationSystem : MonoBehaviour
 {
-    protected abstract SkeletonAnimation skeletonAnimation { get; }
-    protected void Start()
+    public SkeletonAnimation skeletonAnimation { get; private set; }
+    protected void Awake()
     {
-        //? 所有動畫結束時皆會調用
-        skeletonAnimation.AnimationState.Complete += AnimationCompleteCallBack;
-        //? Spine動畫發出事件時調用
-        skeletonAnimation.AnimationState.Event += AnimationEventCallBack;
+        skeletonAnimation = GetComponent<SkeletonAnimation>();
+        if (skeletonAnimation != null)
+        {
+            //? 所有動畫結束時皆會調用
+            skeletonAnimation.AnimationState.Complete += AnimationCompleteCallBack;
+            //? Spine動畫發出事件時調用
+            skeletonAnimation.AnimationState.Event += AnimationEventCallBack;
+        }
     }
     private void AnimationCompleteCallBack(TrackEntry trackEntry)
     {

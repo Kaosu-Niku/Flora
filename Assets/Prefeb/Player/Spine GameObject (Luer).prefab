@@ -5225,7 +5225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd5908353127b7048bbd68c665958f2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetSkeletonAnimation: {fileID: 2925634392117523526}
   skeletonRootMotion: {fileID: 6979435000866348096}
   FastRestore: 0
   SuckAwardCol: {fileID: 2442637802895054676}
@@ -5293,8 +5292,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 588769411
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &2925634392117523526

@@ -9,8 +9,6 @@ using Spine.Unity;
 
 public class PlayerSystem : SkeletonAnimationSystem
 {
-    [SerializeField] SkeletonAnimation SetSkeletonAnimation;
-    protected override SkeletonAnimation skeletonAnimation { get => SetSkeletonAnimation; }
     [SerializeField] SkeletonRootMotion skeletonRootMotion;
     protected override void AnimationEventCallBack(TrackEntry trackEntry, Spine.Event e)
     {
@@ -198,7 +196,7 @@ public class PlayerSystem : SkeletonAnimationSystem
             AddMoneyEvent.Invoke(much);
     }
     bool _CanControl;//* 玩家是否能控制
-    public bool CanControl { get => _CanControl; private set { _CanControl = value; Debug.Log(_CanControl); } }
+    public bool CanControl { get => _CanControl; private set { _CanControl = value; } }
     public void SetCanControl(bool value)
     {
         CanControl = value;
@@ -236,8 +234,9 @@ public class PlayerSystem : SkeletonAnimationSystem
     MyInput GetInput;
     [SerializeField] List<GameObject> Attack = new List<GameObject>();
 
-    private void Awake()
+    new void Awake()
     {
+        base.Awake();
         PlayerSystemSO.GetPlayerFunc += GetPlayer;
         //transform.position = new Vector3(GameDataSO.ResetPoint[0], GameDataSO.ResetPoint[1], 0);
         Rigid = GetComponent<Rigidbody2D>();
@@ -333,7 +332,6 @@ public class PlayerSystem : SkeletonAnimationSystem
                     break;
                 yield return new WaitForFixedUpdate();
             }
-            transform.Translate(0, 1, 0);
             if (jumpTIme > 0.3f)
                 skeletonRootMotion.rootMotionScaleY = 3;
             else if (jumpTIme > 0.2f)
@@ -353,6 +351,14 @@ public class PlayerSystem : SkeletonAnimationSystem
             PlayerHint.gameObject.SetActive(false);
         }
         yield break;
+    }
+    public void CallJump(int jumpPower)
+    {
+        CanJump = false;
+        skeletonRootMotion.rootMotionScaleY = jumpPower;
+        Rigid.gravityScale = 0;
+        Rigid.Sleep();
+        skeletonAnimation.AnimationState.SetAnimation(0, "Jump", false);
     }
     public UnityAction FlashEvent;//? 閃避事件
     private void OnFlash(InputAction.CallbackContext context)//? 閃避
@@ -473,7 +479,8 @@ public class PlayerSystem : SkeletonAnimationSystem
     {
         Vector2 contactsNormal = other.contacts[0].normal;//? 取得碰撞點的法線向量
         float colAngle = (Mathf.Atan(contactsNormal.y / contactsNormal.x)) * 180 / Mathf.PI;//? 換算成能理解的角度
-        if (colAngle < 105 && colAngle > 75)//? 檢查角度判定是否是踩到地板
+        Debug.Log(colAngle);
+        if (colAngle < 120 && colAngle > 60 || colAngle > -120 && colAngle < -60)//? 檢查角度判定是否是踩到地板
         {
             skeletonAnimation.AnimationState.SetAnimation(0, "JumpDown", false);
             CanJump = true;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Spine;
 
 public class HideHole : SpecialPlantSystem
 {
@@ -42,5 +43,13 @@ public class HideHole : SpecialPlantSystem
         GetPlayer = GameObject.FindGameObjectWithTag("Player");
         if (GetPlayer != null)
             GetPlayerSystem = GetPlayer.GetComponent<PlayerSystem>();
+    }
+    protected override void AnimationEventCallBack(TrackEntry trackEntry, Spine.Event e)
+    {
+        if (e.Data.Name == "JumpOut")
+        {
+            skeletonAnimation.AnimationState.SetAnimation(0, "a", true);
+            return;
+        }
     }
 }

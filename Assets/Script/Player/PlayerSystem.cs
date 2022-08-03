@@ -11,19 +11,22 @@ public class PlayerSystem : SkeletonAnimationSystem
 {
     [SerializeField] SkeletonAnimation SetSkeletonAnimation;
     protected override SkeletonAnimation skeletonAnimation { get => SetSkeletonAnimation; }
+    [SerializeField] SkeletonRootMotion skeletonRootMotion;
     protected override void AnimationEventCallBack(TrackEntry trackEntry, Spine.Event e)
     {
-        if (e.Data.Name == "JumpUpOut")
+        if (e.Data.Name == "JumpOut")
         {
+            Rigid.gravityScale = 10;
+            skeletonRootMotion.rootMotionScaleY = 1;//? 跳躍高度倍率
             skeletonAnimation.AnimationState.SetAnimation(0, "JumpLoop", true);
             return;
         }
-        if (e.Data.Name == "JumpIn")
+        if (e.Data.Name == "JumpDownIn")
         {
             CanControl = false;
             return;
         }
-        if (e.Data.Name == "JumpOut")
+        if (e.Data.Name == "JumpDownOut")
         {
             CanControl = true;
             return;
@@ -202,7 +205,6 @@ public class PlayerSystem : SkeletonAnimationSystem
     }
     bool Super = false;//* 無敵狀態
     bool CanJump = true;//* 可以跳躍
-    Vector3 WallPos;//* 吸附牆上的位置固定
     bool CanFlash = true;//* 可以閃避
     public void SetCanFlash(bool b)
     {
@@ -269,7 +271,6 @@ public class PlayerSystem : SkeletonAnimationSystem
         GetInput.Player.Flash.started -= OnFlash;
         GetInput.Player.Restore.started -= OnRestore;
         GetInput.Player.Attack.started -= OnAttack;
-
     }
     IEnumerator LateTrigger()
     {
@@ -289,16 +290,11 @@ public class PlayerSystem : SkeletonAnimationSystem
     }
     private void Update()
     {
-        if (CanControl == true)
+        if (CanControl)
         {
-            float f = GetInput.Player.Move.ReadValue<float>();
-            if (f != 0)
+            if (GetInput.Player.Move.ReadValue<float>() != 0)
             {
-                if (skeletonAnimation.AnimationState.GetCurrent(0).Animation.Name != "Walk")
-                {
-                    skeletonAnimation.AnimationState.SetAnimation(0, "Walk", true);
-                }
-                if (f > 0)
+                if (GetInput.Player.Move.ReadValue<float>() > 0)
                 {
                     if (transform.eulerAngles.y != 0)
                         transform.rotation = Quaternion.identity;
@@ -309,13 +305,13 @@ public class PlayerSystem : SkeletonAnimationSystem
                         transform.rotation = Quaternion.Euler(0, 180, 0);
                 }
                 transform.Translate(PlayerDataSO.MaxSpeed * Time.deltaTime, 0, 0);
+                if (skeletonAnimation.AnimationState.GetCurrent(0).Animation.Name == "Idle" || skeletonAnimation.AnimationState.GetCurrent(0).IsComplete == true)
+                    skeletonAnimation.AnimationState.SetAnimation(0, "Walk", true);
             }
             else
             {
-                if (skeletonAnimation.AnimationState.GetCurrent(0).Animation.Name != "Idle")
-                {
+                if (skeletonAnimation.AnimationState.GetCurrent(0).Animation.Name == "Walk" || skeletonAnimation.AnimationState.GetCurrent(0).IsComplete == true)
                     skeletonAnimation.AnimationState.SetAnimation(0, "Idle", true);
-                }
             }
         }
     }
@@ -333,30 +329,28 @@ public class PlayerSystem : SkeletonAnimationSystem
             while (GetInput.Player.Jump.ReadValue<float>() > 0)
             {
                 jumpTIme += Time.fixedDeltaTime;
-                if (jumpTIme > 0.2f)
+                if (jumpTIme > 0.3f)
                     break;
                 yield return new WaitForFixedUpdate();
             }
-            if (jumpTIme > 0.2f)
-                Rigid.AddForce(Vector2.up * 0);
-            else if (jumpTIme > 0.1f)
-                Rigid.AddForce(Vector2.up * 0);
+            transform.Translate(0, 1, 0);
+            if (jumpTIme > 0.3f)
+                skeletonRootMotion.rootMotionScaleY = 3;
+            else if (jumpTIme > 0.2f)
+                skeletonRootMotion.rootMotionScaleY = 2;
             else
-                Rigid.AddForce(Vector2.up * 0);
+                skeletonRootMotion.rootMotionScaleY = 1;
+            Rigid.gravityScale = 0;
+            Rigid.Sleep();
             skeletonAnimation.AnimationState.SetAnimation(0, "Jump", false);
+
         }
         else//? 蹬牆跳
         {
-            if (PlayerHint.transform.eulerAngles.z > 90 && PlayerHint.transform.eulerAngles.z < 270)
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-            else
-                transform.rotation = Quaternion.identity;
-            Rigid.AddForce(PlayerHint.transform.rotation * Vector2.right * 2800);//? 根據指示箭頭方向決定彈出去的方向
+            transform.Rotate(0, 180, 0);
+            skeletonRootMotion.rootMotionScaleY = 3;
             skeletonAnimation.AnimationState.SetAnimation(0, "Jump", false);
             PlayerHint.gameObject.SetActive(false);
-            yield return new WaitForSeconds(0.25f);
-            CanControl = true;
-            CanJump = true;
         }
         yield break;
     }
@@ -488,71 +482,36 @@ public class PlayerSystem : SkeletonAnimationSystem
         {
             if (other.transform.CompareTag("Wall"))//? 接觸特定牆壁才可以蹬牆跳
             {
-                if (other.contacts[0].point.x < transform.position.x)
-                    transform.rotation = Quaternion.Euler(0, 180, 0);
-                else
+                if (other.contacts[0].point.x < other.transform.position.x)
                     transform.rotation = Quaternion.identity;
-                StartCoroutine(WallJumpIEnum(false));
+                else
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
+                StartCoroutine(WallJumpIEnum());
             }
         }
     }
-    private IEnumerator WallJumpIEnum(bool canAll)//? 吸附到可蹬牆跳的牆上，此時只能按跳躍鍵(需指定角色彈出方向，false為向左彈出，反之向右)
+    private IEnumerator WallJumpIEnum()//? 吸附到可蹬牆跳的牆上，此時只能按跳躍鍵
     {
         CanJump = true;
         CanControl = false;
-        bool dir = false;
-        if (canAll == false)
-        {
-            PlayerHint.gameObject.SetActive(true);
-            if (transform.eulerAngles.y > 90)
-            {
-                PlayerHint.transform.rotation = Quaternion.Euler(0, 0, 45);
-                dir = true;
-            }
-            else
-            {
-                PlayerHint.transform.rotation = Quaternion.Euler(0, 0, 135);
-                dir = false;
-            }
-        }
-        WallPos = transform.position;
+        Rigid.Sleep();
+        Rigid.gravityScale = 0;
+        PlayerHint.gameObject.SetActive(true);
         skeletonAnimation.AnimationState.SetAnimation(0, "WallHanging", true);
         while (true)//? 按右鍵一律順時針旋轉，左鍵則為逆時針旋轉
         {
-            transform.position = WallPos;
-            if (GetInput.Player.Move.ReadValue<float>() > 0)
-                PlayerHint.transform.Rotate(0, 0, -2);
-            if (GetInput.Player.Move.ReadValue<float>() < 0)
-                PlayerHint.transform.Rotate(0, 0, 2);
-            if (canAll == false)
-            {
-                if (dir == false)
-                {
-                    if (PlayerHint.transform.eulerAngles.z < 100)
-                        PlayerHint.transform.rotation = Quaternion.Euler(0, 0, 100);
-                    else if (PlayerHint.transform.eulerAngles.z > 260)
-                        PlayerHint.transform.rotation = Quaternion.Euler(0, 0, 260);
-                }
-                else
-                {
-                    if (PlayerHint.transform.eulerAngles.z > 80 && PlayerHint.transform.eulerAngles.z < 180)
-                        PlayerHint.transform.rotation = Quaternion.Euler(0, 0, 80);
-                    else if (PlayerHint.transform.eulerAngles.z < 280 && PlayerHint.transform.eulerAngles.z > 180)
-                        PlayerHint.transform.rotation = Quaternion.Euler(0, 0, 280);
-                }
-            }
             if (GetInput.Player.Jump.triggered)//? 蹬牆跳
             {
+                CanControl = true;
                 StartCoroutine(JumpIEnum());
                 yield break;
             }
             yield return 0;
         }
     }
-    public void CallWallJump(bool canAll)//? 蹬牆跳的外部接口
+    public void CallWallJump()//? 蹬牆跳的外部接口
     {
-        CanJump = true;
-        skeletonAnimation.AnimationState.SetAnimation(0, "JumpDown", false);
-        StartCoroutine(WallJumpIEnum(canAll));
+        CanControl = true;
+        StartCoroutine(WallJumpIEnum());
     }
 }

@@ -17,7 +17,7 @@ public class SendFruit : SpecialPlantSystem
             if (GetPlayerSystem != null)
             {
                 GetPlayer.transform.position = newPos;
-                GetPlayerSystem.CallWallJump(true);
+                GetPlayerSystem.CallWallJump();
             }
         }
     }

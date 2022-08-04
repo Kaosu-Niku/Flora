@@ -52,14 +52,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4186392e4b727944e94b52cfd5b75384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHp: 30
+  MaxHp: 75
   MaxHitRecover: 20
   DropMoney: 9999
   DropMp: 500
   Attack:
   - {fileID: 303554477571775696}
   HpSliderMove: {x: 0, y: 5, z: 0}
-  Speed: 2
 --- !u!33 &303554476015466134
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -121,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: f5041d8c0d49f99458e36ff42473e797, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 07b4b3d26ee65e444a7cca38217b06b5, type: 2}
   initialSkinName: 
   fixPrefabOverrideViaMeshFilter: 2
   initialFlipX: 1
@@ -146,7 +145,7 @@ MonoBehaviour:
   disableRenderingOnOverride: 1
   updateTiming: 1
   unscaledTime: 0
-  _animationName: 
+  _animationName: Idle
   loop: 1
   timeScale: 1
 --- !u!114 &303554476015466141

@@ -5,7 +5,6 @@ using Spine;
 
 public class Leafworm : Monster
 {
-    [SerializeField] float Speed;
     protected override void AnimationEventCallBack(TrackEntry trackEntry, Spine.Event e)
     {
         base.AnimationEventCallBack(trackEntry, e);
@@ -16,7 +15,10 @@ public class Leafworm : Monster
         {
             int a = Random.Range(0, 2);
             if (a == 1)
-                skeletonAnimation.AnimationState.SetAnimation(0, "Attack", false);
+            {
+                LookPlayer();
+                skeletonAnimation.AnimationState.SetAnimation(0, "Attack2", false);
+            }
             return;
         }
         if (e.Data.Name == "IntimidateOut")
@@ -42,8 +44,9 @@ public class Leafworm : Monster
     }
     protected override IEnumerator CustomAction()
     {
-        if (GetPlayerDistance() < 5)
+        if (GetPlayerDistance() < 10)
         {
+            LookPlayer();
             skeletonAnimation.AnimationState.SetAnimation(0, "Intimidate", false);
         }
         else
@@ -52,16 +55,20 @@ public class Leafworm : Monster
             skeletonAnimation.AnimationState.SetAnimation(0, "Walk", true);
             transform.Rotate(0, 180, 0);
             int moveTime = Random.Range(1, 4);
-            for (float a = 0; a < moveTime; a += Time.deltaTime)
+            yield return new WaitForSeconds(moveTime);
+            if (GetPlayerDistance() < 10)
             {
-                transform.Translate(Speed * Time.deltaTime, 0, 0);
-                yield return 0;
+                LookPlayer();
+                skeletonAnimation.AnimationState.SetAnimation(0, "Intimidate", false);
             }
-            //? 停在原地
-            skeletonAnimation.AnimationState.SetAnimation(0, "Idle", true);
-            int waitTime = Random.Range(1, 4);
-            yield return new WaitForSeconds(waitTime);
-            OnAction();
+            else
+            {
+                //? 停在原地
+                skeletonAnimation.AnimationState.SetAnimation(0, "Idle", true);
+                int waitTime = Random.Range(1, 4);
+                yield return new WaitForSeconds(waitTime);
+                OnAction();
+            }
         }
         yield break;
     }

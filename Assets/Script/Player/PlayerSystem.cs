@@ -22,6 +22,7 @@ public class PlayerSystem : SkeletonAnimationSystem
         if (e.Data.Name == "JumpDownIn")
         {
             CanJump = true;
+            Jumping = false;
             CanControl = false;
             Rigid.gravityScale = 10;
             return;
@@ -205,6 +206,7 @@ public class PlayerSystem : SkeletonAnimationSystem
     }
     bool Super = false;//* 無敵狀態
     bool CanJump = true;//* 可以跳躍
+    bool Jumping = false;//* 是否處於跳躍中(防止太容易一直觸發落地動畫)
     bool CanFlash = true;//* 可以閃避
     public void SetCanFlash(bool b)
     {
@@ -291,7 +293,7 @@ public class PlayerSystem : SkeletonAnimationSystem
     }
     private void Update()
     {
-        if (CanControl)
+        if (CanControl || Jumping)
         {
             if (GetInput.Player.Move.ReadValue<float>() != 0)
             {
@@ -324,6 +326,8 @@ public class PlayerSystem : SkeletonAnimationSystem
     private IEnumerator JumpIEnum()
     {
         CanJump = false;
+        Jumping = true;
+        CanControl = false;
         Rigid.Sleep();
         Rigid.gravityScale = 0;
         if (PlayerHint.activeInHierarchy == false)//? 一般跳躍
@@ -357,9 +361,11 @@ public class PlayerSystem : SkeletonAnimationSystem
     public void CallJump(int jumpPower)
     {
         CanJump = false;
-        skeletonRootMotion.rootMotionScaleY = jumpPower;
-        Rigid.gravityScale = 0;
+        Jumping = true;
+        CanControl = false;
         Rigid.Sleep();
+        Rigid.gravityScale = 0;
+        skeletonRootMotion.rootMotionScaleY = jumpPower;
         skeletonAnimation.AnimationState.SetAnimation(0, "Jump", false);
     }
     public UnityAction FlashEvent;//? 閃避事件
@@ -386,6 +392,7 @@ public class PlayerSystem : SkeletonAnimationSystem
                 NowMp -= 10;
                 CanRestore = false;
                 CanControl = false;
+                Rigid.gravityScale = 10;
                 if (FastRestore == false)
                     skeletonAnimation.AnimationState.SetAnimation(0, "HP+++", false);
                 else
@@ -416,6 +423,7 @@ public class PlayerSystem : SkeletonAnimationSystem
         {
             CanAttack = false;
             CanControl = false;
+            Rigid.gravityScale = 10;
             switch (WhichAttack)
             {
                 case 1:
@@ -440,17 +448,21 @@ public class PlayerSystem : SkeletonAnimationSystem
             NowHp -= damage;
             if (NowHp > 0)
             {
+                Super = true;
+                CanControl = false;
                 CanJump = true;
+                Jumping = false;
                 Rigid.gravityScale = 10;
                 CanFlash = true;
                 CanRestore = true;
                 CanAttack = true;
                 WhichAttack = 1;
+                Attack[0].SetActive(false);
+                Attack[1].SetActive(false);
+                Attack[2].SetActive(false);
                 //? (減傷效果)(增傷負面效果)(傷害反彈效果)(根性效果)
                 if (HurtEvent != null)
                     HurtEvent.Invoke();
-                Super = true;
-                CanControl = false;
                 skeletonAnimation.AnimationState.SetAnimation(0, "Hurt", false);
                 //MyImpulseSetting.GenerateImpulse();//? 鏡頭震動            
             }
@@ -487,7 +499,8 @@ public class PlayerSystem : SkeletonAnimationSystem
         Debug.Log(colAngle);
         if (colAngle < 120 && colAngle > 60 || colAngle < -120 && colAngle > -60)//? 檢查角度判定是否是踩到地板
         {
-            skeletonAnimation.AnimationState.SetAnimation(0, "JumpDown", false);
+            if (Jumping == true)
+                skeletonAnimation.AnimationState.SetAnimation(0, "JumpDown", false);
         }
         if (colAngle < 10 && colAngle > -10)//? 檢查角度判定是否可以蹬牆跳
         {
@@ -525,7 +538,6 @@ public class PlayerSystem : SkeletonAnimationSystem
     }
     public void CallWallJump()//? 蹬牆跳的外部接口
     {
-        CanControl = true;
         StartCoroutine(WallJumpIEnum());
     }
 }

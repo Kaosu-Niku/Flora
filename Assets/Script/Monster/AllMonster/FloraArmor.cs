@@ -46,11 +46,20 @@ public class FloraArmor : Monster
                 transform.Translate(Speed * Time.deltaTime, 0, 0);
                 yield return 0;
             }
-            //? 停在原地
-            skeletonAnimation.AnimationState.SetAnimation(0, "Idle", true);
-            int waitTime = Random.Range(1, 4);
-            yield return new WaitForSeconds(waitTime);
-            OnAction();
+
+            if (GetPlayerDistance() < 10)
+            {
+                LookPlayer();
+                skeletonAnimation.AnimationState.SetAnimation(0, "Attack", false);
+            }
+            else
+            {
+                //? 停在原地
+                skeletonAnimation.AnimationState.SetAnimation(0, "Idle", true);
+                int waitTime = Random.Range(1, 4);
+                yield return new WaitForSeconds(waitTime);
+                OnAction();
+            }
         }
         yield break;
     }

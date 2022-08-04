@@ -8,6 +8,7 @@ public class MonsterHurt : MonoBehaviour
     private void Awake()
     {
         GetMonster = transform.root.GetComponent<Monster>();
+        tag = "Hurt";
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

@@ -21,7 +21,9 @@ public class PlayerSystem : SkeletonAnimationSystem
         }
         if (e.Data.Name == "JumpDownIn")
         {
+            CanJump = true;
             CanControl = false;
+            Rigid.gravityScale = 10;
             return;
         }
         if (e.Data.Name == "JumpDownOut")
@@ -322,6 +324,8 @@ public class PlayerSystem : SkeletonAnimationSystem
     private IEnumerator JumpIEnum()
     {
         CanJump = false;
+        Rigid.Sleep();
+        Rigid.gravityScale = 0;
         if (PlayerHint.activeInHierarchy == false)//? 一般跳躍
         {
             float jumpTIme = 0;
@@ -338,17 +342,15 @@ public class PlayerSystem : SkeletonAnimationSystem
                 skeletonRootMotion.rootMotionScaleY = 2;
             else
                 skeletonRootMotion.rootMotionScaleY = 1;
-            Rigid.gravityScale = 0;
-            Rigid.Sleep();
             skeletonAnimation.AnimationState.SetAnimation(0, "Jump", false);
-
         }
         else//? 蹬牆跳
         {
+            PlayerHint.gameObject.SetActive(false);
             transform.Rotate(0, 180, 0);
             skeletonRootMotion.rootMotionScaleY = 3;
+            Rigid.AddForce(transform.right * 500);
             skeletonAnimation.AnimationState.SetAnimation(0, "Jump", false);
-            PlayerHint.gameObject.SetActive(false);
         }
         yield break;
     }
@@ -438,9 +440,12 @@ public class PlayerSystem : SkeletonAnimationSystem
             NowHp -= damage;
             if (NowHp > 0)
             {
+                CanJump = true;
+                Rigid.gravityScale = 10;
                 CanFlash = true;
                 CanRestore = true;
                 CanAttack = true;
+                WhichAttack = 1;
                 //? (減傷效果)(增傷負面效果)(傷害反彈效果)(根性效果)
                 if (HurtEvent != null)
                     HurtEvent.Invoke();
@@ -480,10 +485,9 @@ public class PlayerSystem : SkeletonAnimationSystem
         Vector2 contactsNormal = other.contacts[0].normal;//? 取得碰撞點的法線向量
         float colAngle = (Mathf.Atan(contactsNormal.y / contactsNormal.x)) * 180 / Mathf.PI;//? 換算成能理解的角度
         Debug.Log(colAngle);
-        if (colAngle < 120 && colAngle > 60 || colAngle > -120 && colAngle < -60)//? 檢查角度判定是否是踩到地板
+        if (colAngle < 120 && colAngle > 60 || colAngle < -120 && colAngle > -60)//? 檢查角度判定是否是踩到地板
         {
             skeletonAnimation.AnimationState.SetAnimation(0, "JumpDown", false);
-            CanJump = true;
         }
         if (colAngle < 10 && colAngle > -10)//? 檢查角度判定是否可以蹬牆跳
         {
@@ -502,15 +506,18 @@ public class PlayerSystem : SkeletonAnimationSystem
         CanJump = true;
         CanControl = false;
         Rigid.Sleep();
-        Rigid.gravityScale = 0;
+        Rigid.gravityScale = 0.5f;
         PlayerHint.gameObject.SetActive(true);
         skeletonAnimation.AnimationState.SetAnimation(0, "WallHanging", true);
-        while (true)//? 按右鍵一律順時針旋轉，左鍵則為逆時針旋轉
+        while (true)
         {
             if (GetInput.Player.Jump.triggered)//? 蹬牆跳
             {
-                CanControl = true;
-                StartCoroutine(JumpIEnum());
+                if (CanControl == false)
+                {
+                    CanControl = true;
+                    StartCoroutine(JumpIEnum());
+                }
                 yield break;
             }
             yield return 0;

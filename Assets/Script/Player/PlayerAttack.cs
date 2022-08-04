@@ -12,6 +12,7 @@ public class PlayerAttack : MonoBehaviour
     public int HitDamage { get => hitDamage; set { hitDamage = value; } }
     private void Awake()
     {
+        tag = "PlayerAttack";
         gameObject.SetActive(false);
     }
     private void OnEnable()

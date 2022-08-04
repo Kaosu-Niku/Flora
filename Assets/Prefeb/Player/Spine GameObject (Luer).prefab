@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 4763378716306577646}
   m_Layer: 8
   m_Name: PlayerAttack3
-  m_TagString: PlayerAttack
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -478,7 +478,7 @@ GameObject:
   - component: {fileID: 584263929672651052}
   m_Layer: 8
   m_Name: "\u7121\u5F62\u653B\u64CA"
-  m_TagString: PlayerAttack
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3217,7 +3217,7 @@ GameObject:
   - component: {fileID: 3501724489600044792}
   m_Layer: 8
   m_Name: PlayerAttack2
-  m_TagString: PlayerAttack
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3736,7 +3736,7 @@ GameObject:
   - component: {fileID: 5478513449702198121}
   m_Layer: 8
   m_Name: "\u50B7\u5BB3\u53CD\u5F48\u653B\u64CA"
-  m_TagString: PlayerAttack
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4183,7 +4183,7 @@ GameObject:
   - component: {fileID: 8358947247824040574}
   m_Layer: 8
   m_Name: PlayerAttack1
-  m_TagString: PlayerAttack
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

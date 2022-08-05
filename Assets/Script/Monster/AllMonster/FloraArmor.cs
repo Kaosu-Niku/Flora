@@ -7,8 +7,13 @@ public class FloraArmor : Monster
 {
     [SerializeField] float Speed;
     bool Attack2Check = false;
+    Rigidbody2D Rigid;
     Coroutine C;
     protected override void AnimationEventCallBack(TrackEntry trackEntry, Spine.Event e)
+    {
+        base.AnimationEventCallBack(trackEntry, e);
+    }
+    protected override void CustomAnimationEventCallBack(TrackEntry trackEntry, Spine.Event e)
     {
         if (e.Data.Name == "Attack1Out")
         {
@@ -23,10 +28,6 @@ public class FloraArmor : Monster
             OnAction();
             return;
         }
-    }
-    protected override void CustomAnimationEventCallBack(TrackEntry trackEntry, Spine.Event e)
-    {
-        throw new System.NotImplementedException();
     }
     protected override IEnumerator CustomAction()
     {
@@ -65,22 +66,33 @@ public class FloraArmor : Monster
     }
     protected override void CustomHurt()
     {
+        StopCoroutine(C);
+        transform.rotation = Quaternion.identity;
+        Rigid.gravityScale = 1;
         Attack[0].SetActive(false);
-        Attack2Check = false;
     }
     IEnumerator Attack2IEnum()
     {
-        Vector3 dir = PlayerSystemSO.GetPlayerInvoke().transform.position - transform.position;
+        Vector3 dir = (PlayerSystemSO.GetPlayerInvoke().transform.position + Vector3.up * 2) - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        while (Attack2Check == true)
+        Rigid.gravityScale = 0;
+        for (float x = 0; x < 1; x += Time.deltaTime)
         {
-            transform.Translate(10 * Time.deltaTime, 0, 0);
+            if (Attack2Check == false)
+                break;
+            transform.Translate(30 * Time.deltaTime, 0, 0);
             yield return 0;
         }
         transform.rotation = Quaternion.identity;
+        Rigid.gravityScale = 1;
         Attack[0].SetActive(false);
         skeletonAnimation.AnimationState.SetAnimation(0, "Attack3", false);
+    }
+    new void Start()
+    {
+        base.Start();
+        Rigid = GetComponent<Rigidbody2D>();
     }
     private void OnCollisionEnter2D(Collision2D other)
     {

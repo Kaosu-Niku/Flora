@@ -13,7 +13,7 @@ public abstract class Monster : SkeletonAnimationSystem
         if (e.Data.Name == "HitOut")
         {
             Super = false;
-            OnAction();
+            OnAction(); Debug.Log("yes");
             return;
         }
         if (e.Data.Name == "DieOut")
@@ -51,7 +51,7 @@ public abstract class Monster : SkeletonAnimationSystem
     protected PoolObject EnemyHpSlider;//* 血條物件
     [SerializeField] Vector3 HpSliderMove;//* 血條初始化移動
     [HideInInspector] protected Transform HpSlider;//* 真正的血條
-    private void Start()
+    protected void Start()
     {
         Hp = MaxHp;
         HitRecover = MaxHitRecover;

@@ -1067,6 +1067,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Spine GameObject (\u82B1\u7D0B\u7532\u62C6\u5206)"
       objectReference: {fileID: 0}
+<<<<<<< HEAD
+    - target: {fileID: 2501855835909845666, guid: 80d15fb5ba95f1349918193c71124cb6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+=======
+>>>>>>> fbdb923e73133bbf77cda3fbd3eb110bd985e261
     - target: {fileID: 2501855835909845677, guid: 80d15fb5ba95f1349918193c71124cb6, type: 3}
       propertyPath: m_Mesh
       value: 

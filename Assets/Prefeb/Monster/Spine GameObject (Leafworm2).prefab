@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 303554476015466132}
   - component: {fileID: 303554476015466141}
   - component: {fileID: 303554476015466138}
-  - component: {fileID: 303554476015466139}
+  - component: {fileID: 6739457910900587179}
   m_Layer: 0
   m_Name: Spine GameObject (Leafworm2)
   m_TagString: Monster
@@ -193,8 +193,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!60 &303554476015466139
-PolygonCollider2D:
+--- !u!61 &6739457910900587179
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -206,7 +206,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.06934786, y: 0.031033844}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -216,16 +216,9 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -1.0421991, y: 1.2651999}
-      - {x: -0.82248974, y: 0.03499341}
-      - {x: 0.77439404, y: -0.040132344}
-      - {x: 1.3966408, y: 1.1700351}
-      - {x: 1.3603582, y: 1.5741475}
-      - {x: 0.9786053, y: 1.9924388}
-      - {x: 0.4149294, y: 1.8591058}
-      - {x: -0.06980467, y: 1.2371218}
+  serializedVersion: 2
+  m_Size: {x: 1.7654543, y: 0.05676216}
+  m_EdgeRadius: 0
 --- !u!1 &303554477428634460
 GameObject:
   m_ObjectHideFlags: 0

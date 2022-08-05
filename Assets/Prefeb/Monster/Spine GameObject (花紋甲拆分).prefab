@@ -51,8 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a422deea08d2c42a3313c451443746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHp: 40
-  MaxHitRecover: 20
+  MaxHp: 100
+  MaxHitRecover: 1
   DropMoney: 9999
   DropMp: 500
   Attack:
@@ -403,7 +403,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2091520530709788272}
-  - component: {fileID: 4108768412901039209}
+  - component: {fileID: 7660942599217151315}
   - component: {fileID: 4840752185613947318}
   m_Layer: 0
   m_Name: Col
@@ -426,7 +426,7 @@ Transform:
   m_Father: {fileID: 2501855835909845679}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &4108768412901039209
+--- !u!60 &7660942599217151315
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

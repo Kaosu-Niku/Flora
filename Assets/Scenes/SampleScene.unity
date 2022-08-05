@@ -1002,6 +1002,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spine GameObject (Leafworm2)
       objectReference: {fileID: 0}
+    - target: {fileID: 303554476015466133, guid: 2c35a7e516eb01147a6c5bce9fc72b47, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 303554476015466134, guid: 2c35a7e516eb01147a6c5bce9fc72b47, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1012,7 +1016,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 303554476015466136, guid: 2c35a7e516eb01147a6c5bce9fc72b47, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 303554476015466136, guid: 2c35a7e516eb01147a6c5bce9fc72b47, type: 3}
       propertyPath: m_LocalPosition.y

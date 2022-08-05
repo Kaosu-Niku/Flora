@@ -21,10 +21,18 @@ public class PlayerSystem : SkeletonAnimationSystem
         }
         if (e.Data.Name == "JumpDownIn")
         {
+            Super = false;
+            CanControl = false;
             CanJump = true;
             Jumping = false;
-            CanControl = false;
             Rigid.gravityScale = 10;
+            CanFlash = true;
+            CanRestore = true;
+            CanAttack = true;
+            WhichAttack = 1;
+            Attack[0].SetActive(false);
+            Attack[1].SetActive(false);
+            Attack[2].SetActive(false);
             return;
         }
         if (e.Data.Name == "JumpDownOut")

@@ -66,8 +66,9 @@ public class FloraArmor : Monster
     }
     protected override void CustomHurt()
     {
-        StopCoroutine(C);
-        transform.rotation = Quaternion.identity;
+        if (C != null)
+            StopCoroutine(C);
+        LookPlayer();
         Rigid.gravityScale = 1;
         Attack[0].SetActive(false);
     }
@@ -84,7 +85,7 @@ public class FloraArmor : Monster
             transform.Translate(30 * Time.deltaTime, 0, 0);
             yield return 0;
         }
-        transform.rotation = Quaternion.identity;
+        LookPlayer();
         Rigid.gravityScale = 1;
         Attack[0].SetActive(false);
         skeletonAnimation.AnimationState.SetAnimation(0, "Attack3", false);

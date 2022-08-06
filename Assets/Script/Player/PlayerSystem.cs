@@ -12,6 +12,31 @@ public class PlayerSystem : SkeletonAnimationSystem
     [SerializeField] SkeletonRootMotion skeletonRootMotion;
     protected override void AnimationEventCallBack(TrackEntry trackEntry, Spine.Event e)
     {
+        if (e.Data.Name == "JumpWallTrigger")
+        {
+            Jumping = true;
+            return;
+        }
+        if (e.Data.Name == "JumpH1")
+        {
+            if (GetInput.Player.Jump.ReadValue<float>() == 0)
+            {
+                Rigid.gravityScale = 10;
+                skeletonRootMotion.rootMotionScaleY = 1;
+                skeletonAnimation.AnimationState.SetAnimation(0, "JumpLoop", true);
+                return;
+            }
+        }
+        if (e.Data.Name == "JumpH2")
+        {
+            if (GetInput.Player.Jump.ReadValue<float>() == 0)
+            {
+                Rigid.gravityScale = 10;
+                skeletonRootMotion.rootMotionScaleY = 1;
+                skeletonAnimation.AnimationState.SetAnimation(0, "JumpLoop", true);
+                return;
+            }
+        }
         if (e.Data.Name == "JumpOut")
         {
             Rigid.gravityScale = 10;
@@ -259,7 +284,6 @@ public class PlayerSystem : SkeletonAnimationSystem
     }
     private void OnEnable()
     {
-        PlayerSystemSO.GetPlayerFunc += GetPlayer;
         //? Data數值初始化
         MaxHp = PlayerDataSO.MaxHp;
         MaxMp = PlayerDataSO.MaxMp;
@@ -329,42 +353,27 @@ public class PlayerSystem : SkeletonAnimationSystem
     private void OnJump(InputAction.CallbackContext context)//? 跳躍
     {
         if (CanControl && CanJump)
-            StartCoroutine(JumpIEnum());
-    }
-    private IEnumerator JumpIEnum()
-    {
-        CanJump = false;
-        Jumping = true;
-        CanControl = false;
-        Rigid.Sleep();
-        Rigid.gravityScale = 0;
-        if (PlayerHint.activeInHierarchy == false)//? 一般跳躍
         {
-            float jumpTIme = 0;
-            while (GetInput.Player.Jump.ReadValue<float>() > 0)
+            CanJump = false;
+            CanControl = false;
+            Rigid.Sleep();
+            Rigid.gravityScale = 0;
+            if (PlayerHint.activeInHierarchy == false)//? 一般跳躍
             {
-                jumpTIme += Time.fixedDeltaTime;
-                if (jumpTIme > 0.3f)
-                    break;
-                yield return new WaitForFixedUpdate();
-            }
-            if (jumpTIme > 0.3f)
+                Jumping = true;
                 skeletonRootMotion.rootMotionScaleY = 3;
-            else if (jumpTIme > 0.2f)
-                skeletonRootMotion.rootMotionScaleY = 2;
-            else
-                skeletonRootMotion.rootMotionScaleY = 1;
-            skeletonAnimation.AnimationState.SetAnimation(0, "Jump", false);
+                skeletonAnimation.AnimationState.SetAnimation(0, "Jump", false);
+            }
+            else//? 蹬牆跳
+            {
+                PlayerHint.gameObject.SetActive(false);
+                transform.Rotate(0, 180, 0);
+                Jumping = false;
+                skeletonRootMotion.rootMotionScaleY = 3;
+                Rigid.AddForce(transform.right * 500);
+                skeletonAnimation.AnimationState.SetAnimation(0, "Jump", false);
+            }
         }
-        else//? 蹬牆跳
-        {
-            PlayerHint.gameObject.SetActive(false);
-            transform.Rotate(0, 180, 0);
-            skeletonRootMotion.rootMotionScaleY = 3;
-            Rigid.AddForce(transform.right * 500);
-            skeletonAnimation.AnimationState.SetAnimation(0, "Jump", false);
-        }
-        yield break;
     }
     public void CallJump(int jumpPower)
     {
@@ -373,8 +382,19 @@ public class PlayerSystem : SkeletonAnimationSystem
         CanControl = false;
         Rigid.Sleep();
         Rigid.gravityScale = 0;
-        skeletonRootMotion.rootMotionScaleY = jumpPower;
-        skeletonAnimation.AnimationState.SetAnimation(0, "Jump", false);
+        if (PlayerHint.activeInHierarchy == false)//? 一般跳躍
+        {
+            skeletonRootMotion.rootMotionScaleY = jumpPower;
+            skeletonAnimation.AnimationState.SetAnimation(0, "Jump", false);
+        }
+        else//? 蹬牆跳
+        {
+            PlayerHint.gameObject.SetActive(false);
+            transform.Rotate(0, 180, 0);
+            skeletonRootMotion.rootMotionScaleY = jumpPower;
+            Rigid.AddForce(transform.right * 500);
+            skeletonAnimation.AnimationState.SetAnimation(0, "Jump", false);
+        }
     }
     public UnityAction FlashEvent;//? 閃避事件
     private void OnFlash(InputAction.CallbackContext context)//? 閃避
@@ -483,9 +503,13 @@ public class PlayerSystem : SkeletonAnimationSystem
     //? 死亡
     private void Die()
     {
+        Super = true;
         CanControl = false;
-        Destroy(Col);
-        Rigid.gravityScale = 0;
+        Jumping = false;
+        Rigid.gravityScale = 10;
+        Attack[0].SetActive(false);
+        Attack[1].SetActive(false);
+        Attack[2].SetActive(false);
         skeletonAnimation.AnimationState.SetAnimation(0, "Die", false);
         StopAllCoroutines();
     }
@@ -504,7 +528,6 @@ public class PlayerSystem : SkeletonAnimationSystem
     {
         Vector2 contactsNormal = other.contacts[0].normal;//? 取得碰撞點的法線向量
         float colAngle = (Mathf.Atan(contactsNormal.y / contactsNormal.x)) * 180 / Mathf.PI;//? 換算成能理解的角度
-        Debug.Log(colAngle);
         if (colAngle < 120 && colAngle > 60 || colAngle < -120 && colAngle > -60)//? 檢查角度判定是否是踩到地板
         {
             if (Jumping == true)
@@ -525,6 +548,7 @@ public class PlayerSystem : SkeletonAnimationSystem
     private IEnumerator WallJumpIEnum()//? 吸附到可蹬牆跳的牆上，此時只能按跳躍鍵
     {
         CanJump = true;
+        Jumping = false;
         CanControl = false;
         Rigid.Sleep();
         Rigid.gravityScale = 0.5f;
@@ -537,7 +561,7 @@ public class PlayerSystem : SkeletonAnimationSystem
                 if (CanControl == false)
                 {
                     CanControl = true;
-                    StartCoroutine(JumpIEnum());
+                    CallJump(3);
                 }
                 yield break;
             }

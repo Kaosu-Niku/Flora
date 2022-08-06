@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHp: 75
-  MaxHitRecover: 20
+  MaxHitRecover: 15
   DropMoney: 9999
   DropMp: 500
   Attack:
@@ -86,7 +86,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 56770138fa37b8b4e922aaab73db4101, type: 2}
+  - {fileID: 2100000, guid: 6a8d863a61faced47ba9c180c34a1c95, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -421,7 +421,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 303554477815155061}
-  - component: {fileID: 303554477815155063}
+  - component: {fileID: 1500262524708281176}
   - component: {fileID: 303554477815155060}
   m_Layer: 0
   m_Name: Hurt
@@ -444,8 +444,8 @@ Transform:
   m_Father: {fileID: 303554476015466136}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &303554477815155063
-PolygonCollider2D:
+--- !u!61 &1500262524708281176
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -457,7 +457,7 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.16528225, y: 1.002021}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -467,16 +467,9 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -1.0421991, y: 1.2651999}
-      - {x: -0.82248974, y: 0.03499341}
-      - {x: 0.77439404, y: -0.040132344}
-      - {x: 1.3966408, y: 1.1700351}
-      - {x: 1.3603582, y: 1.5741475}
-      - {x: 0.9786053, y: 1.9924388}
-      - {x: 0.4149294, y: 1.8591058}
-      - {x: -0.06980467, y: 1.2371218}
+  serializedVersion: 2
+  m_Size: {x: 2.4875355, y: 1.9985774}
+  m_EdgeRadius: 0
 --- !u!114 &303554477815155060
 MonoBehaviour:
   m_ObjectHideFlags: 0

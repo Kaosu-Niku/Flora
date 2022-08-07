@@ -17,7 +17,7 @@ public class PlayerAttack : MonoBehaviour
     }
     private void OnEnable()
     {
-        Debug.Log(PlayerSystemSO.GetPlayerInvoke().NowAtk); Debug.Log(DamageMagn); Debug.Log(PlayerSystemSO.GetPlayerInvoke().NowAtk * DamageMagn);
+        Debug.Log(PlayerSystemSO.GetPlayerInvoke().NowAtk * DamageMagn); Debug.Log(PlayerSystemSO.GetPlayerInvoke().NowHit * HitMagn);
         TureDamage = ((int)(PlayerSystemSO.GetPlayerInvoke().NowAtk * DamageMagn));
         HitDamage = ((int)(PlayerSystemSO.GetPlayerInvoke().NowHit * HitMagn));
         PlayerSystemSO.GetPlayerInvoke().AttackTrigger(this);//? (增傷效果)(光華刀刃效果)

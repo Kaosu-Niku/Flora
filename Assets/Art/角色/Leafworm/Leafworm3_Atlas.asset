@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
-  m_Name: Leafworm2_Atlas
+  m_Name: Leafworm3_Atlas
   m_EditorClassIdentifier: 
-  atlasFile: {fileID: 4900000, guid: 2d515ba44a4cb7647b41a92a460f5c94, type: 3}
+  atlasFile: {fileID: 4900000, guid: 9dcc74753ee631741b1c12a69703faab, type: 3}
   materials:
-  - {fileID: 2100000, guid: 56770138fa37b8b4e922aaab73db4101, type: 2}
+  - {fileID: 2100000, guid: 6a8d863a61faced47ba9c180c34a1c95, type: 2}

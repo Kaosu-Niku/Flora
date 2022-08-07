@@ -97,9 +97,6 @@ bounds:1633,126,57,42
 rotate:90
 F_shoe-
 bounds:1677,165,35,37
-F_shoe2 - 複製 (2)
-bounds:170,3,43,41
-rotate:90
 F_shoe2
 bounds:170,3,43,41
 rotate:90

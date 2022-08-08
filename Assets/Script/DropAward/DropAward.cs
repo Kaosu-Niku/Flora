@@ -5,11 +5,13 @@ using UnityEngine;
 public abstract class DropAward : PoolObject
 {
     [SerializeField] float CloseTime;
+    Vector3 MovePos;
     protected override IEnumerator Doing()
     {
-        transform.rotation = Quaternion.Euler(0, 0, Random.Range(16, 21) * 5);
-        transform.Translate(1, 0, 0);
-        GetComponent<Rigidbody2D>().AddRelativeForce(transform.right * Random.Range(16, 21) * 50);
+        yield return 0;
+        transform.rotation = Quaternion.Euler(0, 0, Random.Range(6, 31) * 5);
+        transform.Translate(1.5f, 0, 0);
+        GetComponent<Rigidbody2D>().AddForce(transform.right * Random.Range(30, 50));
         yield return new WaitForSeconds(CloseTime);
     }
     private void OnTriggerEnter2D(Collider2D other)

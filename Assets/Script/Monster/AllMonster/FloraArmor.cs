@@ -47,7 +47,6 @@ public class FloraArmor : Monster
                 transform.Translate(Speed * Time.deltaTime, 0, 0);
                 yield return 0;
             }
-
             if (GetPlayerDistance() < 10)
             {
                 LookPlayer();
@@ -74,9 +73,11 @@ public class FloraArmor : Monster
     }
     IEnumerator Attack2IEnum()
     {
-        Vector3 dir = (PlayerSystemSO.GetPlayerInvoke().transform.position + Vector3.up * 2) - transform.position;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.right = (PlayerSystemSO.GetPlayerInvoke().transform.position + Vector3.up * 2) - transform.position;
+        if (PlayerSystemSO.GetPlayerInvoke().transform.position.x < transform.position.x)
+        {
+            transform.Rotate(0, 180, 180);
+        }
         Rigid.gravityScale = 0;
         for (float x = 0; x < 1; x += Time.deltaTime)
         {

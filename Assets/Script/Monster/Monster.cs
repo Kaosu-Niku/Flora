@@ -13,7 +13,7 @@ public abstract class Monster : SkeletonAnimationSystem
         if (e.Data.Name == "HitOut")
         {
             Super = false;
-            OnAction(); Debug.Log("yes");
+            OnAction();
             return;
         }
         if (e.Data.Name == "DieOut")
@@ -32,6 +32,21 @@ public abstract class Monster : SkeletonAnimationSystem
             {
                 GameObjectPoolSO.GetObject("SmallMoney", transform.position, Quaternion.identity);
                 DropMoney -= 10;
+            }
+            while (DropMp > 1000)
+            {
+                GameObjectPoolSO.GetObject("BigMp", transform.position, Quaternion.identity);
+                DropMp -= 1000;
+            }
+            while (DropMp > 100)
+            {
+                GameObjectPoolSO.GetObject("MiddleMp", transform.position, Quaternion.identity);
+                DropMp -= 100;
+            }
+            while (DropMp > 10)
+            {
+                GameObjectPoolSO.GetObject("SmallMp", transform.position, Quaternion.identity);
+                DropMp -= 10;
             }
             return;
         }
@@ -68,9 +83,7 @@ public abstract class Monster : SkeletonAnimationSystem
     protected void OnAction()//? 重置行動
     {
         if (C != null)
-        {
             StopCoroutine(C);
-        }
         C = StartCoroutine(CustomAction());
     }
     protected abstract void CustomHurt();//? 自定義受傷行為
@@ -82,19 +95,25 @@ public abstract class Monster : SkeletonAnimationSystem
             Hp -= damage;
             HpSlider.localScale = new Vector3(Hp / MaxHp, 1, 0);
             HitRecover -= hitValue;
-            if (Hp <= 0)
+            if (Hp > 0)
             {
+                if (HitRecover <= 0)//? 造成硬直
+                {
+                    if (C != null)
+                        StopCoroutine(C);
+                    HitRecover = MaxHitRecover;
+                    Super = true;
+                    CustomHurt();
+                    skeletonAnimation.AnimationState.SetAnimation(0, "Hit", false);
+                }
+            }
+            else
+            {
+                if (C != null)
+                    StopCoroutine(C);
                 Super = true;
                 CustomHurt();
                 skeletonAnimation.AnimationState.SetAnimation(0, "Die", false);
-                return;
-            }
-            if (HitRecover <= 0)//? 造成硬直
-            {
-                HitRecover = MaxHitRecover;
-                Super = true;
-                CustomHurt();
-                skeletonAnimation.AnimationState.SetAnimation(0, "Hit", false);
             }
         }
     }

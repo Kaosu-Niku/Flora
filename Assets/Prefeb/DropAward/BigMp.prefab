@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1436357982407504558}
   - component: {fileID: 2386908791773490266}
   m_Layer: 0
-  m_Name: "\u9B54\u529B\u6389\u843D\u7269"
+  m_Name: BigMp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MyTag: 
   CloseTime: 10
+  Much: 1000
 --- !u!50 &1436357982407504558
 Rigidbody2D:
   serializedVersion: 4
@@ -84,7 +85,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.4
 --- !u!1 &2386908792089527236
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,8 +157,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 210709c1435982c49bf6a5949147854a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

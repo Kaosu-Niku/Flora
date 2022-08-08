@@ -28,3 +28,12 @@ MonoBehaviour:
   - Tag: BigMoney
     Obj: {fileID: 1427035446991321184, guid: 8f72279347ce3ed48aa9f1d846b38565, type: 3}
     SetCount: 10
+  - Tag: SmallMp
+    Obj: {fileID: 2386908791773490264, guid: 003bb8b9572e1674b9677d4eb06ce3f1, type: 3}
+    SetCount: 10
+  - Tag: MiddleMp
+    Obj: {fileID: 2386908791773490264, guid: a98cbf4e34bd52c449d751cbabae0699, type: 3}
+    SetCount: 10
+  - Tag: BigMp
+    Obj: {fileID: 2386908791773490264, guid: 916029b29f155e944991632be76fcd99, type: 3}
+    SetCount: 10

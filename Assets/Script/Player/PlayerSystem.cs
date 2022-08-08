@@ -12,11 +12,6 @@ public class PlayerSystem : SkeletonAnimationSystem
     [SerializeField] SkeletonRootMotion skeletonRootMotion;
     protected override void AnimationEventCallBack(TrackEntry trackEntry, Spine.Event e)
     {
-        if (e.Data.Name == "JumpWallTrigger")
-        {
-            Jumping = true;
-            return;
-        }
         if (e.Data.Name == "JumpH1")
         {
             if (GetInput.Player.Jump.ReadValue<float>() == 0)
@@ -38,6 +33,18 @@ public class PlayerSystem : SkeletonAnimationSystem
             }
         }
         if (e.Data.Name == "JumpOut")
+        {
+            Rigid.gravityScale = 10;
+            skeletonRootMotion.rootMotionScaleY = 1;//? 跳躍高度倍率
+            skeletonAnimation.AnimationState.SetAnimation(0, "JumpLoop", true);
+            return;
+        }
+        if (e.Data.Name == "WallJumpTrigger")
+        {
+            Jumping = true;
+            return;
+        }
+        if (e.Data.Name == "WallJumpOut")
         {
             Rigid.gravityScale = 10;
             skeletonRootMotion.rootMotionScaleY = 1;//? 跳躍高度倍率
@@ -371,29 +378,33 @@ public class PlayerSystem : SkeletonAnimationSystem
                 Jumping = false;
                 skeletonRootMotion.rootMotionScaleY = 3;
                 Rigid.AddForce(transform.right * 500);
-                skeletonAnimation.AnimationState.SetAnimation(0, "Jump", false);
+                skeletonAnimation.AnimationState.SetAnimation(0, "WallJump", false);
             }
         }
     }
     public void CallJump(int jumpPower)
     {
-        CanJump = false;
-        Jumping = true;
-        CanControl = false;
-        Rigid.Sleep();
-        Rigid.gravityScale = 0;
-        if (PlayerHint.activeInHierarchy == false)//? 一般跳躍
+        if (CanControl && CanJump)
         {
-            skeletonRootMotion.rootMotionScaleY = jumpPower;
-            skeletonAnimation.AnimationState.SetAnimation(0, "Jump", false);
-        }
-        else//? 蹬牆跳
-        {
-            PlayerHint.gameObject.SetActive(false);
-            transform.Rotate(0, 180, 0);
-            skeletonRootMotion.rootMotionScaleY = jumpPower;
-            Rigid.AddForce(transform.right * 500);
-            skeletonAnimation.AnimationState.SetAnimation(0, "Jump", false);
+            CanJump = false;
+            CanControl = false;
+            Rigid.Sleep();
+            Rigid.gravityScale = 0;
+            if (PlayerHint.activeInHierarchy == false)//? 一般跳躍
+            {
+                Jumping = true;
+                skeletonRootMotion.rootMotionScaleY = 3;
+                skeletonAnimation.AnimationState.SetAnimation(0, "Jump", false);
+            }
+            else//? 蹬牆跳
+            {
+                PlayerHint.gameObject.SetActive(false);
+                transform.Rotate(0, 180, 0);
+                Jumping = false;
+                skeletonRootMotion.rootMotionScaleY = 3;
+                Rigid.AddForce(transform.right * 500);
+                skeletonAnimation.AnimationState.SetAnimation(0, "WallJump", false);
+            }
         }
     }
     public UnityAction FlashEvent;//? 閃避事件
@@ -537,11 +548,14 @@ public class PlayerSystem : SkeletonAnimationSystem
         {
             if (other.transform.CompareTag("Wall"))//? 接觸特定牆壁才可以蹬牆跳
             {
-                if (other.contacts[0].point.x < other.transform.position.x)
-                    transform.rotation = Quaternion.identity;
-                else
-                    transform.rotation = Quaternion.Euler(0, 180, 0);
-                StartCoroutine(WallJumpIEnum());
+                if (Jumping == true)
+                {
+                    if (other.contacts[0].point.x < other.transform.position.x)
+                        transform.rotation = Quaternion.identity;
+                    else
+                        transform.rotation = Quaternion.Euler(0, 180, 0);
+                    StartCoroutine(WallJumpIEnum());
+                }
             }
         }
     }

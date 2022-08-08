@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class MpAward : DropAward
 {
+    [SerializeField] int Much;
     protected override void CustomGet()
     {
-        PlayerSystemSO.GetPlayerInvoke().AddNowMp(10);
+        PlayerSystemSO.GetPlayerInvoke().AddNowMp(Much);
     }
 }

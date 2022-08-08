@@ -17,7 +17,7 @@ public class Leafworm : Monster
             if (a == 1)
             {
                 LookPlayer();
-                skeletonAnimation.AnimationState.SetAnimation(0, "Attack2", false);
+                skeletonAnimation.AnimationState.AddAnimation(0, "Attack2", false, 0);
             }
             return;
         }

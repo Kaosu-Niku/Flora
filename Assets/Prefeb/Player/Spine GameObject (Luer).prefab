@@ -69,7 +69,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2094951299
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 724046d8fcb8428489d83c9b293790f8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -180,8 +180,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 541341214798440992}
-  m_LocalRotation: {x: 0, y: 0, z: -0.1409884, w: 0.9900113}
-  m_LocalPosition: {x: -0.41769266, y: 1.5355264, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.1059718, w: 0.99436915}
+  m_LocalPosition: {x: -0.34838974, y: 1.5272487, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5977903479375229840}
@@ -383,8 +383,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4640575951169585680}
-  m_LocalRotation: {x: 0, y: 0, z: -0.1409884, w: 0.9900113}
-  m_LocalPosition: {x: -0.41769266, y: 1.5355264, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.1059718, w: 0.99436915}
+  m_LocalPosition: {x: -0.34838974, y: 1.5272487, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5977903479375229840}
@@ -602,8 +602,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6505938982443522100}
-  m_LocalRotation: {x: 0, y: 0, z: -0.1409884, w: 0.9900113}
-  m_LocalPosition: {x: -0.41769266, y: 1.5355264, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.1059718, w: 0.99436915}
+  m_LocalPosition: {x: -0.34838974, y: 1.5272487, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5977903479375229840}
@@ -736,6 +736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonRootMotion: {fileID: 6979435000866348096}
+  FastFlash: 0
   FastRestore: 0
   SuckAwardCol: {fileID: 2442637802895054676}
   PlayerHint: {fileID: 2145085016508671217}
@@ -803,7 +804,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 588769411
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &2925634392117523526

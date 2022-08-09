@@ -87,7 +87,7 @@ F_WhitesEye
 bounds:38,2,44,27
 rotate:90
 F_gloves
-bounds:1640,2,36,33
+bounds:1693,218,36,33
 rotate:90
 F_plait
 bounds:563,82,172,296
@@ -121,7 +121,7 @@ bounds:1611,40,40,23
 Mouth_6
 bounds:1589,2,49,28
 Mouth_7
-bounds:1675,7,40,33
+bounds:1677,7,40,33
 rotate:90
 Mouth_8
 bounds:1586,32,31,23
@@ -132,6 +132,8 @@ rotate:90
 Neck
 bounds:2,2,44,34
 rotate:90
+Z
+bounds:1640,2,35,36
 back
 bounds:539,2,48,60
 hair_1

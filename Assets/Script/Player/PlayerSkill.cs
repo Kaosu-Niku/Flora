@@ -20,9 +20,9 @@ public class PlayerSkill : MonoBehaviour
             else
                 PlayerSystemSO.GetPlayerInvoke().SuckAwardCol.radius = 3;
         }
-        {//? (閃避1) 閃避時間增加0.25秒
+        {//? (閃避1) 閃避時間增加
             if (PlayerSkillSO.AllSkill[1] == true)
-                PlayerSystemSO.GetPlayerInvoke().SetFlashTime(true);
+                PlayerSystemSO.GetPlayerInvoke().FastFlash = true;
         }
         {//? (減傷2) 所受傷害皆減少1點
             if (PlayerSkillSO.AllSkill[2] == true)
@@ -46,10 +46,9 @@ public class PlayerSkill : MonoBehaviour
                 PlayerDataSO.MaxHp /= 2;
             }
         }
-        {//? (無形攻擊2) 使用閃避可對閃避期間接觸的怪物造成10點傷害 & 閃避時間減少0.25秒
+        {//? (無形攻擊2) 使用閃避可對閃避期間接觸的怪物造成傷害
             if (PlayerSkillSO.AllSkill[6] == true)
             {
-                PlayerSystemSO.GetPlayerInvoke().SetFlashTime(false);
                 PlayerSystemSO.GetPlayerInvoke().FlashEvent += Skill6;
             }
         }
@@ -57,7 +56,7 @@ public class PlayerSkill : MonoBehaviour
             if (PlayerSkillSO.AllSkill[7] == true)
                 PlayerSystemSO.GetPlayerInvoke().AttackEvent += Skill7;
         }
-        {//? (傷害反彈3) 受到傷害，攻擊對象會受到20點傷害
+        {//? (傷害反彈3) 受到傷害，攻擊對象會受到傷害
             if (PlayerSkillSO.AllSkill[8] == true)
                 PlayerSystemSO.GetPlayerInvoke().HurtEvent += Skill8;
         }
@@ -65,7 +64,7 @@ public class PlayerSkill : MonoBehaviour
             if (PlayerSkillSO.AllSkill[9] == true)
                 PlayerSystemSO.GetPlayerInvoke().AddMpEvent += Skill9;
         }
-        {//? (回血速度增加3) 恢復動作加快(初始1秒，加快後0.5秒)
+        {//? (回血速度增加3) 恢復動作加快
             if (PlayerSkillSO.AllSkill[10] == true)
                 PlayerSystemSO.GetPlayerInvoke().FastRestore = true;
         }

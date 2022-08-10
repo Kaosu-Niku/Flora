@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6714546964593066002}
   - component: {fileID: 6714546964593066005}
-  - component: {fileID: 6714546964593066003}
+  - component: {fileID: 2104269067992074443}
   m_Layer: 0
   m_Name: "\u8DF3\u53F05"
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,8 +25,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6714546964593066004}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 103.802, y: 25.80379, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.239197, y: -11.534407, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,8 +83,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!68 &6714546964593066003
-EdgeCollider2D:
+--- !u!61 &2104269067992074443
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -96,16 +96,16 @@ EdgeCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 4.793907, y: 1.9965601}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 17.1, y: 9.98}
+    newSize: {x: 17.1, y: 9.98}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 6.087631, y: 2.3443317}
   m_EdgeRadius: 0
-  m_Points:
-  - {x: 1.8993177, y: 1.9245529}
-  - {x: 3.2202072, y: 2.8565922}
-  - {x: 4.3722305, y: 3.1890945}
-  - {x: 6.946678, y: 3.3084946}
-  - {x: 7.832306, y: 2.8255577}
-  - {x: 7.980939, y: 1.9833679}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0

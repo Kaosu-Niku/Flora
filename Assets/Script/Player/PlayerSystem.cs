@@ -72,9 +72,16 @@ public class PlayerSystem : SkeletonAnimationSystem
             CanControl = true;
             return;
         }
-        if (e.Data.Name == "FlashTrigger")//! 延長或縮短欠
+        if (e.Data.Name == "FlashTrigger1")
         {
-            Super = false;
+            if (FastFlash == false)
+                Super = false;
+            return;
+        }
+        if (e.Data.Name == "FlashTrigger2")
+        {
+            if (FastFlash == true)
+                Super = false;
             return;
         }
         if (e.Data.Name == "FlashOut")
@@ -83,7 +90,7 @@ public class PlayerSystem : SkeletonAnimationSystem
             CanControl = true;
             return;
         }
-        if (e.Data.Name == "HP+++Trigger")//! 快速欠
+        if (e.Data.Name == "HP+++Trigger")
         {
             NowHp += 1;
             return;
@@ -252,16 +259,9 @@ public class PlayerSystem : SkeletonAnimationSystem
     {
         CanFlash = b;
     }
-    int _FlashTime;//* 閃避時間延長或結束
-    public void SetFlashTime(bool b)
-    {
-        if (b == false)
-            _FlashTime--;
-        else
-            _FlashTime++;
-    }
+    [HideInInspector] public bool FastFlash;//* 閃避時間延長
     bool CanRestore = true;//* 可以恢復生命
-    [HideInInspector] public bool FastRestore = true;//* 恢復生命的動作是否加快(配合某個技能)
+    [HideInInspector] public bool FastRestore;//* 恢復生命的動作是否加快(配合某個技能)
     int WhichAttack = 1;
     bool CanAttack = true;//* 可以攻擊
     bool _CanFind = true;//* 怪物是否能找到玩家
@@ -567,7 +567,7 @@ public class PlayerSystem : SkeletonAnimationSystem
         Rigid.Sleep();
         Rigid.gravityScale = 0.5f;
         PlayerHint.gameObject.SetActive(true);
-        skeletonAnimation.AnimationState.SetAnimation(0, "WallHanging", true);
+        skeletonAnimation.AnimationState.SetAnimation(0, "WallDownLoop", true);
         while (true)
         {
             if (GetInput.Player.Jump.triggered)//? 蹬牆跳

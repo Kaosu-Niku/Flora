@@ -99,6 +99,7 @@ public class PlayerSystem : SkeletonAnimationSystem
         {
             CanRestore = true;
             CanControl = true;
+            Rigid.gravityScale = 10;
             return;
         }
         if (e.Data.Name == "HurtOut")
@@ -431,7 +432,7 @@ public class PlayerSystem : SkeletonAnimationSystem
                 NowMp -= 10;
                 CanRestore = false;
                 CanControl = false;
-                Rigid.gravityScale = 10;
+                Rigid.gravityScale = 0;
                 if (FastRestore == false)
                     skeletonAnimation.AnimationState.SetAnimation(0, "HP+++", false);
                 else

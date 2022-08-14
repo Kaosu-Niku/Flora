@@ -9456,7 +9456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35cdfa675217caa4b975c36e9aea8e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pool: {fileID: 11400000, guid: abd16d1e429bc484fbce61b21f876bb2, type: 2}
+  pool: {fileID: 0}
 --- !u!114 &6653938814362483292
 MonoBehaviour:
   m_ObjectHideFlags: 0

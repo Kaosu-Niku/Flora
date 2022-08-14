@@ -20,32 +20,32 @@ public abstract class Monster : SkeletonAnimationSystem
         {
             while (DropMoney > 1000)
             {
-                GameObjectPoolSO.GetObject("BigMoney", transform.position, Quaternion.identity);
+                GameManagerSO.GetPoolInvoke().GetObject("BigMoney", transform.position, Quaternion.identity);
                 DropMoney -= 1000;
             }
             while (DropMoney > 100)
             {
-                GameObjectPoolSO.GetObject("MiddleMoney", transform.position, Quaternion.identity);
+                GameManagerSO.GetPoolInvoke().GetObject("MiddleMoney", transform.position, Quaternion.identity);
                 DropMoney -= 100;
             }
             while (DropMoney > 10)
             {
-                GameObjectPoolSO.GetObject("SmallMoney", transform.position, Quaternion.identity);
+                GameManagerSO.GetPoolInvoke().GetObject("SmallMoney", transform.position, Quaternion.identity);
                 DropMoney -= 10;
             }
             while (DropMp > 1000)
             {
-                GameObjectPoolSO.GetObject("BigMp", transform.position, Quaternion.identity);
+                GameManagerSO.GetPoolInvoke().GetObject("BigMp", transform.position, Quaternion.identity);
                 DropMp -= 1000;
             }
             while (DropMp > 100)
             {
-                GameObjectPoolSO.GetObject("MiddleMp", transform.position, Quaternion.identity);
+                GameManagerSO.GetPoolInvoke().GetObject("MiddleMp", transform.position, Quaternion.identity);
                 DropMp -= 100;
             }
             while (DropMp > 10)
             {
-                GameObjectPoolSO.GetObject("SmallMp", transform.position, Quaternion.identity);
+                GameManagerSO.GetPoolInvoke().GetObject("SmallMp", transform.position, Quaternion.identity);
                 DropMp -= 10;
             }
             return;
@@ -63,7 +63,7 @@ public abstract class Monster : SkeletonAnimationSystem
     [SerializeField] protected float DropMp;//* 死亡掉落多少魔力 
     [SerializeField] protected List<GameObject> Attack = new List<GameObject>();
     //* 其他組件
-    protected PoolObject EnemyHpSlider;//* 血條物件
+    protected IPoolObject EnemyHpSlider;//* 血條物件
     [SerializeField] Vector3 HpSliderMove;//* 血條初始化移動
     [HideInInspector] protected Transform HpSlider;//* 真正的血條
     protected void Start()
@@ -72,7 +72,11 @@ public abstract class Monster : SkeletonAnimationSystem
         HitRecover = MaxHitRecover;
         Super = false;
         skeletonRootMotion = GetComponent<SkeletonRootMotion>();
-        EnemyHpSlider = GameObjectPoolSO.GetObject("EnemyHpSlider", transform.position + HpSliderMove, Quaternion.identity);
+        for (int x = 0; x < Attack.Count; x++)
+        {
+            Attack[x].SetActive(false);
+        }
+        EnemyHpSlider = GameManagerSO.GetPoolInvoke().GetObject("EnemyHpSlider", transform.position + HpSliderMove, Quaternion.identity);
         EnemyHpSlider.transform.parent = transform;
         HpSlider = EnemyHpSlider.transform.GetChild(1).transform;
         EnemyHpSlider.gameObject.SetActive(false);

@@ -2,29 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "MyCustomAsset/GameObjectPool")]
-public class GameObjectPoolSO : ScriptableObject
+public class GameObjectPool : MonoBehaviour
 {
     [System.Serializable]
     public class NewObject
     {
         public string Tag;//* 該物品的名稱
-        public PoolObject Obj;
+        public IPoolObject Obj;
         public int SetCount;//* 該物品的預熱數量
     }
-    [SerializeField] List<NewObject> SetAllObject = new List<NewObject>();
-    static List<NewObject> GetAllObject;
-    public static Dictionary<string, Queue<PoolObject>> AllObject;
-    public void FirstSet()
+    [SerializeField] List<NewObject> GetAllObject = new List<NewObject>();
+    public Dictionary<string, Queue<IPoolObject>> AllObject;
+    private void Awake()
     {
-        GetAllObject = SetAllObject;
-        AllObject = new Dictionary<string, Queue<PoolObject>>();
+        AllObject = new Dictionary<string, Queue<IPoolObject>>();
         for (int x = 0; x < GetAllObject.Count; x++)
         {
-            Queue<PoolObject> ThisObj = new Queue<PoolObject>();
+            Queue<IPoolObject> ThisObj = new Queue<IPoolObject>();
             for (int y = 0; y < GetAllObject[x].SetCount; y++)
             {
-                PoolObject g = Instantiate(GetAllObject[x].Obj);
+                IPoolObject g = Instantiate(GetAllObject[x].Obj);
+                g.MyPool = this;
                 g.MyTag = GetAllObject[x].Tag;
                 ThisObj.Enqueue(g);
                 g.gameObject.SetActive(false);
@@ -32,16 +30,16 @@ public class GameObjectPoolSO : ScriptableObject
             AllObject.Add(GetAllObject[x].Tag, ThisObj);
         }
     }
-    public static PoolObject GetObject(string tag, Vector3 pos, Quaternion rot)
+    public IPoolObject GetObject(string tag, Vector3 pos, Quaternion rot)
     {
         if (AllObject.ContainsKey(tag) == true)
         {
             if (AllObject[tag].Count > 0)
             {
-                PoolObject g = AllObject[tag].Dequeue();
-                g.gameObject.SetActive(true);
-                g.transform.position = pos;
+                IPoolObject g = AllObject[tag].Dequeue();
+                g.transform.position = pos; Debug.Log("數量還夠");
                 g.transform.rotation = rot;
+                g.gameObject.SetActive(true);
                 return g;
             }
             else
@@ -50,10 +48,12 @@ public class GameObjectPoolSO : ScriptableObject
                 {
                     if (GetAllObject[x].Tag == tag)
                     {
-                        PoolObject g = Instantiate(GetAllObject[x].Obj);
-                        g.MyTag = GetAllObject[x].Tag;
+                        IPoolObject g = Instantiate(GetAllObject[x].Obj);
+                        g.MyPool = this;
+                        g.MyTag = GetAllObject[x].Tag; Debug.Log("數量不夠");
                         g.transform.position = pos;
                         g.transform.rotation = rot;
+                        g.gameObject.SetActive(true);
                         return g;
                     }
                 }
@@ -67,7 +67,7 @@ public class GameObjectPoolSO : ScriptableObject
             return null;
         }
     }
-    public static void BackObject(string tag, PoolObject obj)
+    public void BackObject(string tag, IPoolObject obj)
     {
         if (AllObject.ContainsKey(tag) != false)
         {

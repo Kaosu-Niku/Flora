@@ -128,7 +128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33128a79faae4014ea186f64ca21ee3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MyPool: {fileID: 0}
   MyTag: 
+  FalseTime: 0
   CloseTime: 10
   Much: 10
 --- !u!50 &493731562104694026

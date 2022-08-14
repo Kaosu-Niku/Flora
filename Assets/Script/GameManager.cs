@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameObjectPoolSO pool;
-    private void Awake()
+    [SerializeField] GameObjectPool pool;
+    private GameObjectPool GetPool()
     {
-        pool.FirstSet();
+        return pool;
+    }
+    private void OnEnable()
+    {
+        GameManagerSO.GetPoolFunc += GetPool;
+    }
+    private void OnDisable()
+    {
+        GameManagerSO.GetPoolFunc -= GetPool;
     }
 }

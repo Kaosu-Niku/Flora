@@ -2,27 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class DefaultObject : MonoBehaviour
+public class DefaultObject : IDefaultObject
 {
-    Coroutine C;
-    protected abstract IEnumerator Doing();
-    IEnumerator Do()
+    [SerializeField] float FalseTime;
+    protected override IEnumerator Doing()
     {
-        yield return StartCoroutine(Doing());
-        gameObject.SetActive(false);
-    }
-
-    private void OnEnable()
-    {
-        C = StartCoroutine(Do());
-    }
-    private void OnDisable()
-    {
-        if (C != null)
-            StopCoroutine(C);
-    }
-    private void Awake()
-    {
-        gameObject.SetActive(false);
+        if (FalseTime != 0)
+        {
+            yield return new WaitForSeconds(FalseTime);
+        }
+        else
+        {
+            while (true)
+            {
+                yield return 0;
+            }
+        }
     }
 }

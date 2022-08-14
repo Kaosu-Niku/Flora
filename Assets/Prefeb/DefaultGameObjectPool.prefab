@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &951363352628112170
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 773086261644837220}
+  - component: {fileID: 8425587049951209220}
+  m_Layer: 0
+  m_Name: DefaultGameObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &773086261644837220
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951363352628112170}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8425587049951209220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951363352628112170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5fa132c9ac348e4e8528ae8c5d4a3cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GetAllObject:
+  - Tag: NpcHintButton
+    Obj: {fileID: -7719454119279078233, guid: de3e5caabf7f87644acfe73c12e52aef, type: 3}
+    SetCount: 1
+  - Tag: EnemyHpSlider
+    Obj: {fileID: -6845912067219583698, guid: da2fe76341f1a3d43a1a9231bdcb8054, type: 3}
+    SetCount: 5
+  - Tag: SmallMoney
+    Obj: {fileID: 442738859744267513, guid: 58c4f67bd4ac1594fb1d2819d82d8ecc, type: 3}
+    SetCount: 10
+  - Tag: MiddleMoney
+    Obj: {fileID: 69773983289305559, guid: fb9595e97e5a7ce40966c2163e1b7943, type: 3}
+    SetCount: 0
+  - Tag: BigMoney
+    Obj: {fileID: 1427035446991321184, guid: 8f72279347ce3ed48aa9f1d846b38565, type: 3}
+    SetCount: 0
+  - Tag: SmallMp
+    Obj: {fileID: 2386908791773490264, guid: 003bb8b9572e1674b9677d4eb06ce3f1, type: 3}
+    SetCount: 0
+  - Tag: MiddleMp
+    Obj: {fileID: 2386908791773490264, guid: a98cbf4e34bd52c449d751cbabae0699, type: 3}
+    SetCount: 0
+  - Tag: BigMp
+    Obj: {fileID: 2386908791773490264, guid: 916029b29f155e944991632be76fcd99, type: 3}
+    SetCount: 0

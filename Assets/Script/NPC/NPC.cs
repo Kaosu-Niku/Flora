@@ -7,7 +7,7 @@ using Spine.Unity;
 public class NPC : MonoBehaviour
 {
     Transform PlayerTransform;
-    PoolObject NpcHintButton;//* 提示按鈕
+    IPoolObject NpcHintButton;//* 提示按鈕
     [SerializeField] Vector3 ButtonMove;//* 按鈕位置微調 
     [SerializeField] List<string> TalkString = new List<string>();//* 對話內容
     [SerializeField] List<float> TalkTime = new List<float>();//* 對話秒數
@@ -53,7 +53,7 @@ public class NPC : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))//? 玩家進入範圍
         {
             CanTalk = true;
-            NpcHintButton = GameObjectPoolSO.GetObject("NpcHintButton", transform.position + ButtonMove, transform.rotation);
+            NpcHintButton = GameManagerSO.GetPoolInvoke().GetObject("NpcHintButton", transform.position + ButtonMove, transform.rotation);
             NpcHintButton.gameObject.SetActive(true);
             PlayerTransform = other.transform.root.transform;
         }

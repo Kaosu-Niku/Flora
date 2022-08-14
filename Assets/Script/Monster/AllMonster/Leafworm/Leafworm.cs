@@ -5,6 +5,7 @@ using Spine;
 
 public class Leafworm : Monster
 {
+    bool isAttack = false;
     protected override void AnimationEventCallBack(TrackEntry trackEntry, Spine.Event e)
     {
         base.AnimationEventCallBack(trackEntry, e);
@@ -16,14 +17,22 @@ public class Leafworm : Monster
             int a = Random.Range(0, 2);
             if (a == 1)
             {
+                isAttack = true;
                 LookPlayer();
                 skeletonAnimation.AnimationState.AddAnimation(0, "Attack2", false, 0);
+            }
+            else
+            {
+                isAttack = false;
             }
             return;
         }
         if (e.Data.Name == "IntimidateOut")
         {
-            OnAction();
+            if (isAttack == false)
+            {
+                OnAction();
+            }
             return;
         }
         if (e.Data.Name == "AttackOpen")

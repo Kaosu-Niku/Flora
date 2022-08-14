@@ -46,7 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aeb6222bf2dd9345a335ef6b82efc16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MyPool: {fileID: 0}
   MyTag: 
+  FalseTime: 0
   CloseTime: 10
   Much: 100
 --- !u!50 &1436357982407504558

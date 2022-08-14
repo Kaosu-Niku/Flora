@@ -1041,6 +1041,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2925634392117523526, guid: 567054877cc42e947ac25a40fbd5265e, type: 3}
+      propertyPath: skeletonDataAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 99e147083a81c994692fb057f0bb2249, type: 2}
     - target: {fileID: 5977903479375229840, guid: 567054877cc42e947ac25a40fbd5265e, type: 3}
       propertyPath: m_RootOrder
       value: 8

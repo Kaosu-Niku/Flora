@@ -24,6 +24,7 @@ MonoBehaviour:
     multiplyMaterials: []
     screenMaterials: []
   skeletonDataModifiers: []
+<<<<<<< HEAD
   fromAnimation:
   - Idle
   - Walk
@@ -34,4 +35,10 @@ MonoBehaviour:
   - 0.2
   - 0.2
   defaultMix: 0
+=======
+  fromAnimation: []
+  toAnimation: []
+  duration: []
+  defaultMix: 0.1
+>>>>>>> 6b1c5f8d79b1af5bbb8ff5f911f9e3cba4572374
   controller: {fileID: 0}

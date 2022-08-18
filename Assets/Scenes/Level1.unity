@@ -638,17 +638,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Spine GameObject (\u82B1\u7D0B\u7532\u62C6\u5206)"
       objectReference: {fileID: 0}
-    - target: {fileID: 2501855835909845666, guid: 80d15fb5ba95f1349918193c71124cb6, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2501855835909845677, guid: 80d15fb5ba95f1349918193c71124cb6, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2501855835909845679, guid: 80d15fb5ba95f1349918193c71124cb6, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2501855835909845679, guid: 80d15fb5ba95f1349918193c71124cb6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -982,7 +978,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8675026787412198868, guid: 5ec04b65a1daf0d46ab39912a77ff1bf, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8675026787412198868, guid: 5ec04b65a1daf0d46ab39912a77ff1bf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1212,7 +1208,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 303554476015466136, guid: 2c35a7e516eb01147a6c5bce9fc72b47, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 303554476015466136, guid: 2c35a7e516eb01147a6c5bce9fc72b47, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1256,6 +1252,71 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c35a7e516eb01147a6c5bce9fc72b47, type: 3}
+--- !u!1001 &14368320270222126
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4582013725331437786, guid: 7f6fda4f11842df42a00f39823523797, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582013725331437786, guid: 7f6fda4f11842df42a00f39823523797, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582013725331437786, guid: 7f6fda4f11842df42a00f39823523797, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582013725331437786, guid: 7f6fda4f11842df42a00f39823523797, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582013725331437786, guid: 7f6fda4f11842df42a00f39823523797, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582013725331437786, guid: 7f6fda4f11842df42a00f39823523797, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582013725331437786, guid: 7f6fda4f11842df42a00f39823523797, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582013725331437786, guid: 7f6fda4f11842df42a00f39823523797, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582013725331437786, guid: 7f6fda4f11842df42a00f39823523797, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582013725331437786, guid: 7f6fda4f11842df42a00f39823523797, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582013725331437786, guid: 7f6fda4f11842df42a00f39823523797, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582013725331437787, guid: 7f6fda4f11842df42a00f39823523797, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582013725331437791, guid: 7f6fda4f11842df42a00f39823523797, type: 3}
+      propertyPath: m_Name
+      value: "Spine GameObject (Arlene\u827E\u7433\u5A1C)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582013725331437791, guid: 7f6fda4f11842df42a00f39823523797, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f6fda4f11842df42a00f39823523797, type: 3}
 --- !u!1001 &2216899502902000324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1265,7 +1326,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 773086261644837220, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 773086261644837220, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}
       propertyPath: m_LocalPosition.x

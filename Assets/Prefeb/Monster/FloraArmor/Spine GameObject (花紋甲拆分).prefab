@@ -21,7 +21,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2501855835909845679
 Transform:
   m_ObjectHideFlags: 0
@@ -58,7 +58,6 @@ MonoBehaviour:
   Attack:
   - {fileID: 2501855835923544167}
   HpSliderMove: {x: 0, y: 5, z: 0}
-  Speed: 2
 --- !u!33 &2501855835909845677
 MeshFilter:
   m_ObjectHideFlags: 0

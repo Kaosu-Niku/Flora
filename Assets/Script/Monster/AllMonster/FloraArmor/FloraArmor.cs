@@ -5,7 +5,6 @@ using Spine;
 
 public class FloraArmor : Monster
 {
-    [SerializeField] float Speed;
     bool Attack2Check = false;
     Rigidbody2D Rigid;
     Coroutine C;
@@ -44,7 +43,7 @@ public class FloraArmor : Monster
             int moveTime = Random.Range(1, 4);
             for (float a = 0; a < moveTime; a += Time.deltaTime)
             {
-                transform.Translate(Speed * Time.deltaTime, 0, 0);
+                transform.Translate(2 * Time.deltaTime, 0, 0);
                 yield return 0;
             }
             if (GetPlayerDistance() < 10)

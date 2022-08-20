@@ -25,7 +25,7 @@ public class PlayerAttack : MonoBehaviour
 
     protected void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.transform.CompareTag("Hurt") && other.transform.root.transform.CompareTag("Monster"))
+        if (other.transform.CompareTag("Hurt") && other.transform.parent.CompareTag("Monster"))
         {
             PlayerSystemSO.GetPlayerInvoke().AttackHurtEnemyTrigger(this); //? (彼岸花效果)
         }

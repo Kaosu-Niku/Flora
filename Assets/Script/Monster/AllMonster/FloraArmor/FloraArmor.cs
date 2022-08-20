@@ -72,7 +72,7 @@ public class FloraArmor : Monster
     }
     IEnumerator Attack2IEnum()
     {
-        transform.right = (PlayerSystemSO.GetPlayerInvoke().transform.position + Vector3.up * 2) - transform.position;
+        transform.right = (PlayerSystemSO.GetPlayerInvoke().transform.position + Vector3.up * 4) - transform.position;
         if (PlayerSystemSO.GetPlayerInvoke().transform.position.x < transform.position.x)
         {
             transform.Rotate(0, 180, 180);

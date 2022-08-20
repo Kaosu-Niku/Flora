@@ -394,7 +394,7 @@ public class PlayerSystem : SkeletonAnimationSystem
             if (PlayerHint.activeInHierarchy == false)//? 一般跳躍
             {
                 Jumping = true;
-                skeletonRootMotion.rootMotionScaleY = 3;
+                skeletonRootMotion.rootMotionScaleY = jumpPower;
                 skeletonAnimation.AnimationState.SetAnimation(0, "Jump", false);
             }
             else//? 蹬牆跳
@@ -512,6 +512,47 @@ public class PlayerSystem : SkeletonAnimationSystem
             }
         }
     }
+    //? 被束縛事件
+    public UnityAction BondageEvent;
+    //? 被束縛
+    public void Bondage(Transform who)
+    {
+        if (Super == false)//? 沒有無敵才會被束縛
+        {
+            CanControl = false;
+            CanJump = true;
+            Jumping = false;
+            Rigid.gravityScale = 10;
+            CanFlash = true;
+            CanRestore = true;
+            CanAttack = true;
+            WhichAttack = 1;
+            Attack[0].SetActive(false);
+            Attack[1].SetActive(false);
+            Attack[2].SetActive(false);
+            if (BondageEvent != null)
+                BondageEvent.Invoke();
+            //skeletonAnimation.AnimationState.SetAnimation(0, "Bondage", true);
+            C = StartCoroutine(FollowBondageTarget(who));
+        }
+    }
+    Coroutine C;
+    IEnumerator FollowBondageTarget(Transform who)
+    {
+        PlayerSystemSO.GetPlayerInvoke().transform.parent = who;
+        while (true)
+        {
+            transform.localPosition = Vector3.zero;
+            yield return 0;
+        }
+    }
+    public void UntieBondage()
+    {
+        if (C != null)
+            StopCoroutine(C);
+        transform.parent = null;
+        CanControl = true;
+    }
     //? 死亡
     private void Die()
     {
@@ -540,7 +581,7 @@ public class PlayerSystem : SkeletonAnimationSystem
     {
         Vector2 contactsNormal = other.contacts[0].normal;//? 取得碰撞點的法線向量
         float colAngle = (Mathf.Atan(contactsNormal.y / contactsNormal.x)) * 180 / Mathf.PI;//? 換算成能理解的角度
-        if (colAngle < 120 && colAngle > 60 || colAngle < -120 && colAngle > -60)//? 檢查角度判定是否是踩到地板
+        if (colAngle < 120 && colAngle > 60 || colAngle > -120 && colAngle < -60)//? 檢查角度判定是否是踩到地板
         {
             if (Jumping == true)
                 skeletonAnimation.AnimationState.SetAnimation(0, "JumpDown", false);

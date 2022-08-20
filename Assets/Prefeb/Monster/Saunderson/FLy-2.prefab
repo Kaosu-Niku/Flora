@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &904626139620233141
+--- !u!1 &4121403016303201639
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6750984521136521721}
-  - component: {fileID: 4351834738877336335}
-  - component: {fileID: 691404297667839930}
-  - component: {fileID: 6629029873247343616}
+  - component: {fileID: 2883062353003956831}
+  - component: {fileID: 8140026080145431698}
+  - component: {fileID: 2660789446755311646}
+  - component: {fileID: 2234182281722679206}
   m_Layer: 0
-  m_Name: Attack3-1
+  m_Name: FLy-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6750984521136521721
+--- !u!4 &2883062353003956831
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 904626139620233141}
+  m_GameObject: {fileID: 4121403016303201639}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,20 +33,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &4351834738877336335
+--- !u!61 &8140026080145431698
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 904626139620233141}
+  m_GameObject: {fileID: 4121403016303201639}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: -7.5, y: 0}
+  m_Offset: {x: 7.5, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -59,33 +59,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 15, y: 20}
   m_EdgeRadius: 0
---- !u!249 &691404297667839930
+--- !u!249 &2660789446755311646
 AreaEffector2D:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 904626139620233141}
+  m_GameObject: {fileID: 4121403016303201639}
   m_Enabled: 1
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_UseGlobalAngle: 0
-  m_ForceAngle: 180
+  m_ForceAngle: 0
   m_ForceMagnitude: 300
   m_ForceVariation: 0
   m_ForceTarget: 0
   m_Drag: 0
   m_AngularDrag: 0
---- !u!114 &6629029873247343616
+--- !u!114 &2234182281722679206
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 904626139620233141}
+  m_GameObject: {fileID: 4121403016303201639}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 913d42f2b63c3684e826d28d17dd7fdd, type: 3}

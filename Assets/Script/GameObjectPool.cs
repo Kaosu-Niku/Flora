@@ -37,7 +37,7 @@ public class GameObjectPool : MonoBehaviour
             if (AllObject[tag].Count > 0)
             {
                 IPoolObject g = AllObject[tag].Dequeue();
-                g.transform.position = pos; Debug.Log("數量還夠");
+                g.transform.position = pos;
                 g.transform.rotation = rot;
                 g.gameObject.SetActive(true);
                 return g;
@@ -50,7 +50,6 @@ public class GameObjectPool : MonoBehaviour
                     {
                         IPoolObject g = Instantiate(GetAllObject[x].Obj);
                         g.MyPool = this;
-                        g.MyTag = GetAllObject[x].Tag; Debug.Log("數量不夠");
                         g.transform.position = pos;
                         g.transform.rotation = rot;
                         g.gameObject.SetActive(true);

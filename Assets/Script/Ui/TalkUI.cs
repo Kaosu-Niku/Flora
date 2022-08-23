@@ -15,11 +15,11 @@ public class TalkUI : MonoBehaviour
     }
     private void OnEnable()
     {
-        UiSystem.TalkPanelAction += ToTalk;
+        UiSystemSO.TalkPanelAction += ToTalk;
     }
     private void OnDisable()
     {
-        UiSystem.TalkPanelAction -= ToTalk;
+        UiSystemSO.TalkPanelAction -= ToTalk;
     }
     private void Start()
     {

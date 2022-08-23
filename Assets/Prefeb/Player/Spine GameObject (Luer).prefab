@@ -744,6 +744,10 @@ MonoBehaviour:
   - {fileID: 6505938982443522100}
   - {fileID: 4640575951169585680}
   - {fileID: 541341214798440992}
+  - {fileID: 584263929672651051}
+  - {fileID: 5478513449702198126}
+  Skill6Check: 0
+  Skill8Check: 0
 --- !u!114 &7943889531480707776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -756,8 +760,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95d14b237fedfb447a7d067765e6fd91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSkill7Attack: {fileID: 0}
-  PlayerSkill9Attack: {fileID: 0}
 --- !u!33 &6175852220323559561
 MeshFilter:
   m_ObjectHideFlags: 0

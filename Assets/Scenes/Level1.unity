@@ -226,10 +226,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   "\u904B\u884C\u6642\u9593": 1
   "\u73A9\u5BB6\u6700\u5927\u8840\u91CF": 10
-  "\u73A9\u5BB6\u6700\u5927\u9B54\u529B": 500
+  "\u73A9\u5BB6\u6700\u5927\u9B54\u529B": 100
   "\u73A9\u5BB6\u6700\u5927\u653B\u64CA\u529B": 10
   "\u73A9\u5BB6\u6700\u5927\u786C\u76F4\u529B": 10
   "\u73A9\u5BB6\u6700\u5927\u901F\u5EA6": 10
+  "\u73A9\u5BB6\u6700\u5927\u69FD\u6578": 10
   "\u5438\u5F15": 0
   "\u9583\u907F": 0
   "\u6E1B\u50B7": 0
@@ -238,11 +239,12 @@ MonoBehaviour:
   "\u62DC\u91D1": 0
   "\u7121\u5F62\u653B\u64CA": 0
   "\u5149\u83EF\u5200\u5203": 0
-  "\u50B7\u5BB3\u53CD\u5F48": 0
-  "\u9B54\u529B\u5438\u53D6": 0
-  "\u56DE\u8840\u901F\u5EA6\u589E\u52A0": 0
-  "\u9B54\u5F7C\u5CB8\u82B1": 0
+  "\u834A\u68D8\u4E4B\u8EAB": 0
+  "\u9B54\u529B\u589E\u52A0": 0
+  "\u56DE\u8840\u52A0\u5FEB": 0
+  "\u5F7C\u5CB8\u82B1": 0
   "\u6839\u6027": 0
+  "\u751F\u547D\u6210\u9577": 0
 --- !u!4 &106550158
 Transform:
   m_ObjectHideFlags: 0
@@ -1032,6 +1034,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spine GameObject (A1BigBoss)
       objectReference: {fileID: 0}
+    - target: {fileID: 8675026787412198872, guid: 5ec04b65a1daf0d46ab39912a77ff1bf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ec04b65a1daf0d46ab39912a77ff1bf, type: 3}
 --- !u!1001 &2036853079
@@ -1041,10 +1047,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2925634392117523526, guid: 567054877cc42e947ac25a40fbd5265e, type: 3}
-      propertyPath: skeletonDataAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 99e147083a81c994692fb057f0bb2249, type: 2}
     - target: {fileID: 5977903479375229840, guid: 567054877cc42e947ac25a40fbd5265e, type: 3}
       propertyPath: m_RootOrder
       value: 8

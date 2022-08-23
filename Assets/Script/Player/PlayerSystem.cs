@@ -86,6 +86,7 @@ public class PlayerSystem : SkeletonAnimationSystem
         }
         if (e.Data.Name == "FlashOut")
         {
+            Attack[3].SetActive(false);
             CanFlash = true;
             CanControl = true;
             return;
@@ -104,6 +105,7 @@ public class PlayerSystem : SkeletonAnimationSystem
         }
         if (e.Data.Name == "HurtOut")
         {
+            Attack[4].SetActive(false);
             Super = false;
             CanControl = true;
             return;
@@ -193,21 +195,25 @@ public class PlayerSystem : SkeletonAnimationSystem
     }
 
     int _MaxHp;//* 最大血量
-    public int MaxHp { get => _MaxHp; private set { if (value > 40) _MaxHp = 40; else _MaxHp = value; } }
+    public int MaxHp { get => _MaxHp; private set { if (value > 40) _MaxHp = 40; else _MaxHp = value; UiSystemSO.ChangePlayerHpInvoke(); } }
+    public void AddMaxHp(int much)
+    {
+        MaxHp += much;
+    }
     int _NowHp;//* 當前血量
-    public int NowHp { get => _NowHp; private set { if (_NowHp > PlayerDataSO.MaxHp) _NowHp = PlayerDataSO.MaxHp; else _NowHp = value; UiSystem.ChangePlayerHpInvoke(); } }
+    public int NowHp { get => _NowHp; private set { if (_NowHp > PlayerDataSO.MaxHp) _NowHp = PlayerDataSO.MaxHp; else _NowHp = value; UiSystemSO.ChangePlayerHpInvoke(); } }
     public void AddNowHp(int much)
     {
         NowHp += much;
     }
     int _MaxMp;//* 最大魔力
-    public int MaxMp { get => _MaxMp; private set { _MaxMp = value; } }
-    public void AddMaxMp(int much)
+    public int MaxMp { get => _MaxMp; private set { _MaxMp = value; UiSystemSO.ChangePlayerMpInvoke(); } }
+    public void SetMaxMp(int much)
     {
-        MaxMp += much;
+        MaxMp = much;
     }
     int _NowMp;//* 當前魔力
-    public int NowMp { get => _NowMp; private set { if (_NowMp > PlayerDataSO.MaxMp) _NowMp = PlayerDataSO.MaxMp; else if (NowMp > 0) _NowMp = value; else _NowMp = 0; UiSystem.ChangePlayerMpInvoke(); } }
+    public int NowMp { get => _NowMp; private set { if (_NowMp > PlayerDataSO.MaxMp) _NowMp = PlayerDataSO.MaxMp; else if (NowMp > 0) _NowMp = value; else _NowMp = 0; UiSystemSO.ChangePlayerMpInvoke(); } }
     public void AddNowMp(int much)
     {
         NowMp += much;
@@ -260,7 +266,7 @@ public class PlayerSystem : SkeletonAnimationSystem
     {
         CanFlash = b;
     }
-    [HideInInspector] public bool FastFlash;//* 閃避時間延長
+    [HideInInspector] public bool FastFlash;//* 閃避無敵時間延長
     bool CanRestore = true;//* 可以恢復生命
     [HideInInspector] public bool FastRestore;//* 恢復生命的動作是否加快(配合某個技能)
     int WhichAttack = 1;
@@ -278,6 +284,8 @@ public class PlayerSystem : SkeletonAnimationSystem
     CinemachineImpulseSource MyImpulseSetting;
     MyInput GetInput;
     [SerializeField] List<GameObject> Attack = new List<GameObject>();
+    [HideInInspector] public bool Skill6Check;//* 無形攻擊是否使用
+    [HideInInspector] public bool Skill8Check;//* 荊棘之身是否使用
 
     new void Awake()
     {
@@ -292,18 +300,11 @@ public class PlayerSystem : SkeletonAnimationSystem
     }
     private void OnEnable()
     {
-        //? Data數值初始化
-        MaxHp = PlayerDataSO.MaxHp;
-        MaxMp = PlayerDataSO.MaxMp;
-        MaxAtk = PlayerDataSO.MaxAtk;
-        MaxHit = PlayerDataSO.MaxHit;
-        MaxSpeed = PlayerDataSO.MaxSpeed;
         GetInput.Enable();
         GetInput.Player.Jump.started += OnJump;
         GetInput.Player.Flash.started += OnFlash;
         GetInput.Player.Restore.started += OnRestore;
         GetInput.Player.Attack.started += OnAttack;
-        StartCoroutine(LateTrigger());
     }
     private void OnDisable()
     {
@@ -315,19 +316,25 @@ public class PlayerSystem : SkeletonAnimationSystem
         GetInput.Player.Restore.started -= OnRestore;
         GetInput.Player.Attack.started -= OnAttack;
     }
+    private void Start()
+    {
+        //? Data數值初始化
+        MaxHp = PlayerDataSO.MaxHp;
+        MaxMp = PlayerDataSO.MaxMp;
+        MaxAtk = PlayerDataSO.MaxAtk;
+        MaxHit = PlayerDataSO.MaxHit;
+        MaxSpeed = PlayerDataSO.MaxSpeed;
+        StartCoroutine(LateTrigger());
+    }
     IEnumerator LateTrigger()
     {
+        //? 等待PlayerSkill修改數值
         yield return 0;
         yield return 0;
-        MaxHp = PlayerDataSO.MaxHp;
         NowHp = MaxHp;
-        MaxMp = PlayerDataSO.MaxMp;
         NowMp = MaxMp;
-        MaxAtk = PlayerDataSO.MaxAtk;
         NowAtk = MaxAtk;
-        MaxHit = PlayerDataSO.MaxHit;
         NowHit = MaxHit;
-        MaxSpeed = PlayerDataSO.MaxSpeed;
         NowSpeed = MaxSpeed;
         CanControl = true;
     }
@@ -408,14 +415,12 @@ public class PlayerSystem : SkeletonAnimationSystem
             }
         }
     }
-    public UnityAction FlashEvent;//? 閃避事件
     private void OnFlash(InputAction.CallbackContext context)//? 閃避
     {
         if (CanControl && CanFlash)
         {
-            //? (無形攻擊效果)
-            if (FlashEvent != null)
-                FlashEvent.Invoke();
+            if (Skill6Check == true)
+                Attack[3].SetActive(true);
             CanFlash = false;
             CanControl = false;
             Super = true;
@@ -453,8 +458,8 @@ public class PlayerSystem : SkeletonAnimationSystem
     //? 攻擊成功擊中敵人事件觸發
     public void AttackHurtEnemyTrigger(PlayerAttack p)
     {
-        if (AttackEvent != null)
-            AttackEvent.Invoke(p);
+        if (AttackHurtEnemyEvent != null)
+            AttackHurtEnemyEvent.Invoke(p);
     }
     //? 攻擊
     private void OnAttack(InputAction.CallbackContext context)
@@ -488,6 +493,8 @@ public class PlayerSystem : SkeletonAnimationSystem
             NowHp -= damage;
             if (NowHp > 0)
             {
+                if (Skill8Check == true)
+                    Attack[4].SetActive(true);
                 Super = true;
                 CanControl = false;
                 CanJump = true;
@@ -500,6 +507,7 @@ public class PlayerSystem : SkeletonAnimationSystem
                 Attack[0].SetActive(false);
                 Attack[1].SetActive(false);
                 Attack[2].SetActive(false);
+                Attack[3].SetActive(false);
                 //? (減傷效果)(增傷負面效果)(傷害反彈效果)(根性效果)
                 if (HurtEvent != null)
                     HurtEvent.Invoke();
@@ -560,9 +568,10 @@ public class PlayerSystem : SkeletonAnimationSystem
         CanControl = false;
         Jumping = false;
         Rigid.gravityScale = 10;
-        Attack[0].SetActive(false);
-        Attack[1].SetActive(false);
-        Attack[2].SetActive(false);
+        for (int x = 0; x < Attack.Count; x++)
+        {
+            Attack[x].SetActive(false);
+        }
         skeletonAnimation.AnimationState.SetAnimation(0, "Die", false);
         StopAllCoroutines();
     }

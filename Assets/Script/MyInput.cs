@@ -211,7 +211,7 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
             ""id"": ""f46abc9a-8ec5-47e0-8f7f-48a3dd5e4f91"",
             ""actions"": [
                 {
-                    ""name"": ""OpenPause"",
+                    ""name"": ""Esc"",
                     ""type"": ""Button"",
                     ""id"": ""ab28b6ab-c4db-4e8b-8f5d-55542421f6d6"",
                     ""expectedControlType"": ""Button"",
@@ -220,9 +220,18 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""OpenSkill"",
+                    ""name"": ""Tab"",
                     ""type"": ""Button"",
                     ""id"": ""9f670fb8-e3f4-4a36-88bc-16053bef6310"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Enter"",
+                    ""type"": ""Button"",
+                    ""id"": ""94b2e4a8-0a35-48a2-b2b6-df4bc9972b08"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -237,7 +246,7 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""OpenPause"",
+                    ""action"": ""Esc"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -248,7 +257,7 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""OpenPause"",
+                    ""action"": ""Esc"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -259,7 +268,7 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""OpenSkill"",
+                    ""action"": ""Tab"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -270,7 +279,18 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""OpenSkill"",
+                    ""action"": ""Tab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b9eb5f76-d710-4f39-8ab7-f89df8377287"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Enter"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -289,8 +309,9 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
         m_Player_Restore = m_Player.FindAction("Restore", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_OpenPause = m_UI.FindAction("OpenPause", throwIfNotFound: true);
-        m_UI_OpenSkill = m_UI.FindAction("OpenSkill", throwIfNotFound: true);
+        m_UI_Esc = m_UI.FindAction("Esc", throwIfNotFound: true);
+        m_UI_Tab = m_UI.FindAction("Tab", throwIfNotFound: true);
+        m_UI_Enter = m_UI.FindAction("Enter", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -423,14 +444,16 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
     // UI
     private readonly InputActionMap m_UI;
     private IUIActions m_UIActionsCallbackInterface;
-    private readonly InputAction m_UI_OpenPause;
-    private readonly InputAction m_UI_OpenSkill;
+    private readonly InputAction m_UI_Esc;
+    private readonly InputAction m_UI_Tab;
+    private readonly InputAction m_UI_Enter;
     public struct UIActions
     {
         private @MyInput m_Wrapper;
         public UIActions(@MyInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @OpenPause => m_Wrapper.m_UI_OpenPause;
-        public InputAction @OpenSkill => m_Wrapper.m_UI_OpenSkill;
+        public InputAction @Esc => m_Wrapper.m_UI_Esc;
+        public InputAction @Tab => m_Wrapper.m_UI_Tab;
+        public InputAction @Enter => m_Wrapper.m_UI_Enter;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -440,22 +463,28 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_UIActionsCallbackInterface != null)
             {
-                @OpenPause.started -= m_Wrapper.m_UIActionsCallbackInterface.OnOpenPause;
-                @OpenPause.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnOpenPause;
-                @OpenPause.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnOpenPause;
-                @OpenSkill.started -= m_Wrapper.m_UIActionsCallbackInterface.OnOpenSkill;
-                @OpenSkill.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnOpenSkill;
-                @OpenSkill.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnOpenSkill;
+                @Esc.started -= m_Wrapper.m_UIActionsCallbackInterface.OnEsc;
+                @Esc.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnEsc;
+                @Esc.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnEsc;
+                @Tab.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTab;
+                @Tab.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTab;
+                @Tab.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTab;
+                @Enter.started -= m_Wrapper.m_UIActionsCallbackInterface.OnEnter;
+                @Enter.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnEnter;
+                @Enter.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnEnter;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @OpenPause.started += instance.OnOpenPause;
-                @OpenPause.performed += instance.OnOpenPause;
-                @OpenPause.canceled += instance.OnOpenPause;
-                @OpenSkill.started += instance.OnOpenSkill;
-                @OpenSkill.performed += instance.OnOpenSkill;
-                @OpenSkill.canceled += instance.OnOpenSkill;
+                @Esc.started += instance.OnEsc;
+                @Esc.performed += instance.OnEsc;
+                @Esc.canceled += instance.OnEsc;
+                @Tab.started += instance.OnTab;
+                @Tab.performed += instance.OnTab;
+                @Tab.canceled += instance.OnTab;
+                @Enter.started += instance.OnEnter;
+                @Enter.performed += instance.OnEnter;
+                @Enter.canceled += instance.OnEnter;
             }
         }
     }
@@ -471,7 +500,8 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
     }
     public interface IUIActions
     {
-        void OnOpenPause(InputAction.CallbackContext context);
-        void OnOpenSkill(InputAction.CallbackContext context);
+        void OnEsc(InputAction.CallbackContext context);
+        void OnTab(InputAction.CallbackContext context);
+        void OnEnter(InputAction.CallbackContext context);
     }
 }

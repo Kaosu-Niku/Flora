@@ -35,13 +35,13 @@ public class NPC : MonoBehaviour
         {
             if (TalkNum >= TalkString.Count)
             {
-                UiSystem.TalkPanelInvoke(null, 1);
+                UiSystemSO.TalkPanelInvoke(null, 1);
                 TalkNum = 0;
                 //skeletonAnimationSystem.GetSkeletonAnimation.AnimationState.SetAnimation(0, "Idle", true);
             }
             else
             {
-                UiSystem.TalkPanelInvoke(TalkString[TalkNum], TalkTime[TalkNum]);
+                UiSystemSO.TalkPanelInvoke(TalkString[TalkNum], TalkTime[TalkNum]);
                 TalkNum++;
                 //skeletonAnimationSystem.GetSkeletonAnimation.AnimationState.SetAnimation(0, "Talk", true);
             }

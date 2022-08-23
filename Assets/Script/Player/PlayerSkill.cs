@@ -4,77 +4,137 @@ using UnityEngine;
 
 public class PlayerSkill : MonoBehaviour
 {
-    [SerializeField] DefaultObject PlayerSkill7Attack;
-    [SerializeField] DefaultObject PlayerSkill9Attack;
-    bool FirstDieCheck = false;
-    void OnEnable()
+    int FirstPlayerMaxHp;
+    bool Skill5Check;
+    bool Skill12Check = false;
+    bool Skill13Check;
+    void Awake()
     {
-        StartCoroutine(LateTrigger());
+        PlayerSystemSO.UpdateSkillAction += UpDateSkill;
     }
-    IEnumerator LateTrigger()
+    void OnDestroy()
+    {
+        PlayerSystemSO.UpdateSkillAction -= UpDateSkill;
+    }
+    private void Start()
+    {
+        FirstPlayerMaxHp = PlayerDataSO.MaxHp;
+        UpDateSkill();
+    }
+    void UpDateSkill()
+    {
+        StartCoroutine(UpdateSkillIEnum());
+    }
+    IEnumerator UpdateSkillIEnum()
     {
         yield return 0;
-        {//? (吸引1) 吸取掉落物範圍增加(初始為3，增加後為10)
-            if (PlayerSkillSO.AllSkill[0] == true)
+        {//? (吸引) 吸取掉落物範圍增加(初始為3，增加後為10)
+            if (PlayerSystemSO.AllSkill[0] == true)
                 PlayerSystemSO.GetPlayerInvoke().SuckAwardCol.radius = 10;
             else
                 PlayerSystemSO.GetPlayerInvoke().SuckAwardCol.radius = 3;
         }
-        {//? (閃避1) 閃避時間增加
-            if (PlayerSkillSO.AllSkill[1] == true)
-                PlayerSystemSO.GetPlayerInvoke().FastFlash = true;
+        {//? (閃避) 閃避時間增加
+            PlayerSystemSO.GetPlayerInvoke().FastFlash = PlayerSystemSO.AllSkill[1];
         }
-        {//? (減傷2) 所受傷害皆減少1點
-            if (PlayerSkillSO.AllSkill[2] == true)
+        {//? (減傷) 所受傷害皆減少1點
+            if (PlayerSystemSO.AllSkill[2] == true)
                 PlayerSystemSO.GetPlayerInvoke().HurtEvent += Skill2;
+            else
+                PlayerSystemSO.GetPlayerInvoke().HurtEvent -= Skill2;
         }
-        {//? (增傷2) 提高傷害(1.2倍) & 所受傷害皆增加1點
-            if (PlayerSkillSO.AllSkill[3] == true)
+        {//? (增傷) 提高傷害(1.2倍) & 所受傷害皆增加1點
+            if (PlayerSystemSO.AllSkill[3] == true)
             {
                 PlayerSystemSO.GetPlayerInvoke().AttackEvent += Skill3;
                 PlayerSystemSO.GetPlayerInvoke().HurtEvent += Skill3_1;
             }
+            else
+            {
+                PlayerSystemSO.GetPlayerInvoke().AttackEvent -= Skill3;
+                PlayerSystemSO.GetPlayerInvoke().HurtEvent -= Skill3_1;
+            }
         }
-        {//? (魔力成長2) 魔力容量增加500(數值暫定的)
-            if (PlayerSkillSO.AllSkill[4] == true)
-                PlayerSystemSO.GetPlayerInvoke().AddMaxMp(500);
+        {//? (魔力成長) 魔力容量增加20
+            if (PlayerSystemSO.AllSkill[4] == true)
+                PlayerSystemSO.GetPlayerInvoke().SetMaxMp(120);
+            else
+                PlayerSystemSO.GetPlayerInvoke().SetMaxMp(100);
         }
-        {//? (拜金2) 金錢獲取量上升為1.5倍 & 血量上限砍半
-            if (PlayerSkillSO.AllSkill[5] == true)
+        {//? (拜金) 金錢獲取量上升為1.5倍 & 血量上限砍半
+            if (PlayerSystemSO.AllSkill[5] == true)
             {
                 PlayerSystemSO.GetPlayerInvoke().AddMoneyEvent += Skill5;
-                PlayerDataSO.MaxHp /= 2;
+                if (Skill5Check == false)
+                {
+                    PlayerSystemSO.GetPlayerInvoke().AddMaxHp(-FirstPlayerMaxHp / 2);
+                    Skill5Check = true;
+                }
             }
-        }
-        {//? (無形攻擊2) 使用閃避可對閃避期間接觸的怪物造成傷害
-            if (PlayerSkillSO.AllSkill[6] == true)
+            else
             {
-                PlayerSystemSO.GetPlayerInvoke().FlashEvent += Skill6;
+                PlayerSystemSO.GetPlayerInvoke().AddMoneyEvent -= Skill5;
+                if (Skill5Check == true)
+                {
+                    PlayerSystemSO.GetPlayerInvoke().AddMaxHp(FirstPlayerMaxHp / 2);
+                    Skill5Check = false;
+                }
             }
         }
-        {//? (光華刀刃3) 每次攻擊有10%機率提高傷害(1.5倍)
-            if (PlayerSkillSO.AllSkill[7] == true)
+        {//? (無形攻擊) 使用閃避可對閃避期間接觸的怪物造成傷害
+            PlayerSystemSO.GetPlayerInvoke().Skill6Check = PlayerSystemSO.AllSkill[6];
+        }
+        {//? (光華刀刃) 每次攻擊有10%機率提高傷害(1.5倍)
+            if (PlayerSystemSO.AllSkill[7] == true)
                 PlayerSystemSO.GetPlayerInvoke().AttackEvent += Skill7;
+            else
+                PlayerSystemSO.GetPlayerInvoke().AttackEvent -= Skill7;
         }
-        {//? (傷害反彈3) 受到傷害，攻擊對象會受到傷害
-            if (PlayerSkillSO.AllSkill[8] == true)
-                PlayerSystemSO.GetPlayerInvoke().HurtEvent += Skill8;
+        {//? (傷害反彈) 受到傷害，攻擊對象會受到傷害
+            PlayerSystemSO.GetPlayerInvoke().Skill8Check = PlayerSystemSO.AllSkill[8];
         }
-        {//? (魔力吸取3) 魔力吸取量上升為1.5倍
-            if (PlayerSkillSO.AllSkill[9] == true)
+        {//? (魔力吸取) 魔力吸取量上升為1.5倍
+            if (PlayerSystemSO.AllSkill[9] == true)
                 PlayerSystemSO.GetPlayerInvoke().AddMpEvent += Skill9;
+            else
+                PlayerSystemSO.GetPlayerInvoke().AddMpEvent -= Skill9;
         }
-        {//? (回血速度增加3) 恢復動作加快
-            if (PlayerSkillSO.AllSkill[10] == true)
-                PlayerSystemSO.GetPlayerInvoke().FastRestore = true;
+        {//? (回血速度增加) 恢復動作加快
+            PlayerSystemSO.GetPlayerInvoke().FastRestore = PlayerSystemSO.AllSkill[10];
         }
-        {//? (魔彼岸花3) 普通攻擊有5%機率吸取攻擊力10%的魔力
-            if (PlayerSkillSO.AllSkill[11] == true)
-                PlayerSystemSO.GetPlayerInvoke().AttackHurtEnemyEvent += Skill11;
+        {//! (彼岸花) 減少施放技能所消耗的魔力
+            if (PlayerSystemSO.AllSkill[11] == true)
+            {
+
+            }
+            else
+            {
+
+            }
         }
-        {//? (根性4) 承受致命傷害，鎖血一滴
-            if (PlayerSkillSO.AllSkill[12] == true)
+        {//? (根性) 承受致命傷害，鎖血一滴
+            if (PlayerSystemSO.AllSkill[12] == true)
                 PlayerSystemSO.GetPlayerInvoke().HurtEvent += Skill12;
+            else
+                PlayerSystemSO.GetPlayerInvoke().HurtEvent -= Skill12;
+        }
+        {//? (生命成長) 額外增加20%血量
+            if (PlayerSystemSO.AllSkill[13] == true)
+            {
+                if (Skill13Check == false)
+                {
+                    PlayerSystemSO.GetPlayerInvoke().AddMaxHp(FirstPlayerMaxHp / 5);
+                    Skill13Check = true;
+                }
+            }
+            else
+            {
+                if (Skill13Check == true)
+                {
+                    PlayerSystemSO.GetPlayerInvoke().AddMaxHp(-FirstPlayerMaxHp / 5);
+                    Skill13Check = false;
+                }
+            }
         }
     }
 
@@ -94,19 +154,11 @@ public class PlayerSkill : MonoBehaviour
     {
         PlayerDataSO.Money += much / 2;
     }
-    private void Skill6()//? 無形攻擊效果
-    {
-        PlayerSkill7Attack.gameObject.SetActive(true);
-    }
     private void Skill7(PlayerAttack p)//? 光華刀刃效果
     {
         int r = Random.Range(0, 10);
         if (r > 8)
             p.TureDamage /= 10 * 15;
-    }
-    private void Skill8()//? 傷害反彈效果
-    {
-        PlayerSkill9Attack.gameObject.SetActive(true);
     }
     private void Skill9(int much)//? 魔力吸取效果
     {
@@ -118,23 +170,18 @@ public class PlayerSkill : MonoBehaviour
         }
 
     }
-    private void Skill11(PlayerAttack p)//? 魔彼岸花效果
+    private void Skill11()//? 魔彼岸花效果
     {
-        int r = Random.Range(0, 20);
-        if (r == 10)
-        {
-            PlayerSystemSO.GetPlayerInvoke().AddNowMp(p.TureDamage / 10);
-        }
 
     }
     private void Skill12()//? 根性效果
     {
-        if (FirstDieCheck == false)
+        if (Skill12Check == false)
         {
             if (PlayerSystemSO.GetPlayerInvoke().NowHp < 1)
             {
                 PlayerSystemSO.GetPlayerInvoke().AddNowHp(-PlayerSystemSO.GetPlayerInvoke().NowHp + 1);
-                FirstDieCheck = true;
+                Skill12Check = true;
             }
         }
     }

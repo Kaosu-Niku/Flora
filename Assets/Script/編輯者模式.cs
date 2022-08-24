@@ -10,6 +10,7 @@ public class 編輯者模式 : MonoBehaviour
     [SerializeField] int 玩家最大攻擊力;
     [SerializeField] int 玩家最大硬直力;
     [SerializeField] int 玩家最大速度;
+    [SerializeField] int 玩家最大槽數;
 
     [SerializeField] bool 吸引;
     [SerializeField] bool 閃避;
@@ -19,11 +20,12 @@ public class 編輯者模式 : MonoBehaviour
     [SerializeField] bool 拜金;
     [SerializeField] bool 無形攻擊;
     [SerializeField] bool 光華刀刃;
-    [SerializeField] bool 傷害反彈;
-    [SerializeField] bool 魔力吸取;
-    [SerializeField] bool 回血速度增加;
-    [SerializeField] bool 魔彼岸花;
+    [SerializeField] bool 荊棘之身;
+    [SerializeField] bool 魔力增加;
+    [SerializeField] bool 回血加快;
+    [SerializeField] bool 彼岸花;
     [SerializeField] bool 根性;
+    [SerializeField] bool 生命成長;
     void Awake()
     {
         Time.timeScale = 運行時間;
@@ -32,19 +34,21 @@ public class 編輯者模式 : MonoBehaviour
         PlayerDataSO.MaxAtk = 玩家最大攻擊力;
         PlayerDataSO.MaxHit = 玩家最大硬直力;
         PlayerDataSO.MaxSpeed = 玩家最大速度;
-        PlayerSkillSO.AllSkill[0] = 吸引;
-        PlayerSkillSO.AllSkill[1] = 閃避;
-        PlayerSkillSO.AllSkill[2] = 減傷;
-        PlayerSkillSO.AllSkill[3] = 增傷;
-        PlayerSkillSO.AllSkill[4] = 魔力成長;
-        PlayerSkillSO.AllSkill[5] = 拜金;
-        PlayerSkillSO.AllSkill[6] = 無形攻擊;
-        PlayerSkillSO.AllSkill[7] = 光華刀刃;
-        PlayerSkillSO.AllSkill[8] = 傷害反彈;
-        PlayerSkillSO.AllSkill[9] = 魔力吸取;
-        PlayerSkillSO.AllSkill[10] = 回血速度增加;
-        PlayerSkillSO.AllSkill[11] = 魔彼岸花;
-        PlayerSkillSO.AllSkill[12] = 根性;
+        PlayerSystemSO.SkillMaxPoint = 玩家最大槽數;
+        PlayerSystemSO.AllSkill[0] = 吸引;
+        PlayerSystemSO.AllSkill[1] = 閃避;
+        PlayerSystemSO.AllSkill[2] = 減傷;
+        PlayerSystemSO.AllSkill[3] = 增傷;
+        PlayerSystemSO.AllSkill[4] = 魔力成長;
+        PlayerSystemSO.AllSkill[5] = 拜金;
+        PlayerSystemSO.AllSkill[6] = 無形攻擊;
+        PlayerSystemSO.AllSkill[7] = 光華刀刃;
+        PlayerSystemSO.AllSkill[8] = 荊棘之身;
+        PlayerSystemSO.AllSkill[9] = 魔力增加;
+        PlayerSystemSO.AllSkill[10] = 回血加快;
+        PlayerSystemSO.AllSkill[11] = 彼岸花;
+        PlayerSystemSO.AllSkill[12] = 根性;
+        PlayerSystemSO.AllSkill[13] = 生命成長;
     }
 
 }

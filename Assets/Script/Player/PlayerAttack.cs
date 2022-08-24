@@ -27,7 +27,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (other.transform.CompareTag("Hurt") && other.transform.parent.CompareTag("Monster"))
         {
-            PlayerSystemSO.GetPlayerInvoke().AttackHurtEnemyTrigger(this); //? (彼岸花效果)
+            PlayerSystemSO.GetPlayerInvoke().AttackHurtEnemyTrigger(this);
         }
     }
 }

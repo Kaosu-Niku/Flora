@@ -189,7 +189,7 @@
             "id": "f46abc9a-8ec5-47e0-8f7f-48a3dd5e4f91",
             "actions": [
                 {
-                    "name": "OpenPause",
+                    "name": "Esc",
                     "type": "Button",
                     "id": "ab28b6ab-c4db-4e8b-8f5d-55542421f6d6",
                     "expectedControlType": "Button",
@@ -198,9 +198,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "OpenSkill",
+                    "name": "Tab",
                     "type": "Button",
                     "id": "9f670fb8-e3f4-4a36-88bc-16053bef6310",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Enter",
+                    "type": "Button",
+                    "id": "94b2e4a8-0a35-48a2-b2b6-df4bc9972b08",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -215,7 +224,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "OpenPause",
+                    "action": "Esc",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -226,7 +235,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "OpenPause",
+                    "action": "Esc",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -237,7 +246,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "OpenSkill",
+                    "action": "Tab",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -248,7 +257,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "OpenSkill",
+                    "action": "Tab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b9eb5f76-d710-4f39-8ab7-f89df8377287",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Enter",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

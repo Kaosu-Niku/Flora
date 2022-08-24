@@ -28,7 +28,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "\u9B54\u6CD5_Enter"
+    m_ConditionEvent: Magic
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5758161414410750487}
@@ -82,7 +82,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "\u80FD\u529B_Enter"
+    m_ConditionEvent: Skill
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8424613073160827105}
@@ -107,7 +107,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "\u80CC\u5305_Enter"
+    m_ConditionEvent: Open
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5048981752247196767}
@@ -132,7 +132,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "\u80FD\u529B_Enter"
+    m_ConditionEvent: Skill
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8424613073160827105}
@@ -250,7 +250,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "\u4EFB\u52D9_Enter"
+    m_ConditionEvent: Task
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -931037257062287295}
@@ -275,25 +275,13 @@ AnimatorController:
   m_Name: ButtonPanel
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: "\u80CC\u5305_Enter"
+  - m_Name: Open
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: "\u80FD\u529B_Enter"
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: "\u9B54\u6CD5_Enter"
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: "\u4EFB\u52D9_Enter"
+  - m_Name: Close
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -424,7 +412,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "\u4EFB\u52D9_Enter"
+    m_ConditionEvent: Task
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -931037257062287295}
@@ -449,7 +437,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "\u9B54\u6CD5_Enter"
+    m_ConditionEvent: Magic
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5758161414410750487}
@@ -474,7 +462,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "\u9B54\u6CD5_Enter"
+    m_ConditionEvent: Magic
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5758161414410750487}
@@ -499,7 +487,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "\u80CC\u5305_Enter"
+    m_ConditionEvent: Open
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5048981752247196767}
@@ -524,7 +512,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "\u4EFB\u52D9_Enter"
+    m_ConditionEvent: Task
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -931037257062287295}
@@ -549,7 +537,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "\u4EFB\u52D9_Enter"
+    m_ConditionEvent: Task
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -931037257062287295}
@@ -593,7 +581,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "\u9B54\u6CD5_Enter"
+    m_ConditionEvent: Magic
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5758161414410750487}
@@ -685,7 +673,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "\u80CC\u5305_Enter"
+    m_ConditionEvent: Open
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5048981752247196767}
@@ -710,7 +698,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "\u80FD\u529B_Enter"
+    m_ConditionEvent: Skill
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8424613073160827105}
@@ -735,7 +723,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "\u80FD\u529B_Enter"
+    m_ConditionEvent: Skill
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8424613073160827105}
@@ -827,7 +815,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "\u80CC\u5305_Enter"
+    m_ConditionEvent: Open
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5048981752247196767}

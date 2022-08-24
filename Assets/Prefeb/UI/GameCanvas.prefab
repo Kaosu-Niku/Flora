@@ -573,7 +573,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -658,6 +658,22 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 1955642734}
+          m_TargetAssemblyTypeName: UnityEngine.EventSystems.EventSystem, UnityEngine.UI
+          m_MethodName: SetSelectedGameObject
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 246817403258771399}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 9
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
         - m_Target: {fileID: 1571104806166657726}
           m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
           m_MethodName: OnClick_ShowSkillData
@@ -668,6 +684,34 @@ MonoBehaviour:
             m_IntArgument: 9
             m_FloatArgument: 0
             m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 7993346103468769654}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Highlighted
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 10
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7993346103468769654}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Normal
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &292986949608555017
@@ -803,7 +847,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -888,6 +932,22 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 1955642734}
+          m_TargetAssemblyTypeName: UnityEngine.EventSystems.EventSystem, UnityEngine.UI
+          m_MethodName: SetSelectedGameObject
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 372733837466661016}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 11
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
         - m_Target: {fileID: 1571104806166657726}
           m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
           m_MethodName: OnClick_ShowSkillData
@@ -898,6 +958,34 @@ MonoBehaviour:
             m_IntArgument: 11
             m_FloatArgument: 0
             m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 3184966378163378384}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Highlighted
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 10
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3184966378163378384}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Normal
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &388201800671990221
@@ -1005,7 +1093,10 @@ RectTransform:
   m_Children:
   - {fileID: 2661148925160895064}
   - {fileID: 8375487775493101558}
+  - {fileID: 831266189746811781}
   - {fileID: 864813421379656098}
+  - {fileID: 1849986246252070512}
+  - {fileID: 8068943671728723520}
   - {fileID: 7300817100033526110}
   m_Father: {fileID: 2985344792003581609}
   m_RootOrder: 3
@@ -1108,6 +1199,18 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9f670fb8-e3f4-4a36-88bc-16053bef6310
     m_ActionName: UI/Tab[/Keyboard/tab,/XInputControllerWindows/select]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 94b2e4a8-0a35-48a2-b2b6-df4bc9972b08
+    m_ActionName: UI/Enter[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 69c7d08b-753b-4958-8227-f843814db43b
+    m_ActionName: UI/Q[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 45ed8846-953c-47e6-a237-ead1a13484b0
+    m_ActionName: UI/E[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: UI
@@ -1289,7 +1392,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1374,13 +1477,13 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1571104806166657726}
-          m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
-          m_MethodName: OnClick_ShowSkillData
-          m_Mode: 3
+        - m_Target: {fileID: 1955642734}
+          m_TargetAssemblyTypeName: UnityEngine.EventSystems.EventSystem, UnityEngine.UI
+          m_MethodName: SetSelectedGameObject
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 407629997219190710}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -1400,6 +1503,34 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 4079277937500986306}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Highlighted
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 10
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4079277937500986306}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Normal
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &520799983036716457
@@ -1651,7 +1782,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1736,6 +1867,22 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 1955642734}
+          m_TargetAssemblyTypeName: UnityEngine.EventSystems.EventSystem, UnityEngine.UI
+          m_MethodName: SetSelectedGameObject
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 564763136489158135}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
         - m_Target: {fileID: 1571104806166657726}
           m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
           m_MethodName: OnClick_ShowSkillData
@@ -1746,6 +1893,34 @@ MonoBehaviour:
             m_IntArgument: 2
             m_FloatArgument: 0
             m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 4048812011632932510}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Highlighted
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 10
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4048812011632932510}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Normal
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &583147236143230245
@@ -2072,7 +2247,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -2157,6 +2332,22 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 1955642734}
+          m_TargetAssemblyTypeName: UnityEngine.EventSystems.EventSystem, UnityEngine.UI
+          m_MethodName: SetSelectedGameObject
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 653516473206075463}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 4
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
         - m_Target: {fileID: 1571104806166657726}
           m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
           m_MethodName: OnClick_ShowSkillData
@@ -2167,6 +2358,34 @@ MonoBehaviour:
             m_IntArgument: 4
             m_FloatArgument: 0
             m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 6237587265883821706}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Highlighted
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 10
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6237587265883821706}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Normal
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &727671034691727970
@@ -3171,6 +3390,7 @@ GameObject:
   - component: {fileID: 6898872602410043489}
   - component: {fileID: 2017270482837458998}
   - component: {fileID: 4838883706043917138}
+  - component: {fileID: 7879495981179194908}
   m_Layer: 5
   m_Name: Bag_Button
   m_TagString: Untagged
@@ -3255,7 +3475,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -3280,30 +3500,73 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
+      - m_Target: {fileID: 1546963270951047640}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: "\u80CC\u5305_Enter"
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 6050626803875494097}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
+      - m_Target: {fileID: 7278505654144028364}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Exit
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2800661826543066859}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1191280183362758856}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!95 &7879495981179194908
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107959107600421849}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ec09eda519a5fb34d81a9b6094187f59, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1158327543132722433
 GameObject:
   m_ObjectHideFlags: 0
@@ -3381,6 +3644,222 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1191280183362758856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8068943671728723520}
+  - component: {fileID: 6981757395996692832}
+  - component: {fileID: 6219465304259343989}
+  m_Layer: 5
+  m_Name: Task_Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8068943671728723520
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191280183362758856}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 9196802500750447820}
+  m_Father: {fileID: 388889496493323802}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &6981757395996692832
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191280183362758856}
+  m_CullTransparentMesh: 1
+--- !u!114 &6219465304259343989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191280183362758856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 57823c6f78cd6674ba6004be258c8246, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 92aac432-11b8-4622-835f-bb1248306f1e
+    m_ActionName: Player/Move[/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 468b0978-45f6-4002-8878-106d77ee80e6
+    m_ActionName: Player/Jump[/Keyboard/space,/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d8fc303e-fa8d-41a5-8a5e-c83b9a3af7fa
+    m_ActionName: Player/Attack[/Keyboard/j,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 959e108c-ca31-48fa-9e04-20db21f142b8
+    m_ActionName: Player/Flash[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 55b4da71-d76f-4288-87f8-d637c837d6ce
+    m_ActionName: Player/Action[/Keyboard/e,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bc642e64-741b-439d-afea-89534594fc96
+    m_ActionName: Player/Restore[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ab28b6ab-c4db-4e8b-8f5d-55542421f6d6
+    m_ActionName: UI/Esc[/Keyboard/escape,/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9f670fb8-e3f4-4a36-88bc-16053bef6310
+    m_ActionName: UI/Tab[/Keyboard/tab,/XInputControllerWindows/select]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 94b2e4a8-0a35-48a2-b2b6-df4bc9972b08
+    m_ActionName: UI/Enter[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1191280183362758856}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2800661826543066859}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1516928413313550518}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Close
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 3327839351631174325}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Open
+          m_BoolArgument: 1
+        m_CallState: 2
+    m_ActionId: 69c7d08b-753b-4958-8227-f843814db43b
+    m_ActionName: UI/Q[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1191280183362758856}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1546963270951047640}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1516928413313550518}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Close
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 7879495981179194908}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Open
+          m_BoolArgument: 1
+        m_CallState: 2
+    m_ActionId: 45ed8846-953c-47e6-a237-ead1a13484b0
+    m_ActionName: UI/E[/Keyboard/e]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: UI
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1221797298428715206
 GameObject:
   m_ObjectHideFlags: 0
@@ -3478,7 +3957,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -3563,6 +4042,22 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 1955642734}
+          m_TargetAssemblyTypeName: UnityEngine.EventSystems.EventSystem, UnityEngine.UI
+          m_MethodName: SetSelectedGameObject
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1221797298428715206}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 14
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
         - m_Target: {fileID: 1571104806166657726}
           m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
           m_MethodName: OnClick_ShowSkillData
@@ -3573,6 +4068,34 @@ MonoBehaviour:
             m_IntArgument: 14
             m_FloatArgument: 0
             m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1544089648697789803}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Highlighted
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 10
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1544089648697789803}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Normal
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &1238685907950701622
@@ -3725,6 +4248,41 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1340366586319909268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8405788234079225281}
+  m_Layer: 5
+  m_Name: BackGround
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8405788234079225281
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340366586319909268}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1849986246252070512}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1419592966192550918
 GameObject:
   m_ObjectHideFlags: 0
@@ -3897,7 +4455,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -3982,6 +4540,22 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 1955642734}
+          m_TargetAssemblyTypeName: UnityEngine.EventSystems.EventSystem, UnityEngine.UI
+          m_MethodName: SetSelectedGameObject
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1433462366924916221}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 3
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
         - m_Target: {fileID: 1571104806166657726}
           m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
           m_MethodName: OnClick_ShowSkillData
@@ -3992,6 +4566,34 @@ MonoBehaviour:
             m_IntArgument: 3
             m_FloatArgument: 0
             m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1556068600658733760}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Highlighted
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 10
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1556068600658733760}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Normal
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &1442064186261764729
@@ -4560,6 +5162,234 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1546963270951047640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 831266189746811781}
+  - component: {fileID: 3146971113159036657}
+  - component: {fileID: 1804301060682897828}
+  m_Layer: 5
+  m_Name: Bag_Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &831266189746811781
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546963270951047640}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7025607236400175050}
+  m_Father: {fileID: 388889496493323802}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3146971113159036657
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546963270951047640}
+  m_CullTransparentMesh: 1
+--- !u!114 &1804301060682897828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546963270951047640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 57823c6f78cd6674ba6004be258c8246, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 92aac432-11b8-4622-835f-bb1248306f1e
+    m_ActionName: Player/Move[/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 468b0978-45f6-4002-8878-106d77ee80e6
+    m_ActionName: Player/Jump[/Keyboard/space,/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d8fc303e-fa8d-41a5-8a5e-c83b9a3af7fa
+    m_ActionName: Player/Attack[/Keyboard/j,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 959e108c-ca31-48fa-9e04-20db21f142b8
+    m_ActionName: Player/Flash[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 55b4da71-d76f-4288-87f8-d637c837d6ce
+    m_ActionName: Player/Action[/Keyboard/e,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bc642e64-741b-439d-afea-89534594fc96
+    m_ActionName: Player/Restore[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ab28b6ab-c4db-4e8b-8f5d-55542421f6d6
+    m_ActionName: UI/Esc[/Keyboard/escape,/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9f670fb8-e3f4-4a36-88bc-16053bef6310
+    m_ActionName: UI/Tab[/Keyboard/tab,/XInputControllerWindows/select]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 94b2e4a8-0a35-48a2-b2b6-df4bc9972b08
+    m_ActionName: UI/Enter[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1546963270951047640}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1191280183362758856}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 7879495981179194908}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Close
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1516928413313550518}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Open
+          m_BoolArgument: 1
+        m_CallState: 2
+    m_ActionId: 69c7d08b-753b-4958-8227-f843814db43b
+    m_ActionName: UI/Q[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1546963270951047640}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7278505654144028364}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1955642734}
+        m_TargetAssemblyTypeName: UnityEngine.EventSystems.EventSystem, UnityEngine.UI
+        m_MethodName: SetSelectedGameObject
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 407629997219190710}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 7879495981179194908}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Close
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 8654590072154778912}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Open
+          m_BoolArgument: 1
+        m_CallState: 2
+    m_ActionId: 45ed8846-953c-47e6-a237-ead1a13484b0
+    m_ActionName: UI/E[/Keyboard/e]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: UI
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1604726525350386679
 GameObject:
   m_ObjectHideFlags: 0
@@ -4657,7 +5487,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -4742,6 +5572,22 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 1955642734}
+          m_TargetAssemblyTypeName: UnityEngine.EventSystems.EventSystem, UnityEngine.UI
+          m_MethodName: SetSelectedGameObject
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1604726525350386679}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 8
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
         - m_Target: {fileID: 1571104806166657726}
           m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
           m_MethodName: OnClick_ShowSkillData
@@ -4752,6 +5598,34 @@ MonoBehaviour:
             m_IntArgument: 8
             m_FloatArgument: 0
             m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 3633417075724668719}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Highlighted
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 10
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3633417075724668719}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Normal
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &1664638573027427459
@@ -5066,6 +5940,7 @@ GameObject:
   - component: {fileID: 4341737484927139885}
   - component: {fileID: 256801895814937563}
   - component: {fileID: 779386393365320532}
+  - component: {fileID: 3327839351631174325}
   m_Layer: 5
   m_Name: Magic_Button
   m_TagString: Untagged
@@ -5175,30 +6050,73 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
+      - m_Target: {fileID: 2800661826543066859}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: "\u9B54\u6CD5_Enter"
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 6050626803875494097}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
+      - m_Target: {fileID: 1546963270951047640}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Exit
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7278505654144028364}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1191280183362758856}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!95 &3327839351631174325
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825928620756997413}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ec09eda519a5fb34d81a9b6094187f59, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1885495783695745329
 GameObject:
   m_ObjectHideFlags: 0
@@ -5497,7 +6415,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -5582,6 +6500,22 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 1955642734}
+          m_TargetAssemblyTypeName: UnityEngine.EventSystems.EventSystem, UnityEngine.UI
+          m_MethodName: SetSelectedGameObject
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2107225208721559682}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 13
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
         - m_Target: {fileID: 1571104806166657726}
           m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
           m_MethodName: OnClick_ShowSkillData
@@ -5592,6 +6526,34 @@ MonoBehaviour:
             m_IntArgument: 13
             m_FloatArgument: 0
             m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 7843337300771775832}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Highlighted
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 10
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7843337300771775832}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Normal
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &2208968845647496162
@@ -6513,6 +7475,7 @@ GameObject:
   - component: {fileID: 3896107796570575532}
   - component: {fileID: 7220011542416770584}
   - component: {fileID: 2547417743606605125}
+  - component: {fileID: 1516928413313550518}
   m_Layer: 5
   m_Name: Task_Button
   m_TagString: Untagged
@@ -6622,30 +7585,73 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
+      - m_Target: {fileID: 1191280183362758856}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: "\u4EFB\u52D9_Enter"
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 6050626803875494097}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
+      - m_Target: {fileID: 1546963270951047640}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Exit
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7278505654144028364}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2800661826543066859}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!95 &1516928413313550518
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2414974065512347591}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ec09eda519a5fb34d81a9b6094187f59, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2599867398757807461
 GameObject:
   m_ObjectHideFlags: 0
@@ -6810,6 +7816,7 @@ GameObject:
   - component: {fileID: 5216142271329884780}
   - component: {fileID: 4546143508944056804}
   - component: {fileID: 545027719701278326}
+  - component: {fileID: 8654590072154778912}
   m_Layer: 5
   m_Name: Skill_Button
   m_TagString: Untagged
@@ -6931,18 +7938,61 @@ MonoBehaviour:
           m_StringArgument: "\u80FD\u529B_Enter"
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 6050626803875494097}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
+      - m_Target: {fileID: 1546963270951047640}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Enter
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2800661826543066859}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1191280183362758856}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!95 &8654590072154778912
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2659518996607258071}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ec09eda519a5fb34d81a9b6094187f59, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2768617169723682793
 GameObject:
   m_ObjectHideFlags: 0
@@ -7018,6 +8068,269 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2800661826543066859
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1849986246252070512}
+  - component: {fileID: 4484044582243969056}
+  - component: {fileID: 7900821747467425723}
+  m_Layer: 5
+  m_Name: Magic_Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1849986246252070512
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2800661826543066859}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8405788234079225281}
+  m_Father: {fileID: 388889496493323802}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4484044582243969056
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2800661826543066859}
+  m_CullTransparentMesh: 1
+--- !u!114 &7900821747467425723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2800661826543066859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 57823c6f78cd6674ba6004be258c8246, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 92aac432-11b8-4622-835f-bb1248306f1e
+    m_ActionName: Player/Move[/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 468b0978-45f6-4002-8878-106d77ee80e6
+    m_ActionName: Player/Jump[/Keyboard/space,/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d8fc303e-fa8d-41a5-8a5e-c83b9a3af7fa
+    m_ActionName: Player/Attack[/Keyboard/j,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 959e108c-ca31-48fa-9e04-20db21f142b8
+    m_ActionName: Player/Flash[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 55b4da71-d76f-4288-87f8-d637c837d6ce
+    m_ActionName: Player/Action[/Keyboard/e,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bc642e64-741b-439d-afea-89534594fc96
+    m_ActionName: Player/Restore[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ab28b6ab-c4db-4e8b-8f5d-55542421f6d6
+    m_ActionName: UI/Esc[/Keyboard/escape,/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9f670fb8-e3f4-4a36-88bc-16053bef6310
+    m_ActionName: UI/Tab[/Keyboard/tab,/XInputControllerWindows/select]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 94b2e4a8-0a35-48a2-b2b6-df4bc9972b08
+    m_ActionName: UI/Enter[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2800661826543066859}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7278505654144028364}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1955642734}
+        m_TargetAssemblyTypeName: UnityEngine.EventSystems.EventSystem, UnityEngine.UI
+        m_MethodName: SetSelectedGameObject
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 407629997219190710}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 3327839351631174325}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Close
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 8654590072154778912}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Open
+          m_BoolArgument: 1
+        m_CallState: 2
+    m_ActionId: 69c7d08b-753b-4958-8227-f843814db43b
+    m_ActionName: UI/Q[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2800661826543066859}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1191280183362758856}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 3327839351631174325}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Close
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1516928413313550518}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Open
+          m_BoolArgument: 1
+        m_CallState: 2
+    m_ActionId: 45ed8846-953c-47e6-a237-ead1a13484b0
+    m_ActionName: UI/E[/Keyboard/e]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: UI
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!1 &2870388254315029155
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9196802500750447820}
+  m_Layer: 5
+  m_Name: BackGround
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &9196802500750447820
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2870388254315029155}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8068943671728723520}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2985344792003581602
 GameObject:
   m_ObjectHideFlags: 0
@@ -7381,12 +8694,68 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1546963270951047640}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 7278505654144028364}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2800661826543066859}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1191280183362758856}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 9f670fb8-e3f4-4a36-88bc-16053bef6310
     m_ActionName: UI/Tab[/Keyboard/tab,/XInputControllerWindows/select]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 94b2e4a8-0a35-48a2-b2b6-df4bc9972b08
     m_ActionName: UI/Enter[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 69c7d08b-753b-4958-8227-f843814db43b
+    m_ActionName: UI/Q[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 45ed8846-953c-47e6-a237-ead1a13484b0
+    m_ActionName: UI/E[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: UI
@@ -11933,7 +13302,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -12018,6 +13387,22 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 1955642734}
+          m_TargetAssemblyTypeName: UnityEngine.EventSystems.EventSystem, UnityEngine.UI
+          m_MethodName: SetSelectedGameObject
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 6242691500167733933}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
         - m_Target: {fileID: 1571104806166657726}
           m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
           m_MethodName: OnClick_ShowSkillData
@@ -12028,6 +13413,34 @@ MonoBehaviour:
             m_IntArgument: 1
             m_FloatArgument: 0
             m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1065378414860952678}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Highlighted
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 10
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1065378414860952678}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Normal
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &6315657219616212486
@@ -12630,7 +14043,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 388889496493323802}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13373,7 +14786,7 @@ GameObject:
   m_Component:
   - component: {fileID: 864813421379656098}
   - component: {fileID: 8950141672328458250}
-  - component: {fileID: 6050626803875494097}
+  - component: {fileID: 7965491416050385232}
   m_Layer: 5
   m_Name: Skill_Panel
   m_TagString: Untagged
@@ -13396,7 +14809,7 @@ RectTransform:
   - {fileID: 1337072115043645665}
   - {fileID: 4322961679258460146}
   m_Father: {fileID: 388889496493323802}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13411,25 +14824,176 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7278505654144028364}
   m_CullTransparentMesh: 1
---- !u!95 &6050626803875494097
-Animator:
-  serializedVersion: 3
+--- !u!114 &7965491416050385232
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7278505654144028364}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a9187b4f34128734fab3807be2c748fb, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 57823c6f78cd6674ba6004be258c8246, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 92aac432-11b8-4622-835f-bb1248306f1e
+    m_ActionName: Player/Move[/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 468b0978-45f6-4002-8878-106d77ee80e6
+    m_ActionName: Player/Jump[/Keyboard/space,/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d8fc303e-fa8d-41a5-8a5e-c83b9a3af7fa
+    m_ActionName: Player/Attack[/Keyboard/j,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 959e108c-ca31-48fa-9e04-20db21f142b8
+    m_ActionName: Player/Flash[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 55b4da71-d76f-4288-87f8-d637c837d6ce
+    m_ActionName: Player/Action[/Keyboard/e,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bc642e64-741b-439d-afea-89534594fc96
+    m_ActionName: Player/Restore[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ab28b6ab-c4db-4e8b-8f5d-55542421f6d6
+    m_ActionName: UI/Esc[/Keyboard/escape,/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9f670fb8-e3f4-4a36-88bc-16053bef6310
+    m_ActionName: UI/Tab[/Keyboard/tab,/XInputControllerWindows/select]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 94b2e4a8-0a35-48a2-b2b6-df4bc9972b08
+    m_ActionName: UI/Enter[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7278505654144028364}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1546963270951047640}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 8654590072154778912}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Close
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 7879495981179194908}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Open
+          m_BoolArgument: 1
+        m_CallState: 2
+    m_ActionId: 69c7d08b-753b-4958-8227-f843814db43b
+    m_ActionName: UI/Q[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7278505654144028364}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2800661826543066859}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 8654590072154778912}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Close
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 3327839351631174325}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Open
+          m_BoolArgument: 1
+        m_CallState: 2
+    m_ActionId: 45ed8846-953c-47e6-a237-ead1a13484b0
+    m_ActionName: UI/E[/Keyboard/e]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: UI
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &7335432222879689206
 GameObject:
   m_ObjectHideFlags: 0
@@ -13527,7 +15091,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -13612,6 +15176,22 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 1955642734}
+          m_TargetAssemblyTypeName: UnityEngine.EventSystems.EventSystem, UnityEngine.UI
+          m_MethodName: SetSelectedGameObject
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 7335432222879689206}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 10
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
         - m_Target: {fileID: 1571104806166657726}
           m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
           m_MethodName: OnClick_ShowSkillData
@@ -13622,6 +15202,34 @@ MonoBehaviour:
             m_IntArgument: 10
             m_FloatArgument: 0
             m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 626673305726019161}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Highlighted
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 10
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 626673305726019161}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Normal
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &7371102062169415190
@@ -13796,7 +15404,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -13881,6 +15489,22 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 1955642734}
+          m_TargetAssemblyTypeName: UnityEngine.EventSystems.EventSystem, UnityEngine.UI
+          m_MethodName: SetSelectedGameObject
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 7493811967733446624}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 7
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
         - m_Target: {fileID: 1571104806166657726}
           m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
           m_MethodName: OnClick_ShowSkillData
@@ -13891,6 +15515,34 @@ MonoBehaviour:
             m_IntArgument: 7
             m_FloatArgument: 0
             m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 7500404077645251885}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Highlighted
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 10
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7500404077645251885}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Normal
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &7509516002990852214
@@ -14202,6 +15854,41 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u4E16\u7684\u8A18\u61B6"
+--- !u!1 &7686706580248302666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7025607236400175050}
+  m_Layer: 5
+  m_Name: BackGround
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7025607236400175050
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7686706580248302666}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 831266189746811781}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7729125630509430685
 GameObject:
   m_ObjectHideFlags: 0
@@ -14721,7 +16408,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -14806,6 +16493,22 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 1955642734}
+          m_TargetAssemblyTypeName: UnityEngine.EventSystems.EventSystem, UnityEngine.UI
+          m_MethodName: SetSelectedGameObject
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8211900484062187923}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 6
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
         - m_Target: {fileID: 1571104806166657726}
           m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
           m_MethodName: OnClick_ShowSkillData
@@ -14816,6 +16519,34 @@ MonoBehaviour:
             m_IntArgument: 6
             m_FloatArgument: 0
             m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 2014551040031390510}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Highlighted
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 10
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2014551040031390510}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Normal
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &8265513802912306153
@@ -15900,7 +17631,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -15985,6 +17716,22 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 1955642734}
+          m_TargetAssemblyTypeName: UnityEngine.EventSystems.EventSystem, UnityEngine.UI
+          m_MethodName: SetSelectedGameObject
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8744021424554286666}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 12
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
         - m_Target: {fileID: 1571104806166657726}
           m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
           m_MethodName: OnClick_ShowSkillData
@@ -15995,6 +17742,34 @@ MonoBehaviour:
             m_IntArgument: 12
             m_FloatArgument: 0
             m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 2905136546913717660}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Highlighted
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 10
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2905136546913717660}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Normal
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &8869555707957825988
@@ -17574,6 +19349,18 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9f670fb8-e3f4-4a36-88bc-16053bef6310
     m_ActionName: UI/Tab[/Keyboard/tab,/XInputControllerWindows/select]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 94b2e4a8-0a35-48a2-b2b6-df4bc9972b08
+    m_ActionName: UI/Enter[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 69c7d08b-753b-4958-8227-f843814db43b
+    m_ActionName: UI/Q[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 45ed8846-953c-47e6-a237-ead1a13484b0
+    m_ActionName: UI/E[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: UI
@@ -17790,7 +19577,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -17875,6 +19662,22 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 1955642734}
+          m_TargetAssemblyTypeName: UnityEngine.EventSystems.EventSystem, UnityEngine.UI
+          m_MethodName: SetSelectedGameObject
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 9181120042232676675}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 5
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
         - m_Target: {fileID: 1571104806166657726}
           m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
           m_MethodName: OnClick_ShowSkillData
@@ -17885,5 +19688,33 @@ MonoBehaviour:
             m_IntArgument: 5
             m_FloatArgument: 0
             m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1850387199945141289}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Highlighted
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 10
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1850387199945141289}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Normal
             m_BoolArgument: 0
           m_CallState: 2

@@ -236,6 +236,24 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Q"",
+                    ""type"": ""Button"",
+                    ""id"": ""69c7d08b-753b-4958-8227-f843814db43b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""E"",
+                    ""type"": ""Button"",
+                    ""id"": ""45ed8846-953c-47e6-a237-ead1a13484b0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -293,6 +311,28 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
                     ""action"": ""Enter"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7cb9f5dc-cfcd-4fcc-8428-de2f76fedeab"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Q"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6f5143e8-2729-4798-b10b-2aadb82e4167"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""E"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -312,6 +352,8 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
         m_UI_Esc = m_UI.FindAction("Esc", throwIfNotFound: true);
         m_UI_Tab = m_UI.FindAction("Tab", throwIfNotFound: true);
         m_UI_Enter = m_UI.FindAction("Enter", throwIfNotFound: true);
+        m_UI_Q = m_UI.FindAction("Q", throwIfNotFound: true);
+        m_UI_E = m_UI.FindAction("E", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -447,6 +489,8 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Esc;
     private readonly InputAction m_UI_Tab;
     private readonly InputAction m_UI_Enter;
+    private readonly InputAction m_UI_Q;
+    private readonly InputAction m_UI_E;
     public struct UIActions
     {
         private @MyInput m_Wrapper;
@@ -454,6 +498,8 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
         public InputAction @Esc => m_Wrapper.m_UI_Esc;
         public InputAction @Tab => m_Wrapper.m_UI_Tab;
         public InputAction @Enter => m_Wrapper.m_UI_Enter;
+        public InputAction @Q => m_Wrapper.m_UI_Q;
+        public InputAction @E => m_Wrapper.m_UI_E;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -472,6 +518,12 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
                 @Enter.started -= m_Wrapper.m_UIActionsCallbackInterface.OnEnter;
                 @Enter.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnEnter;
                 @Enter.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnEnter;
+                @Q.started -= m_Wrapper.m_UIActionsCallbackInterface.OnQ;
+                @Q.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnQ;
+                @Q.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnQ;
+                @E.started -= m_Wrapper.m_UIActionsCallbackInterface.OnE;
+                @E.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnE;
+                @E.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnE;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -485,6 +537,12 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
                 @Enter.started += instance.OnEnter;
                 @Enter.performed += instance.OnEnter;
                 @Enter.canceled += instance.OnEnter;
+                @Q.started += instance.OnQ;
+                @Q.performed += instance.OnQ;
+                @Q.canceled += instance.OnQ;
+                @E.started += instance.OnE;
+                @E.performed += instance.OnE;
+                @E.canceled += instance.OnE;
             }
         }
     }
@@ -503,5 +561,7 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
         void OnEsc(InputAction.CallbackContext context);
         void OnTab(InputAction.CallbackContext context);
         void OnEnter(InputAction.CallbackContext context);
+        void OnQ(InputAction.CallbackContext context);
+        void OnE(InputAction.CallbackContext context);
     }
 }

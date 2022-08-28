@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 110864406}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Floor
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 725017648}
   m_Layer: 0
   m_Name: Wall_1
-  m_TagString: Floor
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -998,22 +998,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2916458834446457717, guid: 5ec04b65a1daf0d46ab39912a77ff1bf, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.8599342
-      objectReference: {fileID: 0}
-    - target: {fileID: 2916458834446457717, guid: 5ec04b65a1daf0d46ab39912a77ff1bf, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.51040494
-      objectReference: {fileID: 0}
-    - target: {fileID: 4101904006554610693, guid: 5ec04b65a1daf0d46ab39912a77ff1bf, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.030793881
-      objectReference: {fileID: 0}
-    - target: {fileID: 4859701773654014398, guid: 5ec04b65a1daf0d46ab39912a77ff1bf, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.10211776
-      objectReference: {fileID: 0}
     - target: {fileID: 8675026787412198868, guid: 5ec04b65a1daf0d46ab39912a77ff1bf, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -1065,10 +1049,6 @@ PrefabInstance:
     - target: {fileID: 8675026787412198872, guid: 5ec04b65a1daf0d46ab39912a77ff1bf, type: 3}
       propertyPath: m_Name
       value: Spine GameObject (A1BigBoss)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8675026787412198872, guid: 5ec04b65a1daf0d46ab39912a77ff1bf, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ec04b65a1daf0d46ab39912a77ff1bf, type: 3}

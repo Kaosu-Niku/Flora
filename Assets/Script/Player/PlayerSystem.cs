@@ -512,12 +512,19 @@ public class PlayerSystem : SkeletonAnimationSystem
                 if (HurtEvent != null)
                     HurtEvent.Invoke();
                 skeletonAnimation.AnimationState.SetAnimation(0, "Hurt", false);
-                //MyImpulseSetting.GenerateImpulse();//? 鏡頭震動            
             }
             else
             {
                 Die();
             }
+        }
+    }
+    public void ForDamage(int damage)
+    {
+        NowHp -= damage;
+        if (NowHp <= 0)
+        {
+            Die();
         }
     }
     //? 被束縛事件

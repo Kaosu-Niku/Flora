@@ -83,7 +83,7 @@ public class Saunderson : Monster
         }
         if (e.Data.Name == "Attack4Close")
         {
-            Attack[1].SetActive(false);
+            Attack[1].SetActive(false); GameManagerSO.ImpluseInvoke(1);
             return;
         }
         if (e.Data.Name == "Attack4Out")
@@ -116,6 +116,7 @@ public class Saunderson : Monster
         }
         if (e.Data.Name == "Attack6Out")
         {
+            Attack[2].SetActive(false);
             if (C != null)
                 StopCoroutine(C);
             if (Attack6Check == true)
@@ -132,21 +133,31 @@ public class Saunderson : Monster
 
             return;
         }
-        if (e.Data.Name == "Attack7Close")
-        {
-            Attack[2].SetActive(false);
-            return;
-        }
         if (e.Data.Name == "Attack7Out")
         {
-            FlyCheck = true;
-            //! skeletonAnimation.AnimationState.SetAnimation(0, "處決動作", true);//PlayerSystemSO.GetPlayerInvoke().UntieBondage();
+            skeletonAnimation.AnimationState.SetAnimation(0, "Attack8", false);
+            PlayerSystemSO.GetPlayerInvoke().UntieBondage();
+            return;
+        }
+        if (e.Data.Name == "Attack8Trigger")
+        {
+            PlayerSystemSO.GetPlayerInvoke().ForDamage(2);
+            return;
+        }
+        if (e.Data.Name == "Attack8Free")
+        {
+            PlayerSystemSO.GetPlayerInvoke().UntieBondage();
+            return;
+        }
+        if (e.Data.Name == "Attack8Out")
+        {
+            OnAction();
             return;
         }
     }
     protected override IEnumerator CustomAction()
     {
-        switch (4)
+        switch (2)
         {
             case 1: skeletonAnimation.AnimationState.SetAnimation(0, "Attack1", false); break;
             case 2: WhichFlyAttack = 0; skeletonRootMotion.rootMotionScaleY = 2; skeletonAnimation.AnimationState.SetAnimation(0, "Fly", false); break;

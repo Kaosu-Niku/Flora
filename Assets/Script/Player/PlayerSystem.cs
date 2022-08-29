@@ -65,6 +65,9 @@ public class PlayerSystem : SkeletonAnimationSystem
             Attack[0].SetActive(false);
             Attack[1].SetActive(false);
             Attack[2].SetActive(false);
+            Effect[0].SetActive(false);
+            Effect[1].SetActive(false);
+            Effect[2].SetActive(false);
             return;
         }
         if (e.Data.Name == "JumpDownOut")
@@ -118,6 +121,9 @@ public class PlayerSystem : SkeletonAnimationSystem
         if (e.Data.Name == "Attack1Close")
         {
             Attack[0].SetActive(false);
+            Effect[0].SetActive(false);
+            Effect[1].SetActive(false);
+            Effect[2].SetActive(false);
             return;
         }
         if (e.Data.Name == "Attack1Can")
@@ -148,6 +154,9 @@ public class PlayerSystem : SkeletonAnimationSystem
         if (e.Data.Name == "Attack2Close")
         {
             Attack[1].SetActive(false);
+            Effect[0].SetActive(false);
+            Effect[1].SetActive(false);
+            Effect[2].SetActive(false);
             return;
         }
         if (e.Data.Name == "Attack2Can")
@@ -178,6 +187,9 @@ public class PlayerSystem : SkeletonAnimationSystem
         if (e.Data.Name == "Attack3Close")
         {
             Attack[2].SetActive(false);
+            Effect[0].SetActive(false);
+            Effect[1].SetActive(false);
+            Effect[2].SetActive(false);
             return;
         }
         if (e.Data.Name == "Attack3Out")
@@ -284,6 +296,7 @@ public class PlayerSystem : SkeletonAnimationSystem
     CinemachineImpulseSource MyImpulseSetting;
     MyInput GetInput;
     [SerializeField] List<GameObject> Attack = new List<GameObject>();
+    [SerializeField] List<GameObject> Effect = new List<GameObject>();
     [HideInInspector] public bool Skill6Check;//* 無形攻擊是否使用
     [HideInInspector] public bool Skill8Check;//* 荊棘之身是否使用
 
@@ -473,12 +486,16 @@ public class PlayerSystem : SkeletonAnimationSystem
             {
                 case 1:
                     skeletonAnimation.AnimationState.SetAnimation(0, "Attack1", false);
+                    Effect[0].SetActive(true);
+
                     break;
                 case 2:
                     skeletonAnimation.AnimationState.SetAnimation(0, "Attack2", false);
+                    Effect[1].SetActive(true);
                     break;
                 case 3:
                     skeletonAnimation.AnimationState.SetAnimation(0, "Attack3", false);
+                    Effect[2].SetActive(true);
                     break;
             }
         }
@@ -508,6 +525,9 @@ public class PlayerSystem : SkeletonAnimationSystem
                 Attack[1].SetActive(false);
                 Attack[2].SetActive(false);
                 Attack[3].SetActive(false);
+                Effect[0].SetActive(false);
+                Effect[1].SetActive(false);
+                Effect[2].SetActive(false);
                 //? (減傷效果)(增傷負面效果)(傷害反彈效果)(根性效果)
                 if (HurtEvent != null)
                     HurtEvent.Invoke();
@@ -545,6 +565,9 @@ public class PlayerSystem : SkeletonAnimationSystem
             Attack[0].SetActive(false);
             Attack[1].SetActive(false);
             Attack[2].SetActive(false);
+            Effect[0].SetActive(false);
+            Effect[1].SetActive(false);
+            Effect[2].SetActive(false);
             if (BondageEvent != null)
                 BondageEvent.Invoke();
             //skeletonAnimation.AnimationState.SetAnimation(0, "Bondage", true);
@@ -579,6 +602,10 @@ public class PlayerSystem : SkeletonAnimationSystem
         {
             Attack[x].SetActive(false);
         }
+        for (int x = 0; x < Effect.Count; x++)
+        {
+            Effect[x].SetActive(false);
+        }
         skeletonAnimation.AnimationState.SetAnimation(0, "Die", false);
         StopAllCoroutines();
     }
@@ -608,7 +635,7 @@ public class PlayerSystem : SkeletonAnimationSystem
             {
                 if (Jumping == true)
                 {
-                    if (other.contacts[0].point.x < other.transform.position.x)
+                    if (other.GetContact(0).point.x > transform.position.x)
                         transform.rotation = Quaternion.identity;
                     else
                         transform.rotation = Quaternion.Euler(0, 180, 0);

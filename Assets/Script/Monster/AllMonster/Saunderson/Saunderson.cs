@@ -12,6 +12,7 @@ public class Saunderson : Monster
     AreaEffector2D Fly_2;
     int WhichFlyAttack;//? 使出哪一個空中攻擊(不同的空中攻擊，飛行高度有差) 1.下墜戳擊。2.空中射羽毛。3.抓技。
     bool FlyCheck = false;//? 使出空中攻擊後的落地判定(落地後才接OnAction重置行動)
+    bool Attack4Check;
     [SerializeField] Transform Attack5ShootTrans;
     bool Attack6Check;//? 抓技是否有抓到玩家
     bool IsAngry = false;//? 當此值為True時必定使出抓技，施放完畢就False
@@ -25,6 +26,7 @@ public class Saunderson : Monster
         if (e.Data.Name == "FlyTrigger")
         {
             Rigid.gravityScale = 0;
+            Rigid.Sleep();
             Fly_1.gameObject.transform.position = transform.position;
             Fly_2.gameObject.transform.position = transform.position;
             Fly_1.gameObject.SetActive(true);
@@ -76,11 +78,6 @@ public class Saunderson : Monster
             OnAction();
             return;
         }
-        if (e.Data.Name == "Attack4Open")
-        {
-            Attack[1].SetActive(true);
-            return;
-        }
         if (e.Data.Name == "Attack4Close")
         {
             Attack[1].SetActive(false); GameManagerSO.ImpluseInvoke(1);
@@ -89,7 +86,6 @@ public class Saunderson : Monster
         if (e.Data.Name == "Attack4Out")
         {
             Rigid.gravityScale = 1;
-            skeletonRootMotion.rootMotionScaleY = 1;
             OnAction();
             return;
         }
@@ -135,8 +131,9 @@ public class Saunderson : Monster
         }
         if (e.Data.Name == "Attack7Out")
         {
-            skeletonAnimation.AnimationState.SetAnimation(0, "Attack8", false);
-            PlayerSystemSO.GetPlayerInvoke().UntieBondage();
+            if (C != null)
+                StopCoroutine(C);
+            C = StartCoroutine(Attack8IEnum());
             return;
         }
         if (e.Data.Name == "Attack8Trigger")
@@ -160,7 +157,7 @@ public class Saunderson : Monster
         switch (2)
         {
             case 1: skeletonAnimation.AnimationState.SetAnimation(0, "Attack1", false); break;
-            case 2: WhichFlyAttack = 0; skeletonRootMotion.rootMotionScaleY = 2; skeletonAnimation.AnimationState.SetAnimation(0, "Fly", false); break;
+            case 2: WhichFlyAttack = 0; skeletonAnimation.AnimationState.SetAnimation(0, "Fly", false); break;
             case 3: WhichFlyAttack = 1; skeletonAnimation.AnimationState.SetAnimation(0, "Fly", false); break;
             case 4: WhichFlyAttack = 2; skeletonAnimation.AnimationState.SetAnimation(0, "Fly", false); break;
         }
@@ -225,7 +222,6 @@ public class Saunderson : Monster
         Fly_1.gameObject.SetActive(false);
         Fly_2.gameObject.SetActive(false);
         IsAngry = true;
-        skeletonRootMotion.rootMotionScaleY = 1;
         Rigid.gravityScale = 1;
     }
     Coroutine C;
@@ -235,13 +231,22 @@ public class Saunderson : Monster
         {
             case 0:
                 //? 墜落戳擊
+                float y = transform.position.y;
                 for (float x = 0; x < 3; x += Time.deltaTime)
                 {
                     LookPlayer();
-                    transform.position = Vector3.Lerp(transform.position, new Vector3(PlayerSystemSO.GetPlayerInvoke().transform.position.x, transform.position.y, 0), 2 * Time.deltaTime);
+                    transform.position = Vector3.Lerp(transform.position, new Vector3(PlayerSystemSO.GetPlayerInvoke().transform.position.x, y, 0), 2 * Time.deltaTime);
                     yield return 0;
                 }
-                transform.Translate(-1, 0, 0);
+                transform.Translate(-2, 0, 0);
+                Attack[1].SetActive(true);
+                skeletonAnimation.AnimationState.SetAnimation(0, "DownLoop", true);
+                while (Attack4Check == false)
+                {
+                    transform.Translate(0, -150 * Time.deltaTime, 0);
+                    yield return 0;
+                }
+                Attack4Check = false;
                 skeletonAnimation.AnimationState.SetAnimation(0, "Attack4", false);
                 break;
             case 1:
@@ -263,6 +268,15 @@ public class Saunderson : Monster
             transform.position = Vector3.Lerp(transform.position, new Vector3(PlayerSystemSO.GetPlayerInvoke().transform.position.x, transform.position.y, 0), 5 * Time.deltaTime);
             yield return 0;
         }
+    }
+    IEnumerator Attack8IEnum()
+    {
+        skeletonAnimation.AnimationState.SetAnimation(0, "FlyLoopGrasp", true);
+        for (float x = 0; x < 2; x += Time.deltaTime)
+        {
+            yield return 0;
+        }
+        skeletonAnimation.AnimationState.SetAnimation(0, "Attack8", false);
     }
     void PlayerBondageCheck()
     {
@@ -296,6 +310,12 @@ public class Saunderson : Monster
                 OnAction();
             }
         }
-
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Floor"))
+        {
+            Attack4Check = true;
+        }
     }
 }

@@ -26,11 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3238297898411294081}
   m_LocalRotation: {x: 0.15162332, y: -0.91664577, z: -0.31993446, w: -0.18550698}
-<<<<<<< HEAD
-  m_LocalPosition: {x: 0.3, y: 2.31, z: 0}
-=======
   m_LocalPosition: {x: 0, y: 0, z: 0}
->>>>>>> 96195d373fdec8feda7a41b4e3f7083d0dbd71f2
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8196757501213902031}
@@ -4783,9 +4779,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 20
+  m_SortingLayerID: 588769411
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -4838,7 +4834,7 @@ Transform:
   m_GameObject: {fileID: 5592013188966686663}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1142848888458524285}
   m_RootOrder: 0
@@ -6181,9 +6177,9 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.9471119, g: 0.8457191, b: 0.990566, a: 0}
-        key1: {r: 0.8193079, g: 0.5712887, b: 0.9245283, a: 0.627451}
-        key2: {r: 0.6220999, g: 0.35056958, b: 0.735849, a: 1}
+        key0: {r: 0.9471119, g: 0.8457191, b: 0.990566, a: 0.7607843}
+        key1: {r: 0.8193079, g: 0.5712887, b: 0.9245283, a: 1}
+        key2: {r: 0.6220999, g: 0.35056958, b: 0.735849, a: 0}
         key3: {r: 0.45311204, g: 0.2961463, b: 0.5188679, a: 0}
         key4: {r: 1, g: 1, b: 1, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -6198,8 +6194,8 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 12722
-        atime2: 30647
+        atime1: 30647
+        atime2: 65535
         atime3: 65535
         atime4: 65535
         atime5: 0
@@ -6207,7 +6203,7 @@ ParticleSystem:
         atime7: 0
         m_Mode: 0
         m_NumColorKeys: 5
-        m_NumAlphaKeys: 4
+        m_NumAlphaKeys: 3
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9656,7 +9652,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 20
+  m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -9709,7 +9705,7 @@ Transform:
   m_GameObject: {fileID: 6021000319639592311}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1142848888458524285}
   m_RootOrder: 1
@@ -11052,9 +11048,9 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.9471119, g: 0.8457191, b: 0.990566, a: 0}
-        key1: {r: 0.8193079, g: 0.5712887, b: 0.9245283, a: 0.627451}
-        key2: {r: 0.6220999, g: 0.35056958, b: 0.735849, a: 1}
+        key0: {r: 0.9471119, g: 0.8457191, b: 0.990566, a: 0.7607843}
+        key1: {r: 0.8193079, g: 0.5712887, b: 0.9245283, a: 1}
+        key2: {r: 0.6220999, g: 0.35056958, b: 0.735849, a: 0}
         key3: {r: 0.45311204, g: 0.2961463, b: 0.5188679, a: 0}
         key4: {r: 1, g: 1, b: 1, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -11069,8 +11065,8 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 12722
-        atime2: 30647
+        atime1: 30647
+        atime2: 65535
         atime3: 65535
         atime4: 65535
         atime5: 0
@@ -11078,7 +11074,7 @@ ParticleSystem:
         atime7: 0
         m_Mode: 0
         m_NumColorKeys: 5
-        m_NumAlphaKeys: 4
+        m_NumAlphaKeys: 3
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14527,7 +14523,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 20
+  m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -14580,7 +14576,7 @@ Transform:
   m_GameObject: {fileID: 8298253920414590329}
   m_LocalRotation: {x: -0.12785815, y: 0.70358545, z: 0.6777595, w: -0.17106117}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.1, y: 2.1, z: 2.1}
+  m_LocalScale: {x: 1.8999997, y: 1.8999997, z: 1.9}
   m_Children: []
   m_Father: {fileID: 1142848888458524285}
   m_RootOrder: 2
@@ -19389,7 +19385,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 20
+  m_SortingOrder: 0
   m_RenderMode: 1
   m_SortMode: 0
   m_MinParticleSize: 0

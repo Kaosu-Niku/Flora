@@ -199,6 +199,12 @@ public class PlayerSystem : SkeletonAnimationSystem
             CanControl = true;
             return;
         }
+        if (e.Data.Name == "HitFlyDownOut")
+        {
+            Super = false;
+            CanControl = true;
+            return;
+        }
     }
 
     private PlayerSystem GetPlayer()
@@ -299,6 +305,7 @@ public class PlayerSystem : SkeletonAnimationSystem
     [SerializeField] List<GameObject> Effect = new List<GameObject>();
     [HideInInspector] public bool Skill6Check;//* 無形攻擊是否使用
     [HideInInspector] public bool Skill8Check;//* 荊棘之身是否使用
+    bool HitFlyCheck;//* 擊飛狀態落地確認
 
     new void Awake()
     {
@@ -528,6 +535,10 @@ public class PlayerSystem : SkeletonAnimationSystem
                 Effect[0].SetActive(false);
                 Effect[1].SetActive(false);
                 Effect[2].SetActive(false);
+                if (C1 != null)
+                    StopCoroutine(C1);
+                if (C2 != null)
+                    StopCoroutine(C2);
                 //? (減傷效果)(增傷負面效果)(傷害反彈效果)(根性效果)
                 if (HurtEvent != null)
                     HurtEvent.Invoke();
@@ -570,26 +581,84 @@ public class PlayerSystem : SkeletonAnimationSystem
             Effect[2].SetActive(false);
             if (BondageEvent != null)
                 BondageEvent.Invoke();
-            //skeletonAnimation.AnimationState.SetAnimation(0, "Bondage", true);
-            C = StartCoroutine(FollowBondageTarget(who));
+            skeletonAnimation.AnimationState.SetAnimation(0, "Lock", true);
+            if (C1 != null)
+                StopCoroutine(C1);
+            if (C2 != null)
+                StopCoroutine(C2);
+            C1 = StartCoroutine(FollowBondageTarget(who));
         }
     }
-    Coroutine C;
+    Coroutine C1;
     IEnumerator FollowBondageTarget(Transform who)
     {
-        PlayerSystemSO.GetPlayerInvoke().transform.parent = who;
         while (true)
         {
-            transform.localPosition = Vector3.zero;
+            transform.position = who.position;
+            transform.rotation = who.rotation;
             yield return 0;
         }
     }
-    public void UntieBondage()
+    public void UntieBondage()//? 透過對象來觸發的，玩家無法自行解除束縛狀態
     {
-        if (C != null)
-            StopCoroutine(C);
-        transform.parent = null;
+        if (C1 != null)
+            StopCoroutine(C1);
+        transform.rotation = Quaternion.identity;
         CanControl = true;
+    }
+    //? 被擊飛事件
+    public UnityAction HitFlyEvent;
+    //? 被擊飛
+    public void HitFly(bool dir, int power)
+    {
+        if (Super == false)//? 沒有無敵才會被擊飛
+        {
+            CanControl = false;
+            Super = true;
+            CanJump = true;
+            Jumping = false;
+            Rigid.gravityScale = 10;
+            CanFlash = true;
+            CanRestore = true;
+            CanAttack = true;
+            WhichAttack = 1;
+            Attack[0].SetActive(false);
+            Attack[1].SetActive(false);
+            Attack[2].SetActive(false);
+            Effect[0].SetActive(false);
+            Effect[1].SetActive(false);
+            Effect[2].SetActive(false);
+            if (HitFlyEvent != null)
+                HitFlyEvent.Invoke();
+            if (C1 != null)
+                StopCoroutine(C1);
+            if (C2 != null)
+                StopCoroutine(C2);
+            C2 = StartCoroutine(HitFlyIEnum(dir, power));
+        }
+    }
+    Coroutine C2;
+    IEnumerator HitFlyIEnum(bool dir, int power)
+    {
+        HitFlyCheck = true;
+        if (dir == false)
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        else
+            transform.rotation = Quaternion.identity;
+        transform.Translate(0, 5, 0);
+        Rigid.AddForce(Vector2.up * power);
+        skeletonAnimation.AnimationState.SetAnimation(0, "HitFlyLoop", true);
+        while (true)
+        {
+            transform.Translate(-20 * Time.deltaTime, 0, 0);
+            yield return 0;
+        }
+    }
+    public void UntieHitFly()//? 處於擊飛狀態下，掉落在地板上自動觸發
+    {
+        if (C2 != null)
+            StopCoroutine(C2);
+        skeletonAnimation.AnimationState.SetAnimation(0, "HitFlyDown", false);
     }
     //? 死亡
     private void Die()
@@ -628,6 +697,11 @@ public class PlayerSystem : SkeletonAnimationSystem
         {
             if (Jumping == true)
                 skeletonAnimation.AnimationState.SetAnimation(0, "JumpDown", false);
+            if (HitFlyCheck == true)
+            {
+                HitFlyCheck = false;
+                UntieHitFly();
+            }
         }
         if (colAngle < 10 && colAngle > -10)//? 檢查角度判定是否可以蹬牆跳
         {

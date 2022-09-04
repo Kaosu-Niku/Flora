@@ -8,7 +8,6 @@ using UnityEngine.Events;
 [CreateAssetMenu(menuName = "MyCustomAsset/AllEvent")]
 public class AllEventSO : ScriptableObject
 {
-    [SerializeField] AudioMixer GetAudioMixer;
     public static UnityAction<string> LoadSceneEvent;//? 場景轉換事件(無讀取)
     public static void LoadSceneTrigger(string sceneName)
     {
@@ -33,20 +32,8 @@ public class AllEventSO : ScriptableObject
         if (LoadEvent != null)
             LoadEvent.Invoke();
     }
-    
-    public void ChangeWindowMode(Dropdown getDropDown)//? 更改視窗模式
-    {
-
-        switch (getDropDown.value)
-        {
-            case 0: Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen; break;
-            case 1: Screen.fullScreenMode = FullScreenMode.FullScreenWindow; break;
-            case 2: Screen.fullScreenMode = FullScreenMode.MaximizedWindow; break;
-            case 3: Screen.fullScreenMode = FullScreenMode.Windowed; break;
-        }
-    }
-
-//? 更改音量
+    //? 更改音量
+    [SerializeField] AudioMixer GetAudioMixer;
     public void SetMasterVolume(Slider getSlider)
     {
         GetAudioMixer.SetFloat("MasterVolume", getSlider.value);
@@ -58,5 +45,15 @@ public class AllEventSO : ScriptableObject
     public void SetSEVolume(Slider getSlider)
     {
         GetAudioMixer.SetFloat("SEVolume", getSlider.value);
+    }
+    public void ChangeWindowMode(int w)//? 更改視窗模式
+    {
+
+        switch (w)
+        {
+            case 0: Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen; break;
+            case 1: Screen.fullScreenMode = FullScreenMode.FullScreenWindow; break;
+            case 2: Screen.fullScreenMode = FullScreenMode.MaximizedWindow; break;
+        }
     }
 }

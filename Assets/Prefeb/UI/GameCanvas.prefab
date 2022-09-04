@@ -733,18 +733,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 9d4ecd4bed9ebb04bbc46192eda08c0a, type: 2}
-        m_TargetAssemblyTypeName: PlayerSystemSO, Assembly-CSharp
-        m_MethodName: UseSkill
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 9
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1571104806166657726}
         m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
         m_MethodName: OnClick_UseSkill
@@ -1246,18 +1234,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 9d4ecd4bed9ebb04bbc46192eda08c0a, type: 2}
-        m_TargetAssemblyTypeName: PlayerSystemSO, Assembly-CSharp
-        m_MethodName: UseSkill
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 11
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1571104806166657726}
         m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
         m_MethodName: OnClick_UseSkill
@@ -1796,18 +1772,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 9d4ecd4bed9ebb04bbc46192eda08c0a, type: 2}
-        m_TargetAssemblyTypeName: PlayerSystemSO, Assembly-CSharp
-        m_MethodName: UseSkill
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1571104806166657726}
         m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
         m_MethodName: OnClick_UseSkill
@@ -2187,18 +2151,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 9d4ecd4bed9ebb04bbc46192eda08c0a, type: 2}
-        m_TargetAssemblyTypeName: PlayerSystemSO, Assembly-CSharp
-        m_MethodName: UseSkill
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1571104806166657726}
         m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
         m_MethodName: OnClick_UseSkill
@@ -2653,18 +2605,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 9d4ecd4bed9ebb04bbc46192eda08c0a, type: 2}
-        m_TargetAssemblyTypeName: PlayerSystemSO, Assembly-CSharp
-        m_MethodName: UseSkill
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1571104806166657726}
         m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
         m_MethodName: OnClick_UseSkill
@@ -4841,18 +4781,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 9d4ecd4bed9ebb04bbc46192eda08c0a, type: 2}
-        m_TargetAssemblyTypeName: PlayerSystemSO, Assembly-CSharp
-        m_MethodName: UseSkill
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 14
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1571104806166657726}
         m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
         m_MethodName: OnClick_UseSkill
@@ -5578,18 +5506,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 9d4ecd4bed9ebb04bbc46192eda08c0a, type: 2}
-        m_TargetAssemblyTypeName: PlayerSystemSO, Assembly-CSharp
-        m_MethodName: UseSkill
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1571104806166657726}
         m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
         m_MethodName: OnClick_UseSkill
@@ -6610,18 +6526,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 9d4ecd4bed9ebb04bbc46192eda08c0a, type: 2}
-        m_TargetAssemblyTypeName: PlayerSystemSO, Assembly-CSharp
-        m_MethodName: UseSkill
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 8
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1571104806166657726}
         m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
         m_MethodName: OnClick_UseSkill
@@ -7837,18 +7741,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 9d4ecd4bed9ebb04bbc46192eda08c0a, type: 2}
-        m_TargetAssemblyTypeName: PlayerSystemSO, Assembly-CSharp
-        m_MethodName: UseSkill
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 13
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1571104806166657726}
         m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
         m_MethodName: OnClick_UseSkill
@@ -10361,6 +10253,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 325afb15a71a0414cb82ad34b1b5df43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillButton:
+  - {fileID: 585848977329905351}
+  - {fileID: 27796370613723875}
+  - {fileID: 7032438407061808794}
+  - {fileID: 2105717986497589456}
+  - {fileID: 5533835359573099936}
+  - {fileID: 2280345326676176632}
+  - {fileID: 4080740256290814377}
+  - {fileID: 6312310826128179555}
+  - {fileID: 5694094332148579649}
+  - {fileID: 9178315048066287055}
+  - {fileID: 5863363665944883342}
+  - {fileID: 1857446286848125033}
+  - {fileID: 9061182859053372817}
+  - {fileID: 5615979349096010783}
+  - {fileID: 5959572817384262186}
   SKillData:
   - SkillName: "\u5438\u5F15"
     SKillSprite: {fileID: 21300000, guid: a721974746df8c649ad0d59ff0519b13, type: 3}
@@ -16438,18 +16346,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 9d4ecd4bed9ebb04bbc46192eda08c0a, type: 2}
-        m_TargetAssemblyTypeName: PlayerSystemSO, Assembly-CSharp
-        m_MethodName: UseSkill
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1571104806166657726}
         m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
         m_MethodName: OnClick_UseSkill
@@ -18824,18 +18720,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 9d4ecd4bed9ebb04bbc46192eda08c0a, type: 2}
-        m_TargetAssemblyTypeName: PlayerSystemSO, Assembly-CSharp
-        m_MethodName: UseSkill
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 10
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1571104806166657726}
         m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
         m_MethodName: OnClick_UseSkill
@@ -19138,18 +19022,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 9d4ecd4bed9ebb04bbc46192eda08c0a, type: 2}
-        m_TargetAssemblyTypeName: PlayerSystemSO, Assembly-CSharp
-        m_MethodName: UseSkill
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 7
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1571104806166657726}
         m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
         m_MethodName: OnClick_UseSkill
@@ -20277,18 +20149,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 9d4ecd4bed9ebb04bbc46192eda08c0a, type: 2}
-        m_TargetAssemblyTypeName: PlayerSystemSO, Assembly-CSharp
-        m_MethodName: UseSkill
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 6
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1571104806166657726}
         m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
         m_MethodName: OnClick_UseSkill
@@ -21635,18 +21495,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 9d4ecd4bed9ebb04bbc46192eda08c0a, type: 2}
-        m_TargetAssemblyTypeName: PlayerSystemSO, Assembly-CSharp
-        m_MethodName: UseSkill
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 12
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1571104806166657726}
         m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
         m_MethodName: OnClick_UseSkill
@@ -23845,18 +23693,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 9d4ecd4bed9ebb04bbc46192eda08c0a, type: 2}
-        m_TargetAssemblyTypeName: PlayerSystemSO, Assembly-CSharp
-        m_MethodName: UseSkill
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1571104806166657726}
         m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
         m_MethodName: OnClick_UseSkill

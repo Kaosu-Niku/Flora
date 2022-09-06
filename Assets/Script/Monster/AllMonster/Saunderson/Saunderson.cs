@@ -305,9 +305,8 @@ public class Saunderson : Monster
         PlayerSystemSO.GetPlayerInvoke().BondageEvent -= PlayerBondageCheck;
         Attack6Check = true;
     }
-    new void Start()
+    void Start()
     {
-        base.Start();
         Rigid = GetComponent<Rigidbody2D>();
         Attack2 = pool.GetObject("Attack2", transform.position, Quaternion.identity).GetComponent<AreaEffector2D>();
         Fly_1 = pool.GetObject("Fly-1", transform.position, Quaternion.identity).GetComponent<AreaEffector2D>();

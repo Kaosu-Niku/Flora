@@ -90,9 +90,8 @@ public class FloraArmor : Monster
         Attack[0].SetActive(false);
         skeletonAnimation.AnimationState.SetAnimation(0, "Attack3", false);
     }
-    new void Start()
+    void Start()
     {
-        base.Start();
         Rigid = GetComponent<Rigidbody2D>();
     }
     private void OnCollisionEnter2D(Collision2D other)

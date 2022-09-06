@@ -6,7 +6,7 @@ using Spine.Unity;
 
 public abstract class Monster : SkeletonAnimationSystem
 {
-    protected Material MonsterMaterial;
+    protected MeshRenderer MonsterRenderer;
     protected SkeletonRootMotion skeletonRootMotion;
     protected override void AnimationEventCallBack(TrackEntry trackEntry, Spine.Event e)
     {
@@ -39,17 +39,23 @@ public abstract class Monster : SkeletonAnimationSystem
     protected IPoolObject EnemyHpSlider;//* 血條物件
     [SerializeField] Vector3 HpSliderMove;//* 血條初始化移動
     [HideInInspector] protected Transform HpSlider;//* 真正的血條
-    protected void Start()
+    new void Awake()
     {
+        base.Awake();
         Hp = MaxHp;
         HitRecover = MaxHitRecover;
         Super = false;
-        MonsterMaterial = GetComponent<MeshRenderer>().sharedMaterial; Debug.Log(MonsterMaterial);
+        MonsterRenderer = GetComponent<MeshRenderer>();
         skeletonRootMotion = GetComponent<SkeletonRootMotion>();
         for (int x = 0; x < Attack.Count; x++)
         {
             Attack[x].SetActive(false);
         }
+        StartCoroutine(Late());
+    }
+    IEnumerator Late()
+    {
+        yield return 0;
         EnemyHpSlider = GameManagerSO.GetPoolInvoke().GetObject("EnemyHpSlider", transform.position + HpSliderMove, Quaternion.identity);
         EnemyHpSlider.transform.parent = transform;
         HpSlider = EnemyHpSlider.transform.GetChild(1).transform;
@@ -139,7 +145,7 @@ public abstract class Monster : SkeletonAnimationSystem
     {
         for (float t = 1; t > 0; t -= Time.deltaTime)
         {
-            //MonsterMaterial.SetFloat("Dissolve", t);
+            MonsterRenderer.material.SetFloat("Dissolve", t);
             yield return 0;
         }
         yield break;

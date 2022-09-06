@@ -1686,15 +1686,15 @@
     "m_Guid": {
         "m_GuidSerialized": "110df889-2ac4-4dfd-9385-2fbe99c00868"
     },
-    "m_Name": "溶解",
+    "m_Name": "Dissolve",
     "m_DefaultReferenceName": "Vector1_6e83df2fa2144566be2de4fac6df4eca",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "Dissolve",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 0.5,
+    "m_Value": 1.0,
     "m_FloatType": 1,
     "m_RangeValues": {
         "x": 0.0,
@@ -2621,7 +2621,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "c126bde232cd459a8f13533ac3603e25",
     "m_Id": 0,
-    "m_DisplayName": "溶解",
+    "m_DisplayName": "Dissolve",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",

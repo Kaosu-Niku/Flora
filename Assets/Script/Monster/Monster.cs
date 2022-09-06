@@ -6,6 +6,7 @@ using Spine.Unity;
 
 public abstract class Monster : SkeletonAnimationSystem
 {
+    protected Material MonsterMaterial;
     protected SkeletonRootMotion skeletonRootMotion;
     protected override void AnimationEventCallBack(TrackEntry trackEntry, Spine.Event e)
     {
@@ -18,36 +19,8 @@ public abstract class Monster : SkeletonAnimationSystem
         }
         if (e.Data.Name == "DieOut")
         {
-            while (DropMoney > 1000)
-            {
-                GameManagerSO.GetPoolInvoke().GetObject("BigMoney", transform.position, Quaternion.identity);
-                DropMoney -= 1000;
-            }
-            while (DropMoney > 100)
-            {
-                GameManagerSO.GetPoolInvoke().GetObject("MiddleMoney", transform.position, Quaternion.identity);
-                DropMoney -= 100;
-            }
-            while (DropMoney > 10)
-            {
-                GameManagerSO.GetPoolInvoke().GetObject("SmallMoney", transform.position, Quaternion.identity);
-                DropMoney -= 10;
-            }
-            while (DropMp > 1000)
-            {
-                GameManagerSO.GetPoolInvoke().GetObject("BigMp", transform.position, Quaternion.identity);
-                DropMp -= 1000;
-            }
-            while (DropMp > 100)
-            {
-                GameManagerSO.GetPoolInvoke().GetObject("MiddleMp", transform.position, Quaternion.identity);
-                DropMp -= 100;
-            }
-            while (DropMp > 10)
-            {
-                GameManagerSO.GetPoolInvoke().GetObject("SmallMp", transform.position, Quaternion.identity);
-                DropMp -= 10;
-            }
+            StartCoroutine(DieDroplIEnum());
+            StartCoroutine(DieMaterialIEnum());
             return;
         }
         //? 自定義動畫事件
@@ -71,6 +44,7 @@ public abstract class Monster : SkeletonAnimationSystem
         Hp = MaxHp;
         HitRecover = MaxHitRecover;
         Super = false;
+        MonsterMaterial = GetComponent<MeshRenderer>().sharedMaterial; Debug.Log(MonsterMaterial);
         skeletonRootMotion = GetComponent<SkeletonRootMotion>();
         for (int x = 0; x < Attack.Count; x++)
         {
@@ -120,6 +94,55 @@ public abstract class Monster : SkeletonAnimationSystem
                 skeletonAnimation.AnimationState.SetAnimation(0, "Die", false);
             }
         }
+    }
+    IEnumerator DieDroplIEnum()
+    {
+        while (DropMoney > 100)
+        {
+            GameManagerSO.GetPoolInvoke().GetObject("BigMoney", transform.position, Quaternion.identity);
+            DropMoney -= 100;
+            yield return new WaitForSeconds(0.05f);
+        }
+        while (DropMoney > 10)
+        {
+            GameManagerSO.GetPoolInvoke().GetObject("MiddleMoney", transform.position, Quaternion.identity);
+            DropMoney -= 10;
+            yield return new WaitForSeconds(0.05f);
+        }
+        while (DropMoney > 1)
+        {
+            GameManagerSO.GetPoolInvoke().GetObject("SmallMoney", transform.position, Quaternion.identity);
+            DropMoney -= 1;
+            yield return new WaitForSeconds(0.05f);
+        }
+        while (DropMp > 100)
+        {
+            GameManagerSO.GetPoolInvoke().GetObject("BigMp", transform.position, Quaternion.identity);
+            DropMp -= 100;
+            yield return new WaitForSeconds(0.05f);
+        }
+        while (DropMp > 10)
+        {
+            GameManagerSO.GetPoolInvoke().GetObject("MiddleMp", transform.position, Quaternion.identity);
+            DropMp -= 10;
+            yield return new WaitForSeconds(0.05f);
+        }
+        while (DropMp > 1)
+        {
+            GameManagerSO.GetPoolInvoke().GetObject("SmallMp", transform.position, Quaternion.identity);
+            DropMp -= 1;
+            yield return new WaitForSeconds(0.05f);
+        }
+        yield break;
+    }
+    IEnumerator DieMaterialIEnum()
+    {
+        for (float t = 1; t > 0; t -= Time.deltaTime)
+        {
+            //MonsterMaterial.SetFloat("Dissolve", t);
+            yield return 0;
+        }
+        yield break;
     }
 
     protected float GetPlayerDistance()//? 立即取得與玩家的距離

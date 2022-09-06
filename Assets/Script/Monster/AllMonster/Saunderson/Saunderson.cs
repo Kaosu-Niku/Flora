@@ -23,6 +23,11 @@ public class Saunderson : Monster
     }
     protected override void CustomAnimationEventCallBack(TrackEntry trackEntry, Spine.Event e)
     {
+        if (e.Data.Name == "RestOut")
+        {
+            OnAction();
+            return;
+        }
         if (e.Data.Name == "FlyTrigger")
         {
             Rigid.gravityScale = 0;
@@ -78,9 +83,20 @@ public class Saunderson : Monster
             OnAction();
             return;
         }
+        if (e.Data.Name == "Attack3Trigger")
+        {
+            for (int x = 0; x < 18; x++)
+                pool.GetObject("Attack5", Attack5ShootTrans.position, Quaternion.Euler(0, transform.eulerAngles.y, transform.eulerAngles.z - 45 + x * 5));
+            return;
+        }
+        if (e.Data.Name == "Attack3Out")
+        {
+            skeletonAnimation.AnimationState.SetAnimation(0, "Rest", false);
+            return;
+        }
         if (e.Data.Name == "Attack4Close")
         {
-            Attack[1].SetActive(false); GameManagerSO.ImpluseInvoke(1);
+            Attack[1].SetActive(false); GameManagerSO.ImpluseInvoke(5);
             return;
         }
         if (e.Data.Name == "Attack4Out")
@@ -124,7 +140,7 @@ public class Saunderson : Monster
             {
                 Rigid.gravityScale = 1;
                 Attack[2].SetActive(false);
-                OnAction();
+                skeletonAnimation.AnimationState.SetAnimation(0, "Rest", false);
             }
 
             return;
@@ -144,19 +160,23 @@ public class Saunderson : Monster
         if (e.Data.Name == "Attack8Free")
         {
             PlayerSystemSO.GetPlayerInvoke().UntieBondage();
+            if (transform.eulerAngles.y < 90)
+                PlayerSystemSO.GetPlayerInvoke().HitFly(false, 1000);
+            else
+                PlayerSystemSO.GetPlayerInvoke().HitFly(true, 1000);
             return;
         }
         if (e.Data.Name == "Attack8Out")
         {
-            OnAction();
+            skeletonAnimation.AnimationState.SetAnimation(0, "Rest", false);
             return;
         }
     }
     protected override IEnumerator CustomAction()
     {
-        switch (2)
+        switch (4)
         {
-            case 1: skeletonAnimation.AnimationState.SetAnimation(0, "Attack1", false); break;
+            case 1: skeletonAnimation.AnimationState.SetAnimation(0, "Attack3", false); break;
             case 2: WhichFlyAttack = 0; skeletonAnimation.AnimationState.SetAnimation(0, "Fly", false); break;
             case 3: WhichFlyAttack = 1; skeletonAnimation.AnimationState.SetAnimation(0, "Fly", false); break;
             case 4: WhichFlyAttack = 2; skeletonAnimation.AnimationState.SetAnimation(0, "Fly", false); break;
@@ -170,11 +190,9 @@ public class Saunderson : Monster
         if (IsAngry == false)
         {
             //? 每次攻擊有20%機率飛上天
-            if (Random.Range(1, 11) > 0)// 8 
+            if (Random.Range(1, 11) > 8)
             {
                 WhichFlyAttack = Random.Range(0, 2);
-                if (WhichFlyAttack == 0)
-                    skeletonRootMotion.rootMotionScaleY = 2;
                 skeletonAnimation.AnimationState.SetAnimation(0, "Fly", false);
             }
             else
@@ -183,30 +201,33 @@ public class Saunderson : Monster
                 skeletonAnimation.AnimationState.SetAnimation(0, "Idle", true);
                 yield return new WaitForSeconds(1);
                 LookPlayer();
-                //? 距離大於5射羽毛或持續接近玩家
-                if (GetPlayerDistance() > 5)
+                //? 距離大於25射羽毛
+                if (GetPlayerDistance() > 25)
                 {
-                    if (Random.Range(0, 5) > 10)
-                    {
-                        yield break;
-                    }
-                    else
-                    {
-                        skeletonAnimation.AnimationState.SetAnimation(0, "Walk", true);
-                        while (GetPlayerDistance() > 5)
-                        {
-                            transform.Translate(5 * Time.deltaTime, 0, 0);
-                            yield return 0;
-                        }
-                    }
+                    skeletonAnimation.AnimationState.SetAnimation(0, "Attack3", true);
+                    yield break;
                 }
-                //? 甩腳爪
-                skeletonAnimation.AnimationState.SetAnimation(0, "Attack1", false);
+                if (Random.Range(0, 3) > 0)
+                {
+                    skeletonAnimation.AnimationState.SetAnimation(0, "Walk", true);
+                    while (GetPlayerDistance() > 5)
+                    {
+                        transform.Translate(10 * Time.deltaTime, 0, 0);
+                        yield return 0;
+                    }
+                    //? 甩腳爪
+                    skeletonAnimation.AnimationState.SetAnimation(0, "Attack1", false);
+                }
+                else
+                {
+                    skeletonAnimation.AnimationState.SetAnimation(0, "Attack2", true);
+                }
             }
         }
         else
         {
             //? 抓技
+            IsAngry = false;
             WhichFlyAttack = 2;
             skeletonAnimation.AnimationState.SetAnimation(0, "Fly", false);
         }
@@ -241,6 +262,7 @@ public class Saunderson : Monster
                 transform.Translate(-2, 0, 0);
                 Attack[1].SetActive(true);
                 skeletonAnimation.AnimationState.SetAnimation(0, "DownLoop", true);
+                Attack4Check = false;
                 while (Attack4Check == false)
                 {
                     transform.Translate(0, -150 * Time.deltaTime, 0);

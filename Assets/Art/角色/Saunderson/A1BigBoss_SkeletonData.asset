@@ -28,11 +28,14 @@ MonoBehaviour:
   - Fly
   - Attack5
   - Fly
+  - FlyLoop
   toAnimation:
   - Attack5
   - FlyLoop
   - FlyLoop
+  - Idle
   duration:
+  - 0.2
   - 0.2
   - 0.2
   - 0.2

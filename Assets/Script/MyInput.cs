@@ -254,6 +254,24 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""A"",
+                    ""type"": ""Button"",
+                    ""id"": ""112cbd1c-f6c5-4a71-a74a-e49078d3e954"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""D"",
+                    ""type"": ""Button"",
+                    ""id"": ""c58cb4c7-d521-41c0-b1a9-8e498de8403b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -333,6 +351,50 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
                     ""action"": ""E"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bfc0ca73-475f-4e95-8b53-f01b93563763"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""A"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b197e172-fbc6-41c2-819e-a1b7704eddda"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""A"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e82b353d-5109-441d-aba3-759e0fc1a586"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""D"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""82bc9d29-7f8e-4334-9def-0a6a3f6ecfea"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""D"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -354,6 +416,8 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
         m_UI_Enter = m_UI.FindAction("Enter", throwIfNotFound: true);
         m_UI_Q = m_UI.FindAction("Q", throwIfNotFound: true);
         m_UI_E = m_UI.FindAction("E", throwIfNotFound: true);
+        m_UI_A = m_UI.FindAction("A", throwIfNotFound: true);
+        m_UI_D = m_UI.FindAction("D", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -491,6 +555,8 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Enter;
     private readonly InputAction m_UI_Q;
     private readonly InputAction m_UI_E;
+    private readonly InputAction m_UI_A;
+    private readonly InputAction m_UI_D;
     public struct UIActions
     {
         private @MyInput m_Wrapper;
@@ -500,6 +566,8 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
         public InputAction @Enter => m_Wrapper.m_UI_Enter;
         public InputAction @Q => m_Wrapper.m_UI_Q;
         public InputAction @E => m_Wrapper.m_UI_E;
+        public InputAction @A => m_Wrapper.m_UI_A;
+        public InputAction @D => m_Wrapper.m_UI_D;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -524,6 +592,12 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
                 @E.started -= m_Wrapper.m_UIActionsCallbackInterface.OnE;
                 @E.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnE;
                 @E.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnE;
+                @A.started -= m_Wrapper.m_UIActionsCallbackInterface.OnA;
+                @A.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnA;
+                @A.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnA;
+                @D.started -= m_Wrapper.m_UIActionsCallbackInterface.OnD;
+                @D.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnD;
+                @D.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnD;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -543,6 +617,12 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
                 @E.started += instance.OnE;
                 @E.performed += instance.OnE;
                 @E.canceled += instance.OnE;
+                @A.started += instance.OnA;
+                @A.performed += instance.OnA;
+                @A.canceled += instance.OnA;
+                @D.started += instance.OnD;
+                @D.performed += instance.OnD;
+                @D.canceled += instance.OnD;
             }
         }
     }
@@ -563,5 +643,7 @@ public partial class @MyInput : IInputActionCollection2, IDisposable
         void OnEnter(InputAction.CallbackContext context);
         void OnQ(InputAction.CallbackContext context);
         void OnE(InputAction.CallbackContext context);
+        void OnA(InputAction.CallbackContext context);
+        void OnD(InputAction.CallbackContext context);
     }
 }

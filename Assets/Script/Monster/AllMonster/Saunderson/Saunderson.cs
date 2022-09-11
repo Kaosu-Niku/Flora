@@ -160,10 +160,9 @@ public class Saunderson : Monster
         if (e.Data.Name == "Attack8Free")
         {
             PlayerSystemSO.GetPlayerInvoke().UntieBondage();
-            if (transform.eulerAngles.y < 90)
-                PlayerSystemSO.GetPlayerInvoke().HitFly(false, 1000);
-            else
-                PlayerSystemSO.GetPlayerInvoke().HitFly(true, 1000);
+            PlayerSystemSO.GetPlayerInvoke().HitFly(1000);
+            PlayerSystemSO.GetPlayerInvoke().transform.rotation = transform.rotation;
+            PlayerSystemSO.GetPlayerInvoke().transform.Rotate(0, 180, 0);
             return;
         }
         if (e.Data.Name == "Attack8Out")

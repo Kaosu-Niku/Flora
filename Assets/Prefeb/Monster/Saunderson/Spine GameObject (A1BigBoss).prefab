@@ -6391,8 +6391,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHp: 1000
   MaxHitRecover: 100
-  DropMoney: 9999
-  DropMp: 9999
+  DropMoney: 999
+  DropMp: 999
   Attack:
   - {fileID: 8675026787206355110}
   - {fileID: 7616850892975491376}

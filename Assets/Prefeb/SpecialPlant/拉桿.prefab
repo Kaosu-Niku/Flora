@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8329470961910607789}
   - component: {fileID: 4818287425747842516}
   m_Layer: 0
-  m_Name: "Spine GameObject (\u62C9\u687F)"
+  m_Name: "\u62C9\u687F"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

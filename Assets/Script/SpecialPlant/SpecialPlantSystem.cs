@@ -31,7 +31,6 @@ public abstract class SpecialPlantSystem : SkeletonAnimationSystem
     {
         if (other.gameObject.CompareTag("Player"))//? 玩家進入範圍
             myInput.Player.Action.started += Doing;
-
     }
 
     protected void OnTriggerExit2D(Collider2D other)//? 玩家離開範圍

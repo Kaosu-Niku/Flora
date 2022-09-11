@@ -85,6 +85,7 @@ public class PlayerSystem : SkeletonAnimationSystem
         {
             CanControl = true;
             CanFlash = true;
+            Rigid.gravityScale = 10;
             Attack[3].SetActive(false);
             return;
         }
@@ -403,6 +404,7 @@ public class PlayerSystem : SkeletonAnimationSystem
     }
     public void CallJump(int jumpPower)
     {
+        StateReset();
         UseJump(jumpPower);
     }
     private void OnFlash(InputAction.CallbackContext context)//? 閃避
@@ -412,6 +414,7 @@ public class PlayerSystem : SkeletonAnimationSystem
             CanControl = false;
             Super = true;
             CanFlash = false;
+            Rigid.gravityScale = 0;
             if (Skill6Check == true)//? 無形攻擊
                 Attack[3].SetActive(true);
             skeletonAnimation.AnimationState.SetAnimation(0, "Flash", false);
@@ -545,7 +548,7 @@ public class PlayerSystem : SkeletonAnimationSystem
     //? 被擊飛事件
     public UnityAction HitFlyEvent;
     //? 被擊飛
-    public void HitFly(bool dir, int power)
+    public void HitFly(int power)
     {
         if (Super == false)//? 沒有無敵才會觸發擊飛
         {
@@ -554,17 +557,13 @@ public class PlayerSystem : SkeletonAnimationSystem
             Super = true;
             if (HitFlyEvent != null)//? 擊飛型攻擊
                 HitFlyEvent.Invoke();
-            HitFlyCoroutine = StartCoroutine(HitFlyIEnum(dir, power));
+            HitFlyCoroutine = StartCoroutine(HitFlyIEnum(power));
         }
     }
     Coroutine HitFlyCoroutine;
-    IEnumerator HitFlyIEnum(bool dir, int power)
+    IEnumerator HitFlyIEnum(int power)
     {
         HitFlyCheck = true;
-        if (dir == false)
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-        else
-            transform.rotation = Quaternion.identity;
         transform.Translate(0, 5, 0);
         Rigid.AddForce(Vector2.up * power);
         skeletonAnimation.AnimationState.SetAnimation(0, "HitFlyLoop", true);

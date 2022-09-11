@@ -52,10 +52,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4186392e4b727944e94b52cfd5b75384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHp: 50
+  MaxHp: 5
   MaxHitRecover: 15
-  DropMoney: 9999
-  DropMp: 500
+  DropMoney: 999
+  DropMp: 999
   Attack:
   - {fileID: 303554477571775696}
   HpSliderMove: {x: 0, y: 5, z: 0}

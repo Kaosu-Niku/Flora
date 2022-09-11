@@ -47,6 +47,9 @@ MonoBehaviour:
   - Tag: NpcHintButton
     Obj: {fileID: -7719454119279078233, guid: de3e5caabf7f87644acfe73c12e52aef, type: 3}
     SetCount: 1
+  - Tag: NpcTalk
+    Obj: {fileID: 5485263967369959543, guid: 8163dac8c3d69774aa652f10cf452431, type: 3}
+    SetCount: 1
   - Tag: EnemyHpSlider
     Obj: {fileID: -6845912067219583698, guid: da2fe76341f1a3d43a1a9231bdcb8054, type: 3}
     SetCount: 5

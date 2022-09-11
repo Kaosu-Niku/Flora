@@ -12,6 +12,19 @@ public class PlayerSystem : SkeletonAnimationSystem
     [SerializeField] SkeletonRootMotion skeletonRootMotion;
     protected override void AnimationEventCallBack(TrackEntry trackEntry, Spine.Event e)
     {
+        if (e.Data.Name == "HurtOut")
+        {
+            CanControl = true;
+            Super = false;
+            Attack[4].SetActive(false);
+            return;
+        }
+        if (e.Data.Name == "HitFlyDownOut")
+        {
+            CanControl = true;
+            Super = false;
+            return;
+        }
         if (e.Data.Name == "JumpH1")
         {
             if (GetInput.Player.Jump.ReadValue<float>() == 0)
@@ -35,7 +48,7 @@ public class PlayerSystem : SkeletonAnimationSystem
         if (e.Data.Name == "JumpOut")
         {
             Rigid.gravityScale = 10;
-            skeletonRootMotion.rootMotionScaleY = 1;//? 跳躍高度倍率
+            skeletonRootMotion.rootMotionScaleY = 1;
             skeletonAnimation.AnimationState.SetAnimation(0, "JumpLoop", true);
             return;
         }
@@ -47,27 +60,8 @@ public class PlayerSystem : SkeletonAnimationSystem
         if (e.Data.Name == "WallJumpOut")
         {
             Rigid.gravityScale = 10;
-            skeletonRootMotion.rootMotionScaleY = 1;//? 跳躍高度倍率
+            skeletonRootMotion.rootMotionScaleY = 1;
             skeletonAnimation.AnimationState.SetAnimation(0, "JumpLoop", true);
-            return;
-        }
-        if (e.Data.Name == "JumpDownIn")
-        {
-            Super = false;
-            CanControl = false;
-            CanJump = true;
-            Jumping = false;
-            Rigid.gravityScale = 10;
-            CanFlash = true;
-            CanRestore = true;
-            CanAttack = true;
-            WhichAttack = 1;
-            Attack[0].SetActive(false);
-            Attack[1].SetActive(false);
-            Attack[2].SetActive(false);
-            Effect[0].SetActive(false);
-            Effect[1].SetActive(false);
-            Effect[2].SetActive(false);
             return;
         }
         if (e.Data.Name == "JumpDownOut")
@@ -89,9 +83,9 @@ public class PlayerSystem : SkeletonAnimationSystem
         }
         if (e.Data.Name == "FlashOut")
         {
-            Attack[3].SetActive(false);
-            CanFlash = true;
             CanControl = true;
+            CanFlash = true;
+            Attack[3].SetActive(false);
             return;
         }
         if (e.Data.Name == "HP+++Trigger")
@@ -101,16 +95,9 @@ public class PlayerSystem : SkeletonAnimationSystem
         }
         if (e.Data.Name == "HP+++Out")
         {
+            CanControl = true;
             CanRestore = true;
-            CanControl = true;
             Rigid.gravityScale = 10;
-            return;
-        }
-        if (e.Data.Name == "HurtOut")
-        {
-            Attack[4].SetActive(false);
-            Super = false;
-            CanControl = true;
             return;
         }
         if (e.Data.Name == "Attack1Open")
@@ -128,22 +115,22 @@ public class PlayerSystem : SkeletonAnimationSystem
         }
         if (e.Data.Name == "Attack1Can")
         {
-            WhichAttack = 2;
-            CanAttack = true;
             CanControl = true;
+            CanAttack = true;
+            WhichAttack = 2;
             return;
         }
         if (e.Data.Name == "Attack1Not")
         {
-            WhichAttack = 1;
-            CanAttack = false;
             CanControl = false;
+            CanAttack = false;
+            WhichAttack = 1;
             return;
         }
         if (e.Data.Name == "Attack1Out")
         {
-            CanAttack = true;
             CanControl = true;
+            CanAttack = true;
             return;
         }
         if (e.Data.Name == "Attack2Open")
@@ -161,22 +148,22 @@ public class PlayerSystem : SkeletonAnimationSystem
         }
         if (e.Data.Name == "Attack2Can")
         {
-            WhichAttack = 3;
-            CanAttack = true;
             CanControl = true;
+            CanAttack = true;
+            WhichAttack = 3;
             return;
         }
         if (e.Data.Name == "Attack2Not")
         {
-            WhichAttack = 1;
-            CanAttack = false;
             CanControl = false;
+            CanAttack = false;
+            WhichAttack = 1;
             return;
         }
         if (e.Data.Name == "Attack2Out")
         {
-            CanAttack = true;
             CanControl = true;
+            CanAttack = true;
             return;
         }
         if (e.Data.Name == "Attack3Open")
@@ -194,19 +181,12 @@ public class PlayerSystem : SkeletonAnimationSystem
         }
         if (e.Data.Name == "Attack3Out")
         {
-            WhichAttack = 1;
+            CanControl = true;
             CanAttack = true;
-            CanControl = true;
-            return;
-        }
-        if (e.Data.Name == "HitFlyDownOut")
-        {
-            Super = false;
-            CanControl = true;
+            WhichAttack = 1;
             return;
         }
     }
-
     private PlayerSystem GetPlayer()
     {
         return this;
@@ -255,10 +235,10 @@ public class PlayerSystem : SkeletonAnimationSystem
     {
         NowHit += much;
     }
-    int _MaxSpeed;//* 最大速度
-    public int MaxSpeed { get => _MaxSpeed; private set { _MaxSpeed = value; } }
-    int _NowSpeed;//* 當前速度
-    public int NowSpeed { get => _NowSpeed; private set { _NowSpeed = value; } }
+    float _MaxSpeed;//* 最大速度
+    public float MaxSpeed { get => _MaxSpeed; private set { _MaxSpeed = value; } }
+    float _NowSpeed;//* 當前速度
+    public float NowSpeed { get => _NowSpeed; private set { _NowSpeed = value; } }
     public void AddNowSpeed(int much)
     {
         NowSpeed += much;
@@ -277,8 +257,10 @@ public class PlayerSystem : SkeletonAnimationSystem
         CanControl = value;
     }
     bool Super = false;//* 無敵狀態
+    float FloorHigh;//* 離開地板時的高度
     bool CanJump = true;//* 可以跳躍
     bool Jumping = false;//* 是否處於跳躍中(防止太容易一直觸發落地動畫)
+    bool IsWall = false;//* 是否是蹬牆跳
     bool CanFlash = true;//* 可以閃避
     public void SetCanFlash(bool b)
     {
@@ -298,7 +280,6 @@ public class PlayerSystem : SkeletonAnimationSystem
     Rigidbody2D Rigid;
     Collider2D Col;
     public CircleCollider2D SuckAwardCol;//* 吸取道具用的圓形碰撞體
-    [SerializeField] GameObject PlayerHint;
     CinemachineImpulseSource MyImpulseSetting;
     MyInput GetInput;
     [SerializeField] List<GameObject> Attack = new List<GameObject>();
@@ -314,7 +295,6 @@ public class PlayerSystem : SkeletonAnimationSystem
         //transform.position = new Vector3(GameDataSO.ResetPoint[0], GameDataSO.ResetPoint[1], 0);
         Rigid = GetComponent<Rigidbody2D>();
         Col = GetComponent<Collider2D>();
-        PlayerHint.SetActive(false);
         MyImpulseSetting = GetComponent<CinemachineImpulseSource>();
         GetInput = new MyInput();
     }
@@ -358,7 +338,7 @@ public class PlayerSystem : SkeletonAnimationSystem
         NowSpeed = MaxSpeed;
         CanControl = true;
     }
-    private void Update()
+    private void FixedUpdate()
     {
         if (CanControl || Jumping)
         {
@@ -374,76 +354,66 @@ public class PlayerSystem : SkeletonAnimationSystem
                     if (transform.eulerAngles.y != 180)
                         transform.rotation = Quaternion.Euler(0, 180, 0);
                 }
-                transform.Translate(PlayerDataSO.MaxSpeed * Time.deltaTime, 0, 0);
-                if (skeletonAnimation.AnimationState.GetCurrent(0).Animation.Name == "Idle" || skeletonAnimation.AnimationState.GetCurrent(0).IsComplete == true)
-                    skeletonAnimation.AnimationState.SetAnimation(0, "Walk", true);
+                transform.Translate(PlayerDataSO.MaxSpeed, 0, 0);
+            }
+        }
+    }
+    private void Update()
+    {
+        if (CanControl || Jumping)
+        {
+            //? 在任何一次性的動作(loop動作不算)完成，後面已經沒有接序動畫時自動補上待機或走路動畫
+            if (GetInput.Player.Move.ReadValue<float>() != 0)
+            {
+                if (skeletonAnimation.AnimationState.GetCurrent(0).Animation.Name == "Idle" || (skeletonAnimation.AnimationState.GetCurrent(0).IsComplete == true && skeletonAnimation.AnimationState.GetCurrent(0).Loop == false))
+                    skeletonAnimation.AnimationState.SetAnimation(0, "Walk", false);
             }
             else
             {
-                if (skeletonAnimation.AnimationState.GetCurrent(0).Animation.Name == "Walk" || skeletonAnimation.AnimationState.GetCurrent(0).IsComplete == true)
-                    skeletonAnimation.AnimationState.SetAnimation(0, "Idle", true);
+                if (skeletonAnimation.AnimationState.GetCurrent(0).Animation.Name == "Walk" || (skeletonAnimation.AnimationState.GetCurrent(0).IsComplete == true && skeletonAnimation.AnimationState.GetCurrent(0).Loop == false))
+                    skeletonAnimation.AnimationState.SetAnimation(0, "Idle", false);
+            }
+        }
+    }
+    private void UseJump(float jumpPower)
+    {
+        if ((CanControl && CanJump) || IsWall == true)
+        {
+            //? 一般跳躍
+            CanControl = false;
+            CanJump = false;
+            Jumping = true;
+            Rigid.Sleep();
+            Rigid.gravityScale = 0;
+            skeletonRootMotion.rootMotionScaleY = jumpPower;
+            skeletonAnimation.AnimationState.SetAnimation(0, "Jump", false);
+            if (IsWall == true)//? 蹬牆跳
+            {
+                IsWall = false;
+                Jumping = false;//* 防止蹬牆跳偵測牆壁太靈敏(跳出去觸發Trigger後才開始判斷牆壁偵測)
+                transform.Rotate(0, 180, 0);
+                Rigid.AddForce(transform.right * 500);
+                skeletonAnimation.AnimationState.SetAnimation(0, "WallJump", false);
             }
         }
     }
     private void OnJump(InputAction.CallbackContext context)//? 跳躍
     {
-        if (CanControl && CanJump)
-        {
-            CanJump = false;
-            CanControl = false;
-            Rigid.Sleep();
-            Rigid.gravityScale = 0;
-            if (PlayerHint.activeInHierarchy == false)//? 一般跳躍
-            {
-                Jumping = true;
-                skeletonRootMotion.rootMotionScaleY = 3;
-                skeletonAnimation.AnimationState.SetAnimation(0, "Jump", false);
-            }
-            else//? 蹬牆跳
-            {
-                PlayerHint.gameObject.SetActive(false);
-                transform.Rotate(0, 180, 0);
-                Jumping = false;
-                skeletonRootMotion.rootMotionScaleY = 3;
-                Rigid.AddForce(transform.right * 500);
-                skeletonAnimation.AnimationState.SetAnimation(0, "WallJump", false);
-            }
-        }
+        UseJump(3);
     }
     public void CallJump(int jumpPower)
     {
-        if (CanControl && CanJump)
-        {
-            CanJump = false;
-            CanControl = false;
-            Rigid.Sleep();
-            Rigid.gravityScale = 0;
-            if (PlayerHint.activeInHierarchy == false)//? 一般跳躍
-            {
-                Jumping = true;
-                skeletonRootMotion.rootMotionScaleY = jumpPower;
-                skeletonAnimation.AnimationState.SetAnimation(0, "Jump", false);
-            }
-            else//? 蹬牆跳
-            {
-                PlayerHint.gameObject.SetActive(false);
-                transform.Rotate(0, 180, 0);
-                Jumping = false;
-                skeletonRootMotion.rootMotionScaleY = 3;
-                Rigid.AddForce(transform.right * 500);
-                skeletonAnimation.AnimationState.SetAnimation(0, "WallJump", false);
-            }
-        }
+        UseJump(jumpPower);
     }
     private void OnFlash(InputAction.CallbackContext context)//? 閃避
     {
         if (CanControl && CanFlash)
         {
-            if (Skill6Check == true)
-                Attack[3].SetActive(true);
-            CanFlash = false;
             CanControl = false;
             Super = true;
+            CanFlash = false;
+            if (Skill6Check == true)//? 無形攻擊
+                Attack[3].SetActive(true);
             skeletonAnimation.AnimationState.SetAnimation(0, "Flash", false);
         }
     }
@@ -455,8 +425,8 @@ public class PlayerSystem : SkeletonAnimationSystem
             if (true)//NowMp > 9
             {
                 NowMp -= 10;
-                CanRestore = false;
                 CanControl = false;
+                CanRestore = false;
                 Rigid.gravityScale = 0;
                 if (FastRestore == false)
                     skeletonAnimation.AnimationState.SetAnimation(0, "HP+++", false);
@@ -486,15 +456,13 @@ public class PlayerSystem : SkeletonAnimationSystem
     {
         if (CanControl && CanAttack)
         {
-            CanAttack = false;
             CanControl = false;
-            Rigid.gravityScale = 10;
+            CanAttack = false;
             switch (WhichAttack)
             {
                 case 1:
                     skeletonAnimation.AnimationState.SetAnimation(0, "Attack1", false);
                     Effect[0].SetActive(true);
-
                     break;
                 case 2:
                     skeletonAnimation.AnimationState.SetAnimation(0, "Attack2", false);
@@ -515,38 +483,21 @@ public class PlayerSystem : SkeletonAnimationSystem
         if (Super == false)
         {
             NowHp -= damage;
-            if (NowHp > 0)
+            StateReset();
+            CanControl = false;
+            Super = true;
+            if (NowHp > 0)//? 受傷
             {
-                if (Skill8Check == true)
+                if (Skill8Check == true)//? 尖刺反彈
                     Attack[4].SetActive(true);
-                Super = true;
-                CanControl = false;
-                CanJump = true;
-                Jumping = false;
-                Rigid.gravityScale = 10;
-                CanFlash = true;
-                CanRestore = true;
-                CanAttack = true;
-                WhichAttack = 1;
-                Attack[0].SetActive(false);
-                Attack[1].SetActive(false);
-                Attack[2].SetActive(false);
-                Attack[3].SetActive(false);
-                Effect[0].SetActive(false);
-                Effect[1].SetActive(false);
-                Effect[2].SetActive(false);
-                if (C1 != null)
-                    StopCoroutine(C1);
-                if (C2 != null)
-                    StopCoroutine(C2);
-                //? (減傷效果)(增傷負面效果)(傷害反彈效果)(根性效果)
-                if (HurtEvent != null)
+                if (HurtEvent != null)//? (減傷效果)(增傷負面效果)(根性效果)
                     HurtEvent.Invoke();
                 skeletonAnimation.AnimationState.SetAnimation(0, "Hurt", false);
             }
-            else
+            else//? 死亡
             {
-                Die();
+                StopAllCoroutines();
+                skeletonAnimation.AnimationState.SetAnimation(0, "Die", false);
             }
         }
     }
@@ -555,7 +506,8 @@ public class PlayerSystem : SkeletonAnimationSystem
         NowHp -= damage;
         if (NowHp <= 0)
         {
-            Die();
+            StopAllCoroutines();
+            skeletonAnimation.AnimationState.SetAnimation(0, "Die", false);
         }
     }
     //? 被束縛事件
@@ -565,31 +517,15 @@ public class PlayerSystem : SkeletonAnimationSystem
     {
         if (Super == false)//? 沒有無敵才會被束縛
         {
+            StateReset();
             CanControl = false;
-            CanJump = true;
-            Jumping = false;
-            Rigid.gravityScale = 10;
-            CanFlash = true;
-            CanRestore = true;
-            CanAttack = true;
-            WhichAttack = 1;
-            Attack[0].SetActive(false);
-            Attack[1].SetActive(false);
-            Attack[2].SetActive(false);
-            Effect[0].SetActive(false);
-            Effect[1].SetActive(false);
-            Effect[2].SetActive(false);
             if (BondageEvent != null)
                 BondageEvent.Invoke();
             skeletonAnimation.AnimationState.SetAnimation(0, "Lock", true);
-            if (C1 != null)
-                StopCoroutine(C1);
-            if (C2 != null)
-                StopCoroutine(C2);
-            C1 = StartCoroutine(FollowBondageTarget(who));
+            BondageCoroutine = StartCoroutine(FollowBondageTarget(who));
         }
     }
-    Coroutine C1;
+    Coroutine BondageCoroutine;
     IEnumerator FollowBondageTarget(Transform who)
     {
         while (true)
@@ -601,8 +537,8 @@ public class PlayerSystem : SkeletonAnimationSystem
     }
     public void UntieBondage()//? 透過對象來觸發的，玩家無法自行解除束縛狀態
     {
-        if (C1 != null)
-            StopCoroutine(C1);
+        if (BondageCoroutine != null)
+            StopCoroutine(BondageCoroutine);
         transform.rotation = Quaternion.identity;
         CanControl = true;
     }
@@ -611,33 +547,17 @@ public class PlayerSystem : SkeletonAnimationSystem
     //? 被擊飛
     public void HitFly(bool dir, int power)
     {
-        if (Super == false)//? 沒有無敵才會被擊飛
+        if (Super == false)//? 沒有無敵才會觸發擊飛
         {
+            StateReset();
             CanControl = false;
             Super = true;
-            CanJump = true;
-            Jumping = false;
-            Rigid.gravityScale = 10;
-            CanFlash = true;
-            CanRestore = true;
-            CanAttack = true;
-            WhichAttack = 1;
-            Attack[0].SetActive(false);
-            Attack[1].SetActive(false);
-            Attack[2].SetActive(false);
-            Effect[0].SetActive(false);
-            Effect[1].SetActive(false);
-            Effect[2].SetActive(false);
-            if (HitFlyEvent != null)
+            if (HitFlyEvent != null)//? 擊飛型攻擊
                 HitFlyEvent.Invoke();
-            if (C1 != null)
-                StopCoroutine(C1);
-            if (C2 != null)
-                StopCoroutine(C2);
-            C2 = StartCoroutine(HitFlyIEnum(dir, power));
+            HitFlyCoroutine = StartCoroutine(HitFlyIEnum(dir, power));
         }
     }
-    Coroutine C2;
+    Coroutine HitFlyCoroutine;
     IEnumerator HitFlyIEnum(bool dir, int power)
     {
         HitFlyCheck = true;
@@ -654,29 +574,12 @@ public class PlayerSystem : SkeletonAnimationSystem
             yield return 0;
         }
     }
-    public void UntieHitFly()//? 處於擊飛狀態下，掉落在地板上自動觸發
+    private void UntieHitFly()//? 處於擊飛狀態下，掉落在地板上自動觸發
     {
-        if (C2 != null)
-            StopCoroutine(C2);
+        HitFlyCheck = false;
+        if (HitFlyCoroutine != null)
+            StopCoroutine(HitFlyCoroutine);
         skeletonAnimation.AnimationState.SetAnimation(0, "HitFlyDown", false);
-    }
-    //? 死亡
-    private void Die()
-    {
-        Super = true;
-        CanControl = false;
-        Jumping = false;
-        Rigid.gravityScale = 10;
-        for (int x = 0; x < Attack.Count; x++)
-        {
-            Attack[x].SetActive(false);
-        }
-        for (int x = 0; x < Effect.Count; x++)
-        {
-            Effect[x].SetActive(false);
-        }
-        skeletonAnimation.AnimationState.SetAnimation(0, "Die", false);
-        StopAllCoroutines();
     }
     private IEnumerator DontControl(float stopTime)
     {
@@ -691,58 +594,90 @@ public class PlayerSystem : SkeletonAnimationSystem
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
+        Vector2 contactsNormal = other.contacts[0].normal;
+        float colAngle = (Mathf.Atan(contactsNormal.y / contactsNormal.x)) * 180 / Mathf.PI;
+        Debug.Log("法線角度:" + Mathf.Abs(colAngle));
+    }
+    private void OnCollisionStay2D(Collision2D other)
+    {
         Vector2 contactsNormal = other.contacts[0].normal;//? 取得碰撞點的法線向量
         float colAngle = (Mathf.Atan(contactsNormal.y / contactsNormal.x)) * 180 / Mathf.PI;//? 換算成能理解的角度
-        if (colAngle < 120 && colAngle > 60 || colAngle > -120 && colAngle < -60)//? 檢查角度判定是否是踩到地板
+        if (other.contacts[0].point.y > transform.position.y && Mathf.Abs(colAngle) < 120 && Mathf.Abs(colAngle) > 60)//? 檢查角度判定是否是踩到地板(頂到天花板不算)
         {
-            if (Jumping == true)
-                skeletonAnimation.AnimationState.SetAnimation(0, "JumpDown", false);
-            if (HitFlyCheck == true)
+            FloorHigh = transform.position.y;//? 記錄當前地板的高度(用做允許鄧牆跳的高度判斷)
+            if (Jumping == true)//? 跳躍的落地處理
             {
-                HitFlyCheck = false;
+                StateReset();
+                CanControl = true;
+                skeletonAnimation.AnimationState.SetAnimation(0, "JumpDown", false);
+            }
+            if (HitFlyCheck == true)//? 被擊飛的落地處理
+            {
                 UntieHitFly();
             }
-        }
-        if (colAngle < 10 && colAngle > -10)//? 檢查角度判定是否可以蹬牆跳
-        {
-            if (other.transform.CompareTag("Wall"))//? 接觸特定牆壁才可以蹬牆跳
+            if (IsWall == true)//? 碰到地板解除蹭牆狀態
             {
-                if (Jumping == true)
+                IsWall = false;
+                Rigid.gravityScale = 10;
+                skeletonRootMotion.rootMotionScaleY = 1;
+                skeletonAnimation.AnimationState.SetAnimation(0, "Idle", false);
+            }
+        }
+        if (colAngle < 10 && colAngle > -10 && transform.position.y > FloorHigh + 3)//? 檢查角度與高度判定是否可以蹬牆跳
+        {
+            if (other.transform.CompareTag("Wall"))//? 接觸到可以蹬牆跳的牆壁就進入蹭牆狀態
+            {
+                if (Jumping == true && IsWall == false)
                 {
+                    StateReset();
+                    Jumping = true;
+                    IsWall = true;
+                    Rigid.Sleep();
+                    Rigid.gravityScale = 0.5f;
                     if (other.GetContact(0).point.x > transform.position.x)
                         transform.rotation = Quaternion.identity;
                     else
                         transform.rotation = Quaternion.Euler(0, 180, 0);
-                    StartCoroutine(WallJumpIEnum());
+                    skeletonAnimation.AnimationState.SetAnimation(0, "WallDownLoop", true);
                 }
             }
         }
     }
-    private IEnumerator WallJumpIEnum()//? 吸附到可蹬牆跳的牆上，此時只能按跳躍鍵
+    private void OnCollisionExit2D(Collision2D other)
     {
-        CanJump = true;
-        Jumping = false;
-        CanControl = false;
-        Rigid.Sleep();
-        Rigid.gravityScale = 0.5f;
-        PlayerHint.gameObject.SetActive(true);
-        skeletonAnimation.AnimationState.SetAnimation(0, "WallDownLoop", true);
-        while (true)
+        if (IsWall == true)//? 離開牆壁解除蹭牆狀態
         {
-            if (GetInput.Player.Jump.triggered)//? 蹬牆跳
-            {
-                if (CanControl == false)
-                {
-                    CanControl = true;
-                    CallJump(3);
-                }
-                yield break;
-            }
-            yield return 0;
+            IsWall = false;
+            Rigid.gravityScale = 10;
+            skeletonRootMotion.rootMotionScaleY = 1;
+            skeletonAnimation.AnimationState.SetAnimation(0, "JumpLoop", true);
         }
     }
     public void CallWallJump()//? 蹬牆跳的外部接口
     {
-        StartCoroutine(WallJumpIEnum());
+
+    }
+    private void StateReset()//? 做出任何中斷動畫行為時，將可能的狀態重置
+    {
+        Super = false;
+        CanJump = true;
+        Jumping = false;
+        IsWall = false;
+        Rigid.gravityScale = 10;
+        CanFlash = true;
+        CanRestore = true;
+        CanAttack = true;
+        WhichAttack = 1;
+        skeletonRootMotion.rootMotionScaleY = 1;
+        Attack[0].SetActive(false);
+        Attack[1].SetActive(false);
+        Attack[2].SetActive(false);
+        Effect[0].SetActive(false);
+        Effect[1].SetActive(false);
+        Effect[2].SetActive(false);
+        if (BondageCoroutine != null)
+            StopCoroutine(BondageCoroutine);
+        if (HitFlyCoroutine != null)
+            StopCoroutine(HitFlyCoroutine);
     }
 }

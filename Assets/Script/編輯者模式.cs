@@ -9,7 +9,7 @@ public class 編輯者模式 : MonoBehaviour
     [SerializeField] int 玩家最大魔力;
     [SerializeField] int 玩家最大攻擊力;
     [SerializeField] int 玩家最大硬直力;
-    [SerializeField] int 玩家最大速度;
+    [SerializeField] float 玩家最大速度;
     [SerializeField] int 玩家最大槽數;
 
     [SerializeField] bool 吸引;

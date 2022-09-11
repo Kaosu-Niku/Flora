@@ -14,8 +14,8 @@ public class PlayerDataSO : ScriptableObject
     public static int MaxAtk { get => _MaxAtk; set { _MaxAtk = value; } }
     static int _MaxHit;//* 最大硬直力
     public static int MaxHit { get => _MaxHit; set { _MaxHit = value; } }
-    static int _MaxSpeed;//* 最大速度
-    public static int MaxSpeed { get => _MaxSpeed; set { _MaxSpeed = value; } }
+    static float _MaxSpeed;//* 最大速度
+    public static float MaxSpeed { get => _MaxSpeed; set { _MaxSpeed = value; } }
     static float _Money;//* 金錢數量
     public static float Money { get => _Money; set { _Money = value; if (_Money < 0) _Money = 0; } }
 }

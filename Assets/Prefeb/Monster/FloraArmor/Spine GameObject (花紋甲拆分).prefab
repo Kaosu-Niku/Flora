@@ -53,8 +53,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHp: 50
   MaxHitRecover: 1
-  DropMoney: 9999
-  DropMp: 500
+  DropMoney: 999
+  DropMp: 999
   Attack:
   - {fileID: 2501855835923544167}
   HpSliderMove: {x: 0, y: 5, z: 0}

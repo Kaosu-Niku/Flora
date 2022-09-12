@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 
 [CreateAssetMenu(menuName = "MyCustomAsset/UiSystem")]
@@ -18,10 +19,10 @@ public class UiSystemSO : ScriptableObject
         if (ChangePlayerMpAction != null)
             ChangePlayerMpAction.Invoke();
     }
-    public static UnityAction<string, float> TalkPanelAction;//? 顯示對話框事件
-    public static void TalkPanelInvoke(string what, float time)
+    public static UnityAction<Text, string, float> TalkPanelAction;//? 顯示對話框事件
+    public static void TalkPanelInvoke(Text text, string what, float time)
     {
         if (TalkPanelAction != null)
-            TalkPanelAction.Invoke(what, time);
+            TalkPanelAction.Invoke(text, what, time);
     }
 }

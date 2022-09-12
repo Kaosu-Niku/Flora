@@ -9,7 +9,10 @@ public class BigJumpPlant : SpecialPlantSystem
     bool CanUse = true;
     [SerializeField] int Power;
     PlayerSystem GetPlayer;
-
+    private void Start()
+    {
+        GetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerSystem>();
+    }
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -17,15 +20,11 @@ public class BigJumpPlant : SpecialPlantSystem
             if (CanUse == true)
             {
                 CanUse = false;
+
                 skeletonAnimation.AnimationState.SetAnimation(0, "Jump", false);
             }
         }
     }
-    private void Start()
-    {
-        GetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerSystem>();
-    }
-
     protected override void DoSomething(InputAction.CallbackContext context)
     {
 

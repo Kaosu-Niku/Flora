@@ -8,10 +8,9 @@ using DG.Tweening;
 
 public class NPC : MonoBehaviour
 {
-    IPoolObject NpcHintButton;//* 提示按鈕
+    NpcPop MyPop;//* 提示泡泡
     IPoolObject NpcTalk;//* Npc對話面板
     Text TalkText;
-    [SerializeField] Vector3 ButtonMove;//* 按鈕位置微調 
     [SerializeField] Vector3 TalkMove;//* 對話面板位置微調 
     [SerializeField] List<string> TalkString = new List<string>();//* 對話內容
     [SerializeField] List<float> TalkTime = new List<float>();//* 對話秒數
@@ -36,7 +35,7 @@ public class NPC : MonoBehaviour
     }
     private void Start()
     {
-        NpcHintButton = GameManagerSO.GetPoolInvoke().GetObject("NpcHintButton", transform.position + ButtonMove, transform.rotation);
+        MyPop = transform.GetComponentInChildren<NpcPop>();
         NpcTalk = GameManagerSO.GetPoolInvoke().GetObject("NpcTalk", transform.position + TalkMove, transform.rotation);
         NpcTalk.gameObject.SetActive(false);
         TalkText = NpcTalk.transform.GetChild(0).GetChild(0).GetComponent<Text>();
@@ -69,7 +68,7 @@ public class NPC : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))//? 玩家進入範圍
         {
             CanTalk = true;
-            NpcHintButton.gameObject.SetActive(true);
+            MyPop.CallDialog();
         }
     }
 
@@ -79,8 +78,7 @@ public class NPC : MonoBehaviour
         {
             CanTalk = false;
             TalkNum = 0;
-            if (NpcHintButton != null)
-                NpcHintButton.gameObject.SetActive(false);
+            MyPop.CallClear();
         }
     }
 

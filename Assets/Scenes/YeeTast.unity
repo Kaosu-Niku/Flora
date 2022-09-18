@@ -6160,22 +6160,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2588610104410515718, guid: 567054877cc42e947ac25a40fbd5265e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.34838974
-      objectReference: {fileID: 0}
-    - target: {fileID: 2588610104410515718, guid: 567054877cc42e947ac25a40fbd5265e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.5272487
-      objectReference: {fileID: 0}
-    - target: {fileID: 2588610104410515718, guid: 567054877cc42e947ac25a40fbd5265e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.99436915
-      objectReference: {fileID: 0}
-    - target: {fileID: 2588610104410515718, guid: 567054877cc42e947ac25a40fbd5265e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.1059718
-      objectReference: {fileID: 0}
     - target: {fileID: 5977903479375229840, guid: 567054877cc42e947ac25a40fbd5265e, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -6580,9 +6564,9 @@ GameObject:
   - component: {fileID: 2136730679}
   - component: {fileID: 2136730678}
   - component: {fileID: 2136730677}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square_3
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

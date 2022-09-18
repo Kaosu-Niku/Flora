@@ -41,7 +41,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Dissolve: 1
-    - Injuried: 1
+    - Injuried: 0
     - Vector1_110ae169941b4337849504e68d4b226e: 1
     - Vector1_19dc2336ba374b61909077c7df3362df: 1
     - Vector1_6d6930d71ab34747ae8848c708435024: 0.07

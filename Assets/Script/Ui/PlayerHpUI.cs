@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHpUI : MonoBehaviour
 {
     [SerializeField] AllEventSO GetAllEvent;
     [SerializeField] PlayerDataSO GetPlayerData;
-    [SerializeField] Transform FirstPos;//* 初始圖片位置
-    [SerializeField] List<GameObject> NullHpImage = new List<GameObject>();//* 空血量圖片
-    [SerializeField] List<GameObject> HalfHpImage = new List<GameObject>();//* 半血量圖片
-    [SerializeField] List<GameObject> MaxHpImage = new List<GameObject>();//* 滿血量圖片
+    [SerializeField] Image HpImage;
+    [SerializeField] GameObject Hp30Image;
+    [SerializeField] GameObject Hp20Image;
     private void ChangePlayerHp()
     {
         StartCoroutine(ChangePlayerHpIEnum());
@@ -17,25 +17,39 @@ public class PlayerHpUI : MonoBehaviour
     private IEnumerator ChangePlayerHpIEnum()
     {
         yield return 0;
-        for (int x = 0; x < 20; x++)
+        float a = ((float)PlayerSystemSO.GetPlayerInvoke().NowHp) / ((float)PlayerSystemSO.GetPlayerInvoke().MaxHp);
+        HpImage.fillAmount = a;
+        if (a < 0.7f)
         {
-            if (NullHpImage[x].activeSelf == true)
-                NullHpImage[x].SetActive(false);
-            if (MaxHpImage[x].activeSelf == true)
-                MaxHpImage[x].SetActive(false);
-            if (HalfHpImage[x].activeSelf == true)
-                HalfHpImage[x].SetActive(false);
+            if (Hp30Image.activeInHierarchy == true)
+                Hp30Image.SetActive(false);
+            if (Hp20Image.activeInHierarchy == true)
+                Hp20Image.SetActive(false);
         }
-        for (int x = 0; x < PlayerSystemSO.GetPlayerInvoke().MaxHp / 2; x++)
-            NullHpImage[x].SetActive(true);
-        for (int x = 0; x < PlayerSystemSO.GetPlayerInvoke().NowHp / 2; x++)
-            MaxHpImage[x].SetActive(true);
-        if (PlayerSystemSO.GetPlayerInvoke().NowHp % 2 == 1)
+        else if (a < 0.9f)
         {
-            NullHpImage[PlayerSystemSO.GetPlayerInvoke().NowHp / 2].SetActive(true);
-            HalfHpImage[PlayerSystemSO.GetPlayerInvoke().NowHp / 2].SetActive(true);
+            if (a < 0.8f)
+            {
+                if (Hp30Image.activeInHierarchy == false)
+                    Hp30Image.SetActive(true);
+                if (Hp20Image.activeInHierarchy == true)
+                    Hp20Image.SetActive(false);
+            }
+            else
+            {
+                if (Hp30Image.activeInHierarchy == true)
+                    Hp30Image.SetActive(false);
+                if (Hp20Image.activeInHierarchy == false)
+                    Hp20Image.SetActive(true);
+            }
         }
-
+        else
+        {
+            if (Hp30Image.activeInHierarchy == false)
+                Hp30Image.SetActive(true);
+            if (Hp20Image.activeInHierarchy == false)
+                Hp20Image.SetActive(true);
+        }
     }
     private void OnEnable()
     {
@@ -44,5 +58,11 @@ public class PlayerHpUI : MonoBehaviour
     private void OnDisable()
     {
         UiSystemSO.ChangePlayerHpAction -= ChangePlayerHp;
+    }
+    void Start()
+    {
+        HpImage.fillAmount = 0;
+        Hp30Image.SetActive(false);
+        Hp20Image.SetActive(false);
     }
 }

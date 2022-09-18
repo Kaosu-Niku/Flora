@@ -29,22 +29,22 @@ public class PlayerSkill : MonoBehaviour
     {
         yield return 0;
         {//? (吸引) 吸取掉落物範圍增加(初始為3，增加後為10)
-            if (PlayerSystemSO.AllSkill[0] == true)
+            if (PlayerSystemSO.SkillUse[0] == true)
                 PlayerSystemSO.GetPlayerInvoke().SuckAwardCol.radius = 10;
             else
                 PlayerSystemSO.GetPlayerInvoke().SuckAwardCol.radius = 3;
         }
         {//? (閃避) 閃避時間增加
-            PlayerSystemSO.GetPlayerInvoke().FastFlash = PlayerSystemSO.AllSkill[1];
+            PlayerSystemSO.GetPlayerInvoke().FastFlash = PlayerSystemSO.SkillUse[1];
         }
         {//? (減傷) 所受傷害皆減少1點
-            if (PlayerSystemSO.AllSkill[2] == true)
+            if (PlayerSystemSO.SkillUse[2] == true)
                 PlayerSystemSO.GetPlayerInvoke().HurtEvent += Skill2;
             else
                 PlayerSystemSO.GetPlayerInvoke().HurtEvent -= Skill2;
         }
         {//? (增傷) 提高傷害(1.2倍) & 所受傷害皆增加1點
-            if (PlayerSystemSO.AllSkill[3] == true)
+            if (PlayerSystemSO.SkillUse[3] == true)
             {
                 PlayerSystemSO.GetPlayerInvoke().AttackEvent += Skill3;
                 PlayerSystemSO.GetPlayerInvoke().HurtEvent += Skill3_1;
@@ -56,13 +56,13 @@ public class PlayerSkill : MonoBehaviour
             }
         }
         {//? (魔力成長) 魔力容量增加20
-            if (PlayerSystemSO.AllSkill[4] == true)
+            if (PlayerSystemSO.SkillUse[4] == true)
                 PlayerSystemSO.GetPlayerInvoke().SetMaxMp(120);
             else
                 PlayerSystemSO.GetPlayerInvoke().SetMaxMp(100);
         }
         {//? (拜金) 金錢獲取量上升為1.5倍 & 血量上限砍半
-            if (PlayerSystemSO.AllSkill[5] == true)
+            if (PlayerSystemSO.SkillUse[5] == true)
             {
                 PlayerSystemSO.GetPlayerInvoke().AddMoneyEvent += Skill5;
                 if (Skill5Check == false)
@@ -82,28 +82,28 @@ public class PlayerSkill : MonoBehaviour
             }
         }
         {//? (無形攻擊) 使用閃避可對閃避期間接觸的怪物造成傷害
-            PlayerSystemSO.GetPlayerInvoke().Skill6Check = PlayerSystemSO.AllSkill[6];
+            PlayerSystemSO.GetPlayerInvoke().Skill6Check = PlayerSystemSO.SkillUse[6];
         }
         {//? (光華刀刃) 每次攻擊有10%機率提高傷害(1.5倍)
-            if (PlayerSystemSO.AllSkill[7] == true)
+            if (PlayerSystemSO.SkillUse[7] == true)
                 PlayerSystemSO.GetPlayerInvoke().AttackEvent += Skill7;
             else
                 PlayerSystemSO.GetPlayerInvoke().AttackEvent -= Skill7;
         }
         {//? (傷害反彈) 受到傷害，攻擊對象會受到傷害
-            PlayerSystemSO.GetPlayerInvoke().Skill8Check = PlayerSystemSO.AllSkill[8];
+            PlayerSystemSO.GetPlayerInvoke().Skill8Check = PlayerSystemSO.SkillUse[8];
         }
         {//? (魔力吸取) 魔力吸取量上升為1.5倍
-            if (PlayerSystemSO.AllSkill[9] == true)
+            if (PlayerSystemSO.SkillUse[9] == true)
                 PlayerSystemSO.GetPlayerInvoke().AddMpEvent += Skill9;
             else
                 PlayerSystemSO.GetPlayerInvoke().AddMpEvent -= Skill9;
         }
         {//? (回血速度增加) 恢復動作加快
-            PlayerSystemSO.GetPlayerInvoke().FastRestore = PlayerSystemSO.AllSkill[10];
+            PlayerSystemSO.GetPlayerInvoke().FastRestore = PlayerSystemSO.SkillUse[10];
         }
         {//! (彼岸花) 減少施放技能所消耗的魔力
-            if (PlayerSystemSO.AllSkill[11] == true)
+            if (PlayerSystemSO.SkillUse[11] == true)
             {
 
             }
@@ -113,13 +113,13 @@ public class PlayerSkill : MonoBehaviour
             }
         }
         {//? (根性) 承受致命傷害，鎖血一滴
-            if (PlayerSystemSO.AllSkill[12] == true)
+            if (PlayerSystemSO.SkillUse[12] == true)
                 PlayerSystemSO.GetPlayerInvoke().HurtEvent += Skill12;
             else
                 PlayerSystemSO.GetPlayerInvoke().HurtEvent -= Skill12;
         }
         {//? (生命成長) 額外增加20%血量
-            if (PlayerSystemSO.AllSkill[13] == true)
+            if (PlayerSystemSO.SkillUse[13] == true)
             {
                 if (Skill13Check == false)
                 {
@@ -138,9 +138,9 @@ public class PlayerSkill : MonoBehaviour
         }
     }
 
-    private void Skill2()//? 減傷效果(其實是透過加一滴血來達成減傷效果)
+    private void Skill2()//? 減傷效果(其實是透過減一滴血來達成減傷效果)
     {
-        PlayerSystemSO.GetPlayerInvoke().AddNowHp(1);
+        PlayerSystemSO.GetPlayerInvoke().AddNowHp(-1);
     }
     private void Skill3(PlayerAttack p)//? 增傷效果
     {
@@ -148,7 +148,7 @@ public class PlayerSkill : MonoBehaviour
     }
     private void Skill3_1()//? 增傷負面效果
     {
-        PlayerSystemSO.GetPlayerInvoke().AddNowHp(-1);
+        PlayerSystemSO.GetPlayerInvoke().AddNowHp(1);
     }
     private void Skill5(int much)//? 拜金效果
     {
@@ -168,7 +168,6 @@ public class PlayerSkill : MonoBehaviour
             PlayerSystemSO.GetPlayerInvoke().AddNowMp(much / 2);
             PlayerSystemSO.GetPlayerInvoke().AddMpEvent += Skill9;
         }
-
     }
     private void Skill11()//? 魔彼岸花效果
     {
@@ -178,9 +177,9 @@ public class PlayerSkill : MonoBehaviour
     {
         if (Skill12Check == false)
         {
-            if (PlayerSystemSO.GetPlayerInvoke().NowHp < 1)
+            if (PlayerSystemSO.GetPlayerInvoke().NowHp >= PlayerSystemSO.GetPlayerInvoke().MaxHp)
             {
-                PlayerSystemSO.GetPlayerInvoke().AddNowHp(-PlayerSystemSO.GetPlayerInvoke().NowHp + 1);
+                PlayerSystemSO.GetPlayerInvoke().AddNowHp(PlayerSystemSO.GetPlayerInvoke().NowHp - 1);
                 Skill12Check = true;
             }
         }

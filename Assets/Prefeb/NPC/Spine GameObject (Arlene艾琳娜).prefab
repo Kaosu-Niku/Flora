@@ -1840,7 +1840,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4582013725331437786
 Transform:
   m_ObjectHideFlags: 0
@@ -1958,6 +1958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonMove: {x: 0, y: 0, z: 0}
+  TalkMove: {x: 0, y: 0, z: 0}
   TalkString:
   - "\u4F60\u597D"
   - "\u518D\u898B\u63B0\u63B0"

@@ -39,26 +39,35 @@ public class PlayerSystemSO : ScriptableObject
     public static int SkillMaxPoint { get => _skillMaxPoint; set { if (value > 10) _skillMaxPoint = 10; else _skillMaxPoint = value; } }
     static int _skillNowPoint;//* 已消耗的技能點數
     public static int SkillNowPoint { get => _skillNowPoint; set { _skillNowPoint = value; } }
-    static bool[] _AllSkill = new bool[15];//* 各技能是否開啟
-    public static bool[] AllSkill { get => _AllSkill; set { _AllSkill = value; } }//* 各技能是否開啟
+    static bool[] _SkillOpen = new bool[15];//* 各技能是否解鎖
+    public static bool[] SkillOpen { get => _SkillUse; set { _SkillUse = value; } }
+    static bool[] _SkillUse = new bool[15];//* 各技能是否使用
+    public static bool[] SkillUse { get => _SkillUse; set { _SkillUse = value; } }
     static int[] _SkillDeletePoint = new int[] { 1, 2, 1, 2, 1, 2, 2, 2, 3, 3, 3, 3, 4, 1 };//* 各技能的點數消耗
     public static int[] SkillDeletePoint { get => _SkillDeletePoint; private set { _SkillDeletePoint = value; } }
     public static void UseSkill(int whichSkill)
     {
         if (whichSkill < 15)
         {
-            if (AllSkill[whichSkill] == false)//? 技能未開啟
+            if (SkillOpen[whichSkill] == true)//? 技能已解鎖
             {
-                if (SkillNowPoint + SkillDeletePoint[whichSkill] <= SkillMaxPoint)//? 當前技能點數超過最大數將無法安裝
+                if (SkillUse[whichSkill] == false)//? 技能未使用
                 {
-                    SkillNowPoint += SkillDeletePoint[whichSkill];
-                    AllSkill[whichSkill] = true;
+                    if (SkillNowPoint + SkillDeletePoint[whichSkill] <= SkillMaxPoint)//? 當前技能點數超過最大數將無法安裝
+                    {
+                        SkillNowPoint += SkillDeletePoint[whichSkill];
+                        SkillUse[whichSkill] = true;
+                    }
+                }
+                else//? 技能已使用
+                {
+                    SkillNowPoint -= SkillDeletePoint[whichSkill];
+                    SkillUse[whichSkill] = false;
                 }
             }
-            else//? 技能已開啟
+            else
             {
-                SkillNowPoint -= SkillDeletePoint[whichSkill];
-                AllSkill[whichSkill] = false;
+
             }
         }
     }

@@ -1,0 +1,23 @@
+hanging bug.png
+size:2048,256
+filter:Linear,Linear
+pma:true
+body
+bounds:2,41,210,278
+rotate:90
+ear
+bounds:282,68,111,183
+earw
+bounds:395,2,81,73
+rotate:90
+head
+bounds:925,137,99,114
+wing1
+bounds:395,85,166,528
+rotate:90
+wing2
+bounds:925,24,111,389
+rotate:90
+wing3
+bounds:1026,157,94,286
+rotate:90

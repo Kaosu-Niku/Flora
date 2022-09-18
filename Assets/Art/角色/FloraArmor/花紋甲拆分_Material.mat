@@ -41,6 +41,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Dissolve: 1
+    - Injuried: 0
     - Vector1_19dc2336ba374b61909077c7df3362df: 1
     - Vector1_6d6930d71ab34747ae8848c708435024: 0.06
     - Vector1_6e83df2fa2144566be2de4fac6df4eca: 1
@@ -58,5 +59,6 @@ Material:
     - _Use8Neighbourhood: 1
     m_Colors:
     - Color_5dcc54c63b9a4982af9c2f1a1f9eba7f: {r: 1, g: 1, b: 1, a: 1}
+    - Injuried_Color: {r: 0.1273585, g: 0.2566836, b: 1, a: 0}
     - _OutlineColor: {r: 1, g: 1, b: 0, a: 1}
   m_BuildTextureStacks: []

@@ -241,7 +241,7 @@ MonoBehaviour:
   DebugActive: 0
   Channel: 0
   ZoomMode: 0
-  ZoomFieldOfView: 45
+  ZoomFieldOfView: 47
   ZoomTransitionDuration: 0.2
   ZoomDuration: 0.05
   RelativeFieldOfView: 0

@@ -35,20 +35,20 @@ public class 編輯者模式 : MonoBehaviour
         PlayerDataSO.MaxHit = 玩家最大硬直力;
         PlayerDataSO.MaxSpeed = 玩家最大速度;
         PlayerSystemSO.SkillMaxPoint = 玩家最大槽數;
-        PlayerSystemSO.AllSkill[0] = 吸引;
-        PlayerSystemSO.AllSkill[1] = 閃避;
-        PlayerSystemSO.AllSkill[2] = 減傷;
-        PlayerSystemSO.AllSkill[3] = 增傷;
-        PlayerSystemSO.AllSkill[4] = 魔力成長;
-        PlayerSystemSO.AllSkill[5] = 拜金;
-        PlayerSystemSO.AllSkill[6] = 無形攻擊;
-        PlayerSystemSO.AllSkill[7] = 光華刀刃;
-        PlayerSystemSO.AllSkill[8] = 荊棘之身;
-        PlayerSystemSO.AllSkill[9] = 魔力增加;
-        PlayerSystemSO.AllSkill[10] = 回血加快;
-        PlayerSystemSO.AllSkill[11] = 彼岸花;
-        PlayerSystemSO.AllSkill[12] = 根性;
-        PlayerSystemSO.AllSkill[13] = 生命成長;
+        PlayerSystemSO.SkillUse[0] = 吸引;
+        PlayerSystemSO.SkillUse[1] = 閃避;
+        PlayerSystemSO.SkillUse[2] = 減傷;
+        PlayerSystemSO.SkillUse[3] = 增傷;
+        PlayerSystemSO.SkillUse[4] = 魔力成長;
+        PlayerSystemSO.SkillUse[5] = 拜金;
+        PlayerSystemSO.SkillUse[6] = 無形攻擊;
+        PlayerSystemSO.SkillUse[7] = 光華刀刃;
+        PlayerSystemSO.SkillUse[8] = 荊棘之身;
+        PlayerSystemSO.SkillUse[9] = 魔力增加;
+        PlayerSystemSO.SkillUse[10] = 回血加快;
+        PlayerSystemSO.SkillUse[11] = 彼岸花;
+        PlayerSystemSO.SkillUse[12] = 根性;
+        PlayerSystemSO.SkillUse[13] = 生命成長;
     }
 
 }

@@ -89,6 +89,7 @@ public abstract class Monster : SkeletonAnimationSystem
                     Super = true;
                     CustomHurt();
                     skeletonAnimation.AnimationState.SetAnimation(0, "Hit", false);
+                    StartCoroutine(HitMaterialIEnum());
                 }
             }
             else
@@ -100,6 +101,25 @@ public abstract class Monster : SkeletonAnimationSystem
                 skeletonAnimation.AnimationState.SetAnimation(0, "Die", false);
             }
         }
+    }
+    IEnumerator HitMaterialIEnum()
+    {
+        GameManagerSO.GetPoolInvoke().GetObject("EnemyInjuriedPartical", transform.position, Quaternion.identity);
+        for (int x = 0; x < 1; x++)
+        {
+            for (float t = 0; t < 0.2f; t += Time.deltaTime)
+            {
+                MonsterRenderer.material.SetFloat("Injuried", t * 5);
+                yield return 0;
+            }
+            for (float t = 0.2f; t > 0; t -= Time.deltaTime)
+            {
+                MonsterRenderer.material.SetFloat("Injuried", t * 5);
+                yield return 0;
+            }
+        }
+        MonsterRenderer.material.SetFloat("Injuried", 0);
+        yield break;
     }
     IEnumerator DieDroplIEnum()
     {

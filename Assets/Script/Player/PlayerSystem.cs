@@ -91,7 +91,7 @@ public class PlayerSystem : SkeletonAnimationSystem
         }
         if (e.Data.Name == "HP+++Trigger")
         {
-            NowHp += 1;
+            NowHp -= 1;
             return;
         }
         if (e.Data.Name == "HP+++Out")
@@ -256,6 +256,8 @@ public class PlayerSystem : SkeletonAnimationSystem
     public void SetCanControl(bool value)
     {
         CanControl = value;
+        if (value == false)
+            skeletonAnimation.AnimationState.SetAnimation(0, "Idle", true);
     }
     bool Super = false;//* 無敵狀態
     float FloorHigh;//* 離開地板時的高度
@@ -278,7 +280,7 @@ public class PlayerSystem : SkeletonAnimationSystem
     {
         CanFind = value;
     }
-    Rigidbody2D Rigid;
+    [HideInInspector] public Rigidbody2D Rigid;
     Collider2D Col;
     public CircleCollider2D SuckAwardCol;//* 吸取道具用的圓形碰撞體
     CinemachineImpulseSource MyImpulseSetting;
@@ -332,7 +334,7 @@ public class PlayerSystem : SkeletonAnimationSystem
         //? 等待PlayerSkill修改數值
         yield return 0;
         yield return 0;
-        NowHp = MaxHp;
+        NowHp = 0;
         NowMp = MaxMp;
         NowAtk = MaxAtk;
         NowHit = MaxHit;
@@ -485,11 +487,11 @@ public class PlayerSystem : SkeletonAnimationSystem
     {
         if (Super == false)
         {
-            NowHp -= damage;
+            NowHp += damage;
             StateReset();
             CanControl = false;
             Super = true;
-            if (NowHp > 0)//? 受傷
+            if (NowHp < MaxHp)//? 受傷
             {
                 if (Skill8Check == true)//? 尖刺反彈
                     Attack[4].SetActive(true);
@@ -506,8 +508,8 @@ public class PlayerSystem : SkeletonAnimationSystem
     }
     public void ForDamage(int damage)
     {
-        NowHp -= damage;
-        if (NowHp <= 0)
+        NowHp += damage;
+        if (NowHp >= MaxHp)
         {
             StopAllCoroutines();
             skeletonAnimation.AnimationState.SetAnimation(0, "Die", false);
@@ -580,17 +582,6 @@ public class PlayerSystem : SkeletonAnimationSystem
             StopCoroutine(HitFlyCoroutine);
         skeletonAnimation.AnimationState.SetAnimation(0, "HitFlyDown", false);
     }
-    private IEnumerator DontControl(float stopTime)
-    {
-        CanControl = false;
-        yield return new WaitForSeconds(stopTime);
-        CanControl = true;
-    }
-    public void CallDontControl(float stopTime)//? 停止控制玩家的外部接口
-    {
-        CanJump = true;
-        StartCoroutine(DontControl(stopTime));
-    }
     private void OnCollisionEnter2D(Collision2D other)
     {
         Vector2 contactsNormal = other.contacts[0].normal;
@@ -599,9 +590,9 @@ public class PlayerSystem : SkeletonAnimationSystem
     }
     private void OnCollisionStay2D(Collision2D other)
     {
-        Vector2 contactsNormal = other.contacts[0].normal;//? 取得碰撞點的法線向量
+        Vector2 contactsNormal = other.contacts[0].normal;//? 取得碰撞點的法線向量 other.contacts[0].point.y < transform.position.y && 
         float colAngle = (Mathf.Atan(contactsNormal.y / contactsNormal.x)) * 180 / Mathf.PI;//? 換算成能理解的角度
-        if (other.contacts[0].point.y > transform.position.y && Mathf.Abs(colAngle) < 120 && Mathf.Abs(colAngle) > 60)//? 檢查角度判定是否是踩到地板(頂到天花板不算)
+        if (colAngle < 120 && colAngle > 60)//? 檢查角度判定是否是踩到地板(頂到天花板不算)
         {
             FloorHigh = transform.position.y;//? 記錄當前地板的高度(用做允許鄧牆跳的高度判斷)
             if (Jumping == true)//? 跳躍的落地處理
@@ -651,10 +642,6 @@ public class PlayerSystem : SkeletonAnimationSystem
             skeletonRootMotion.rootMotionScaleY = 1;
             skeletonAnimation.AnimationState.SetAnimation(0, "JumpLoop", true);
         }
-    }
-    public void CallWallJump()//? 蹬牆跳的外部接口
-    {
-
     }
     private void StateReset()//? 做出任何中斷動畫行為時，將可能的狀態重置
     {

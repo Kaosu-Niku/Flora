@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using Cinemachine;
 using Spine;
 using Spine.Unity;
+using MoreMountains.Feedbacks;
 
 public class PlayerSystem : SkeletonAnimationSystem
 {
@@ -283,8 +284,8 @@ public class PlayerSystem : SkeletonAnimationSystem
     [HideInInspector] public Rigidbody2D Rigid;
     Collider2D Col;
     public CircleCollider2D SuckAwardCol;//* 吸取道具用的圓形碰撞體
-    CinemachineImpulseSource MyImpulseSetting;
     MyInput GetInput;
+    [SerializeField] MMFeedbacks HurtFeedbacks;
     [SerializeField] List<GameObject> Attack = new List<GameObject>();
     [SerializeField] List<GameObject> Effect = new List<GameObject>();
     [HideInInspector] public bool Skill6Check;//* 無形攻擊是否使用
@@ -298,7 +299,6 @@ public class PlayerSystem : SkeletonAnimationSystem
         //transform.position = new Vector3(GameDataSO.ResetPoint[0], GameDataSO.ResetPoint[1], 0);
         Rigid = GetComponent<Rigidbody2D>();
         Col = GetComponent<Collider2D>();
-        MyImpulseSetting = GetComponent<CinemachineImpulseSource>();
         GetInput = new MyInput();
     }
     private void OnEnable()
@@ -498,6 +498,7 @@ public class PlayerSystem : SkeletonAnimationSystem
                 if (HurtEvent != null)//? (減傷效果)(增傷負面效果)(根性效果)
                     HurtEvent.Invoke();
                 skeletonAnimation.AnimationState.SetAnimation(0, "Hurt", false);
+                HurtFeedbacks.PlayFeedbacks();
             }
             else//? 死亡
             {

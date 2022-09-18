@@ -7,7 +7,7 @@ public class MonsterHurt : MonoBehaviour
     Monster GetMonster;
     private void Awake()
     {
-        GetMonster = transform.root.GetComponent<Monster>();
+        GetMonster = transform.parent.GetComponent<Monster>();
         tag = "Hurt";
     }
     private void OnTriggerEnter2D(Collider2D other)
@@ -16,7 +16,10 @@ public class MonsterHurt : MonoBehaviour
         {
             PlayerAttack a = other.gameObject.GetComponent<PlayerAttack>();
             if (a)
+            {
+                Debug.Log(a.TureDamage); Debug.Log(a.HitDamage);
                 GetMonster.Hurt(a.TureDamage, a.HitDamage);
+            }
         }
     }
 }

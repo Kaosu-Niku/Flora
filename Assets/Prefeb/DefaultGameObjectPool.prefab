@@ -44,9 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GetAllObject:
-  - Tag: NpcHintButton
-    Obj: {fileID: -7719454119279078233, guid: de3e5caabf7f87644acfe73c12e52aef, type: 3}
-    SetCount: 1
   - Tag: NpcTalk
     Obj: {fileID: 5485263967369959543, guid: 8163dac8c3d69774aa652f10cf452431, type: 3}
     SetCount: 1
@@ -71,3 +68,6 @@ MonoBehaviour:
   - Tag: BigMp
     Obj: {fileID: 2386908791773490264, guid: 916029b29f155e944991632be76fcd99, type: 3}
     SetCount: 0
+  - Tag: EnemyInjuriedPartical
+    Obj: {fileID: 7395193164509893635, guid: 17740d0e3e036ec4eb25343474713a83, type: 3}
+    SetCount: 1

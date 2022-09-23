@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LookBoneFollow : MonoBehaviour
 {
-    //? 請將該腳本和碰撞體都放在原骨頭上，BneTrans指定Override的骨頭
+    //? 請將該腳本和碰撞體都放在原骨頭上，BoneTrans指定Override的骨頭
     Vector3 FirstPos;
     [SerializeField] Transform BoneTrans;
     Transform PlayerTrans;

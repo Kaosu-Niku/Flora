@@ -48,7 +48,6 @@ public class AllEventSO : ScriptableObject
     }
     public void ChangeWindowMode(int w)//? 更改視窗模式
     {
-
         switch (w)
         {
             case 0: Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen; break;

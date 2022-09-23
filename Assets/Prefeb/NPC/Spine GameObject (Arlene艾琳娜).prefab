@@ -1958,13 +1958,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3559be9d24e0745b00c6b7e819c06b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TalkMove: {x: 0, y: 0, z: 0}
+  TalkMove: {x: 0, y: 10, z: 0}
   TalkString:
-  - "\u4F60\u597D"
-  - "\u518D\u898B\u63B0\u63B0"
+  - "\u4F60\u597D\u4F60\u597D\u4F60\u597D\u4F60\u597D\u4F60\u597D"
+  - "\u518D\u898B\u63B0\u63B0\u518D\u898B\u63B0\u63B0\u518D\u898B\u63B0\u63B0"
   TalkTime:
-  - 1
   - 2
+  - 4
 --- !u!61 &4582013725331437790
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1978,7 +1978,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.15926051, y: 1.9429779}
+  m_Offset: {x: 0, y: 2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1989,7 +1989,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.5481677, y: 4.885956}
+  m_Size: {x: 10, y: 10}
   m_EdgeRadius: 0
 --- !u!114 &7029807646325617570
 MonoBehaviour:

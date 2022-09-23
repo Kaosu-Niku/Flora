@@ -344,30 +344,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2803873902886122251, guid: 0f507285b81daa64fbacf99846415a24, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2803873902886122251, guid: 0f507285b81daa64fbacf99846415a24, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3990405927993246811, guid: 0f507285b81daa64fbacf99846415a24, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3990405927993246811, guid: 0f507285b81daa64fbacf99846415a24, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5031159064964885013, guid: 0f507285b81daa64fbacf99846415a24, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5031159064964885013, guid: 0f507285b81daa64fbacf99846415a24, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5182519602472637152, guid: 0f507285b81daa64fbacf99846415a24, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -459,14 +435,6 @@ PrefabInstance:
     - target: {fileID: 5182519602472637156, guid: 0f507285b81daa64fbacf99846415a24, type: 3}
       propertyPath: m_Name
       value: StartCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6089127487833628249, guid: 0f507285b81daa64fbacf99846415a24, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6089127487833628249, guid: 0f507285b81daa64fbacf99846415a24, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f507285b81daa64fbacf99846415a24, type: 3}

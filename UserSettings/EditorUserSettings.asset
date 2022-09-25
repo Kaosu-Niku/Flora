@@ -6,9 +6,10 @@ EditorUserSettings:
   serializedVersion: 4
   m_ConfigSettings:
     RecentlyUsedScenePath-0:
-      value: 22424703114646680e0b0227036c6c1122160b3e623d28393930
+      value: 22424703114646680e0b0227036c791904040c6439262f2434
       flags: 0
     RecentlyUsedScenePath-1:
+<<<<<<< HEAD
       value: 22424703114646680e0b0227036c6615132319393866333e243d04
       flags: 0
     UnityEditor.ShaderGraph.Blackboard:
@@ -19,6 +20,9 @@ EditorUserSettings:
       flags: 0
     UnityEditor.ShaderGraph.InspectorWindow:
       value: 18135939215a0a5004000b0e15254b524c030a3f2964643d120d1230e9e93a3fd6e826abbd3c3e302a07a37e0901373ae01e0008f707250d171df81a53a542465f95548717f73713d91006c1c309d0effad0d2f9ddffa5828a91f0beb6fdd1cbfceba0b9f0b3bed8e8f5ade1ff8c978883d3f59e9f969f89eacfcc
+=======
+      value: 22424703114646680e0b0227036c73150012147b623d28393930
+>>>>>>> 08b42906edc8eb9e8ff9f8e28ce2b4b0243fe35f
       flags: 0
     vcSharedLogLevel:
       value: 0d5e400f0650

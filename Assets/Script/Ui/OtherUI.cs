@@ -4,27 +4,34 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class LoadSceneUI : MonoBehaviour
+public class OtherUI : MonoBehaviour
 {
     [SerializeField] GameObject LoadingBack;//* 加載畫面
     [SerializeField] Slider LoadingSlider;//* 加載進度條
+    [SerializeField] GameObject SaveImage;//* 存檔圖案
     private void OnEnable()
     {
         AllEventSO.LoadSceneEvent += ToLoadScene;
         AllEventSO.LoadSceneAsyncEvent += ToLoadSceneAsync;
+        UiSystemSO.SaveImageAction += UseSaveImage;
     }
     private void OnDisable()
     {
         AllEventSO.LoadSceneEvent -= ToLoadScene;
         AllEventSO.LoadSceneAsyncEvent -= ToLoadSceneAsync;
+        UiSystemSO.SaveImageAction -= UseSaveImage;
     }
-    public void ToLoadScene(string sceneName)
+    private void ToLoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
-    public void ToLoadSceneAsync(string sceneName)
+    private void ToLoadSceneAsync(string sceneName)
     {
         StartCoroutine(ToLoadSceneAsyncIEnum(sceneName));
+    }
+    private void UseSaveImage(bool b)
+    {
+        SaveImage.SetActive(b);
     }
     private IEnumerator ToLoadSceneAsyncIEnum(string sceneName)
     {

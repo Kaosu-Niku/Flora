@@ -69,5 +69,5 @@ MonoBehaviour:
     Obj: {fileID: 2386908791773490264, guid: 916029b29f155e944991632be76fcd99, type: 3}
     SetCount: 0
   - Tag: EnemyInjuriedPartical
-    Obj: {fileID: 7395193164509893635, guid: 17740d0e3e036ec4eb25343474713a83, type: 3}
+    Obj: {fileID: 7395193164509893635, guid: 65024630fbab8fe45a889c1d5eea30fa, type: 3}
     SetCount: 1

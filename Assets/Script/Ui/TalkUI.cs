@@ -25,20 +25,20 @@ public class TalkUI : MonoBehaviour
     {
         TalkPanel.SetActive(false);
     }
-    private void ToTalk(Text text, string what, float time)
+    private void ToTalk(string what, float time)
     {
         if (TalkPanel != null)
         {
             TalkPanel.SetActive(true);
             if (what != null)
             {
-                Seq.Append(text.DOText("", 1));//? 開始播放第二句以上的對話時，清除前一個對話的進度
-                Seq.Append(text.DOText(what, time));//? 在指定秒數內逐漸一字一字顯示對話內容
+                Seq.Append(TalkText.DOText("", 1));//? 開始播放第二句以上的對話時，清除前一個對話的進度
+                Seq.Append(TalkText.DOText(what, time));//? 在指定秒數內逐漸一字一字顯示對話內容
             }
             else
             {
                 TalkPanel.SetActive(false);
-                Seq.Append(text.DOText("", 1));
+                Seq.Append(TalkText.DOText("", 1));
             }
         }
     }

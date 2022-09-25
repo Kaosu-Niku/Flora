@@ -17,6 +17,8 @@ public class ResetPoint : SpecialPlantSystem
         GameDataSO.ResetPoint[0] = transform.position.x;
         GameDataSO.ResetPoint[1] = transform.position.y;
         AllEventSO.LoadSceneAsyncTrigger(GameDataSO.LastScene);
+        UiSystemSO.SaveImageInvoke(true);
+        SaveLoadSO.Save();
         yield break;
     }
     protected override void AnimationEventCallBack(TrackEntry trackEntry, Spine.Event e)

@@ -1,6 +1,10 @@
 fileFormatVersion: 2
 <<<<<<<< HEAD:Assets/Art/特效/ShaderGraph/樹葉測試.mat.meta
-guid: e92a8b981ef867f42bd07378745514ce
+<<<<<<< HEAD
+guid: 75cee69197167d948a509145a50b807c
+=======
+guid: 8ef79a8ff7b9e5d4db0cac5b49bd949c
+>>>>>>> 08b42906edc8eb9e8ff9f8e28ce2b4b0243fe35f
 NativeFormatImporter:
 ========
 guid: 76acab5e0cd21a644a8b8396bd49795e

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d50d0579856947d4485ed1d075ae45ec
+guid: 23fcfa7a26238f047b8f99f56342ccfa
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -75,18 +75,6 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites: []
@@ -99,9 +87,7 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures:
-    - texture: {fileID: 2800000, guid: bf68795d0b3f20e44a59ad74b802de8e, type: 3}
-      name: _NormalMap
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -16,7 +16,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   color:
     m_OverrideState: 1
-    m_Value: {r: 0.1728818, g: 0.23096336, b: 0.3490566, a: 1}
+    m_Value: {r: 0.0492613, g: 0.11774656, b: 0.254717, a: 1}
     hdr: 0
     showAlpha: 0
     showEyeDropper: 1
@@ -72,7 +72,7 @@ MonoBehaviour:
     min: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 15
+    m_Value: 7.98
     min: 0
   scatter:
     m_OverrideState: 0
@@ -132,6 +132,6 @@ MonoBehaviour:
     showEyeDropper: 1
   balance:
     m_OverrideState: 1
-    m_Value: -30
+    m_Value: -34
     min: -100
     max: 100

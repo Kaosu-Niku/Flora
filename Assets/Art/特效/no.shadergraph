@@ -770,7 +770,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "0416f01fed4b4d3698f37b020e0e7f43",
     "m_Id": 0,
-    "m_DisplayName": "Float (1)",
+    "m_DisplayName": "WindScale",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -833,7 +833,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
     "m_ObjectId": "06bfd313633e4756bbece60601ca9bec",
     "m_Id": 0,
-    "m_DisplayName": "Vector2",
+    "m_DisplayName": "WindDirection",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -1326,8 +1326,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -776.0,
-            "y": 291.0,
+            "x": -915.0,
+            "y": 247.0,
             "width": 139.0,
             "height": 34.0
         }
@@ -1825,9 +1825,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -557.0000610351563,
-            "y": 276.9999694824219,
-            "width": 208.0,
+            "x": -726.9999389648438,
+            "y": 225.0,
+            "width": 208.00001525878907,
             "height": 437.0
         }
     },
@@ -1859,7 +1859,7 @@
     ],
     "synonyms": [],
     "m_Precision": 0,
-    "m_PreviewExpanded": false,
+    "m_PreviewExpanded": true,
     "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
@@ -1873,7 +1873,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "4861b004d5864070ab3b4056ca001658",
     "m_Id": 0,
-    "m_DisplayName": "Float",
+    "m_DisplayName": "WindSpeed",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2312,9 +2312,9 @@
     "m_Guid": {
         "m_GuidSerialized": "67ebbc20-98e7-4e80-91fb-5a1d5e7efa9e"
     },
-    "m_Name": "Float (2)",
+    "m_Name": "Wind Stregth",
     "m_DefaultReferenceName": "Vector1_64c8babb0b134ffa90fc77540c40ae89",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_Wind_Stregth",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -2864,7 +2864,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
     "m_ObjectId": "8720abdf4ae440cd9bc1a14ae9658bbe",
     "m_Id": 0,
-    "m_DisplayName": "Vector2",
+    "m_DisplayName": "WindDirection",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -3149,9 +3149,9 @@
     "m_Guid": {
         "m_GuidSerialized": "ff96ca65-8b09-4553-92b5-cd6fe9f319b6"
     },
-    "m_Name": "Vector2",
+    "m_Name": "WindDirection",
     "m_DefaultReferenceName": "Vector2_9975b757e5474562903a8cd52999ead5",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_WindDirection",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -3311,9 +3311,9 @@
     "m_Guid": {
         "m_GuidSerialized": "a683cf51-2d10-45fc-ba82-63e5e51b6dde"
     },
-    "m_Name": "Float",
+    "m_Name": "WindSpeed",
     "m_DefaultReferenceName": "Vector1_b16f0cb2807747f98d63ac93bcc0b796",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_WindSpeed",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -3685,16 +3685,16 @@
     "m_Guid": {
         "m_GuidSerialized": "396a3c6d-61e5-45fa-993b-d7554411f562"
     },
-    "m_Name": "Texture2D",
+    "m_Name": "MainTexture",
     "m_DefaultReferenceName": "Texture2D_c0e5dd35b8544c8d985f5a6fc9c8d341",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_MainTex",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"d50d0579856947d4485ed1d075ae45ec\",\"type\":3}}",
         "m_Guid": ""
     },
     "m_Modifiable": true,
@@ -3967,7 +3967,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "d536b449b263495c848c04ef535ff2be",
     "m_Id": 0,
-    "m_DisplayName": "Float (2)",
+    "m_DisplayName": "Wind Stregth",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -3982,7 +3982,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "d56d1834241d4f27a7605cfa4d617f80",
     "m_Id": 0,
-    "m_DisplayName": "Texture2D",
+    "m_DisplayName": "MainTexture",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -4207,7 +4207,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "dded778795614e019b939bf29cf1d148",
     "m_Id": 0,
-    "m_DisplayName": "Float (3)",
+    "m_DisplayName": "WindInfluenceMesk",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -4368,9 +4368,9 @@
     "m_Guid": {
         "m_GuidSerialized": "071eca4e-0c48-4cc0-8e35-bd85328db25e"
     },
-    "m_Name": "Float (1)",
+    "m_Name": "WindScale",
     "m_DefaultReferenceName": "Vector1_e486515ceb9540cb8d08b57058fbcc5b",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_WindScale",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -4559,7 +4559,7 @@
     "m_Guid": {
         "m_GuidSerialized": "eeae6454-ad73-4008-9eae-a6803dd9e331"
     },
-    "m_Name": "Float (3)",
+    "m_Name": "WindInfluenceMesk",
     "m_DefaultReferenceName": "Vector1_f09e3f5481b44c238c5c7300c01d621b",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
@@ -4587,8 +4587,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -496.0,
-            "y": 565.9999389648438,
+            "x": -456.0,
+            "y": 530.0,
             "width": 92.0,
             "height": 34.0
         }

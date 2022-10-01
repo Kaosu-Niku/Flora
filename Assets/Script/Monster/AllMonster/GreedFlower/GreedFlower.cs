@@ -9,20 +9,37 @@ public class GreedFlower : Monster
     [SerializeField] Transform point;
     PlayerSystem GetPlayer;
     bool Attacking = false;
+    bool IsPlayer = false;
     protected override void AnimationEventCallBack(TrackEntry trackEntry, Spine.Event e)
     {
         base.AnimationEventCallBack(trackEntry, e);
     }
     protected override void CustomAnimationEventCallBack(TrackEntry trackEntry, Spine.Event e)
     {
+        if (e.Data.Name == "AttackTrigger")
+        {
+            if (IsPlayer == true && Attacking == false)
+            {
+                Attacking = true;
+                GetPlayer.SetCanControl(true);
+                GetPlayer.transform.position = point.position;
+                GetPlayer.SetCanJump(false);
+                GetPlayer.SetCanFlash(false);
+                Col.SetActive(true);
+                if (D != null)
+                    StopCoroutine(D);
+                D = StartCoroutine(DamageIEnum());
+            }
+            if (IsPlayer == false)
+            {
+                Attack[0].SetActive(true);
+            }
+            return;
+        }
         if (e.Data.Name == "AttackOut")
         {
             OnAction();
-            return;
-        }
-        if (e.Data.Name == "DieOut")
-        {
-
+            Attack[0].SetActive(false);
             return;
         }
     }
@@ -36,6 +53,7 @@ public class GreedFlower : Monster
     }
     protected override void CustomHurt()
     {
+        Attack[0].SetActive(false);
         StartCoroutine(HurtIEnum());
     }
     IEnumerator HurtIEnum()
@@ -60,14 +78,18 @@ public class GreedFlower : Monster
         {
             if (Attacking == false)
             {
-                Attacking = true;
-                GetPlayer.transform.position = point.position;
-                GetPlayer.SetCanJump(false);
-                GetPlayer.SetCanFlash(false);
-                Col.SetActive(true);
-                if (D != null)
-                    StopCoroutine(D);
-                D = StartCoroutine(DamageIEnum());
+                IsPlayer = true;
+                GetPlayer.SetCanControl(false);
+                skeletonAnimation.AnimationState.SetAnimation(0, "Attack", false);
+            }
+
+        }
+        if (other.CompareTag("Monster"))
+        {
+            BoomFish bf = other.GetComponent<BoomFish>();
+            if (bf != null)
+            {
+                IsPlayer = false;
                 skeletonAnimation.AnimationState.SetAnimation(0, "Attack", false);
             }
         }

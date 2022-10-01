@@ -7,17 +7,12 @@ public class FallTrap : MonoBehaviour
     [SerializeField] Rigidbody2D Rigid;
     [SerializeField] Collider2D CollisionCol;
     [SerializeField] Collider2D TriggerCol;
-    PlayerSystem GetPlayer;
-    private void Start()
-    {
-        GetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerSystem>();
-    }
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            GetPlayer.ForDamage(1);
-            GetPlayer.HitFly(1000);
+            PlayerSystemSO.GetPlayerInvoke().ForDamage(1);
+            PlayerSystemSO.GetPlayerInvoke().HitFly(1000);
             CollisionCol.enabled = false;
             StartCoroutine(Late());
         }

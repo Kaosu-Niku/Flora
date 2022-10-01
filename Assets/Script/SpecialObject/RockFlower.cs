@@ -10,7 +10,6 @@ public class RockFlower : SpecialPlantSystem
     [SerializeField] Vector2 MoveDis;
     [SerializeField] float ResetTime;
     Vector3 PlayerFirstPos;
-    GameObject GetPlayer;
     protected override void DoSomething(InputAction.CallbackContext context)
     {
         if (CanUse == true)
@@ -19,23 +18,15 @@ public class RockFlower : SpecialPlantSystem
     private IEnumerator Doing()
     {
         CanUse = false;
-        if (GetPlayer != null)
-        {
-            PlayerFirstPos = GetPlayer.transform.position;
-            if (MoveDis.x < 0)
-                GetPlayer.transform.rotation = Quaternion.Euler(0, 180, 0);
-            else
-                GetPlayer.transform.rotation = Quaternion.identity;
-            GetPlayer.transform.Translate(MoveDis.x, MoveDis.y, 0);
-        }
+        PlayerFirstPos = PlayerSystemSO.GetPlayerInvoke().transform.position;
+        if (MoveDis.x < 0)
+            PlayerSystemSO.GetPlayerInvoke().transform.rotation = Quaternion.Euler(0, 180, 0);
+        else
+            PlayerSystemSO.GetPlayerInvoke().transform.rotation = Quaternion.identity;
+        PlayerSystemSO.GetPlayerInvoke().transform.Translate(MoveDis.x, MoveDis.y, 0);
         yield return new WaitForSeconds(ResetTime);
-        if (GetPlayer != null)
-            GetPlayer.transform.position = PlayerFirstPos;
+        PlayerSystemSO.GetPlayerInvoke().transform.position = PlayerFirstPos;
         CanUse = true;
-    }
-    private void Start()
-    {
-        GetPlayer = GameObject.FindGameObjectWithTag("Player");
     }
     protected override void AnimationEventCallBack(TrackEntry trackEntry, Spine.Event e)
     {

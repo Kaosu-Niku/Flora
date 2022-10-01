@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
-  m_Name: Greed Flower_SkeletonData
+  m_Name: "\u6BBC\u4E2D\u9B5A_SkeletonData"
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: b4724a99c07c9ff4baba0c0fbd798b89, type: 2}
+  - {fileID: 11400000, guid: cedb4f7d0d91e0c459bd769b6ad6c6b9, type: 2}
   scale: 0.01
-  skeletonJSON: {fileID: 4900000, guid: e666d9452ae0acf4786adf33f4babb62, type: 3}
+  skeletonJSON: {fileID: 4900000, guid: f3460274f7deb824b945f7d187239a7a, type: 3}
   isUpgradingBlendModeMaterials: 0
   blendModeMaterials:
     requiresBlendModeMaterials: 0
@@ -26,10 +26,10 @@ MonoBehaviour:
   skeletonDataModifiers: []
   fromAnimation:
   - Attack
-  - Hit
+  - Attack
   toAnimation:
   - Idle
-  - Idle
+  - Walk
   duration:
   - 0.2
   - 0.2

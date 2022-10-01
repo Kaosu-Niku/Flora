@@ -1,0 +1,77 @@
+Greed Flower.png
+size:2932,2988
+filter:Linear,Linear
+pma:true
+MB_down
+bounds:2061,1002,869,495
+MB_jaw down
+bounds:2386,191,809,401
+rotate:90
+bigleaf1
+bounds:1874,56,469,257
+bigleaf2
+bounds:878,6,532,307
+bigleaf3
+bounds:1412,2,311,460
+rotate:90
+bigleaf4
+bounds:2,30,334,201
+bigroot
+bounds:2,233,874,931
+fruit1
+bounds:2789,754,135,246
+fruit2
+bounds:2696,1551,237,207
+rotate:90
+fruit3
+bounds:338,56,175,318
+rotate:90
+leaf2
+bounds:878,877,352,287
+liquid
+bounds:2696,1790,1196,198
+rotate:90
+root1
+bounds:1301,872,758,2114
+root2
+bounds:878,315,555,1506
+rotate:90
+root3
+bounds:2,1166,1297,1820
+root4
+bounds:2061,1499,633,1487
+
+Greed Flower_2.png
+size:1707,1623
+filter:Linear,Linear
+pma:true
+MB_ jaw up
+bounds:2,949,672,760
+rotate:90
+MB_back
+bounds:337,348,402,599
+MB_mid
+bounds:337,26,320,348
+rotate:90
+MB_up
+bounds:764,826,668,795
+futaba1
+bounds:1304,257,399,567
+futaba2
+bounds:2,2,335,299
+rotate:90
+futaba3
+bounds:1434,925,262,347
+leaf1
+bounds:1260,5,352,250
+leaf3
+bounds:1434,1274,271,347
+plant
+bounds:741,56,366,517
+rotate:90
+teeth down
+bounds:2,339,608,333
+rotate:90
+teeth up
+bounds:741,424,400,561
+rotate:90

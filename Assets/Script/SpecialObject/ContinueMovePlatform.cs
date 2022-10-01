@@ -8,14 +8,12 @@ public class ContinueMovePlatform : MonoBehaviour
     [SerializeField] Vector3 MoveDis;
     Vector3 EndPos;
     [SerializeField] float Speed;
-    GameObject GetPlayer;
     private void Awake()
     {
         FirstPos = transform.position;
         transform.Translate(MoveDis.x, MoveDis.y, 0);
         EndPos = transform.position;
         transform.position = FirstPos;
-        GetPlayer = GameObject.FindGameObjectWithTag("Player");
     }
     private void OnEnable()
     {
@@ -43,11 +41,11 @@ public class ContinueMovePlatform : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
-            GetPlayer.transform.parent = transform;
+            PlayerSystemSO.GetPlayerInvoke().transform.parent = transform;
     }
     private void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
-            GetPlayer.transform.parent = null;
+            PlayerSystemSO.GetPlayerInvoke().transform.parent = null;
     }
 }

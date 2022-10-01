@@ -1958,7 +1958,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3559be9d24e0745b00c6b7e819c06b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TalkMove: {x: 0, y: 10, z: 0}
   TalkString:
   - "\u4F60\u597D\u4F60\u597D\u4F60\u597D\u4F60\u597D\u4F60\u597D"
   - "\u518D\u898B\u63B0\u63B0\u518D\u898B\u63B0\u63B0\u518D\u898B\u63B0\u63B0"

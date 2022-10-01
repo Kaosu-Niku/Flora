@@ -8,8 +8,6 @@ public class HideHole : SpecialPlantSystem
 {
 
     bool CanUse = true;
-    GameObject GetPlayer;
-    PlayerSystem GetPlayerSystem;
     Coroutine Doing;
     protected override void DoSomething(InputAction.CallbackContext context)
     {
@@ -33,16 +31,9 @@ public class HideHole : SpecialPlantSystem
     {
         while (true)
         {
-            GetPlayer.transform.position = transform.position;
+            PlayerSystemSO.GetPlayerInvoke().transform.position = transform.position;
             yield return 0;
         }
-    }
-
-    private void Start()
-    {
-        GetPlayer = GameObject.FindGameObjectWithTag("Player");
-        if (GetPlayer != null)
-            GetPlayerSystem = GetPlayer.GetComponent<PlayerSystem>();
     }
     protected override void AnimationEventCallBack(TrackEntry trackEntry, Spine.Event e)
     {

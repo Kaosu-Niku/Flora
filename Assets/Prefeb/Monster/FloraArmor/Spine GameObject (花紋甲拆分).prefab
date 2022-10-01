@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a422deea08d2c42a3313c451443746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHp: 50
+  MaxHp: 100
   MaxHitRecover: 1
   DropMoney: 999
   DropMp: 999

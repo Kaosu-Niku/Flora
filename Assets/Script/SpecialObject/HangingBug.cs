@@ -9,7 +9,6 @@ public class HangingBug : SpecialPlantSystem
     bool CanUse = true;
     [SerializeField] Transform SetTrans;
     [SerializeField] SpriteRenderer Hint;
-    PlayerSystem GetPlayer;
     bool ani;
     protected override void AnimationEventCallBack(TrackEntry trackEntry, Spine.Event e)
     {
@@ -38,41 +37,37 @@ public class HangingBug : SpecialPlantSystem
         if (CanUse == true)
         {
             CanUse = false;
-            if (GetPlayer != null)
-            {
-                StartCoroutine(DoingIEnum());
-            }
+            StartCoroutine(DoingIEnum());
         }
     }
     IEnumerator DoingIEnum()
     {
-        GetPlayer.SetCanControl(false);
-        GetPlayer.Rigid.gravityScale = 0;
+        PlayerSystemSO.GetPlayerInvoke().SetCanControl(false);
+        PlayerSystemSO.GetPlayerInvoke().Rigid.gravityScale = 0;
         ani = true;
         Hint.enabled = true;
         for (float t = 0; t < 5; t += Time.deltaTime)
         {
-            GetPlayer.transform.position = SetTrans.position;
+            PlayerSystemSO.GetPlayerInvoke().transform.position = SetTrans.position;
             SetTrans.Rotate(0, 0, GetInput.Player.Move.ReadValue<float>() * 2);
             if (GetInput.Player.Jump.triggered)
             {
-                GetPlayer.SetCanControl(true);
-                GetPlayer.CallJump(0);
-                GetPlayer.Rigid.AddRelativeForce(SetTrans.right * 2000);
+                PlayerSystemSO.GetPlayerInvoke().SetCanControl(true);
+                PlayerSystemSO.GetPlayerInvoke().CallJump(0);
+                PlayerSystemSO.GetPlayerInvoke().Rigid.AddRelativeForce(SetTrans.right * 2000);
                 skeletonAnimation.AnimationState.SetAnimation(0, "Trigger", false);
                 Hint.enabled = false;
                 yield break;
             }
             yield return 0;
         }
-        GetPlayer.SetCanControl(true);
-        GetPlayer.Rigid.gravityScale = 10;
+        PlayerSystemSO.GetPlayerInvoke().SetCanControl(true);
+        PlayerSystemSO.GetPlayerInvoke().Rigid.gravityScale = 10;
         ani = false;
         Hint.enabled = false;
     }
     private void Start()
     {
-        GetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerSystem>();
         skeletonAnimation.AnimationState.SetAnimation(0, "Outside", true);
         Hint.enabled = false;
     }

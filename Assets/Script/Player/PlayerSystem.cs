@@ -263,6 +263,10 @@ public class PlayerSystem : SkeletonAnimationSystem
     bool Super = false;//* 無敵狀態
     float FloorHigh;//* 離開地板時的高度
     bool CanJump = true;//* 可以跳躍
+    public void SetCanJump(bool b)
+    {
+        CanJump = b;
+    }
     bool Jumping = false;//* 是否處於跳躍中(防止太容易一直觸發落地動畫)
     bool IsWall = false;//* 是否是蹬牆跳
     bool CanFlash = true;//* 可以閃避

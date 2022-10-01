@@ -42,6 +42,7 @@ public abstract class Monster : SkeletonAnimationSystem
     new void Awake()
     {
         base.Awake();
+        tag = "Monster";
         Hp = MaxHp;
         HitRecover = MaxHitRecover;
         Super = false;

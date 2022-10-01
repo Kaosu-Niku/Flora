@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class HurtObject : MonoBehaviour
 {
-    PlayerSystem GetPlayer;
     bool CanHurt = true;
     bool s;
-    private void Start()
-    {
-        GetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerSystem>();
-    }
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -30,7 +25,7 @@ public class HurtObject : MonoBehaviour
     }
     IEnumerator UseIEnum()
     {
-        GetPlayer.Hurt(1);
+        PlayerSystemSO.GetPlayerInvoke().Hurt(1);
         CanHurt = false;
         yield return new WaitForSeconds(2);
         CanHurt = true;

@@ -5,8 +5,10 @@ using UnityEngine;
 public class MonsterHurt : MonoBehaviour
 {
     Monster GetMonster;
+    Collider2D HurtCol;
     private void Awake()
     {
+        HurtCol = GetComponent<Collider2D>();
         GetMonster = transform.parent.GetComponent<Monster>();
         tag = "Hurt";
     }
@@ -19,6 +21,7 @@ public class MonsterHurt : MonoBehaviour
             {
                 Debug.Log(a.TureDamage); Debug.Log(a.HitDamage);
                 GetMonster.Hurt(a.TureDamage, a.HitDamage);
+                GameManagerSO.GetPoolInvoke().GetObject("EnemyInjuriedPartical", transform.position, Quaternion.identity);
             }
         }
     }

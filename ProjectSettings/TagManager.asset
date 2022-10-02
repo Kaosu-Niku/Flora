@@ -63,6 +63,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: "\u7279\u6548"
+    uniqueID: 594232693
+    locked: 0
   - name: "\u8FD1\u666F"
     uniqueID: 2444543343
     locked: 0

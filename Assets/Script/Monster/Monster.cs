@@ -80,6 +80,7 @@ public abstract class Monster : SkeletonAnimationSystem
             Hp -= damage;
             HpSlider.localScale = new Vector3(Hp / MaxHp, 1, 0);
             HitRecover -= hitValue;
+            StartCoroutine(HurtMaterialIEnum());
             if (Hp > 0)
             {
                 if (HitRecover <= 0)//? 造成硬直
@@ -90,7 +91,6 @@ public abstract class Monster : SkeletonAnimationSystem
                     Super = true;
                     CustomHurt();
                     skeletonAnimation.AnimationState.SetAnimation(0, "Hit", false);
-                    StartCoroutine(HitMaterialIEnum());
                 }
             }
             else
@@ -103,9 +103,8 @@ public abstract class Monster : SkeletonAnimationSystem
             }
         }
     }
-    IEnumerator HitMaterialIEnum()
+    IEnumerator HurtMaterialIEnum()
     {
-        GameManagerSO.GetPoolInvoke().GetObject("EnemyInjuriedPartical", transform.position, Quaternion.identity);
         for (int x = 0; x < 1; x++)
         {
             for (float t = 0; t < 0.2f; t += Time.deltaTime)
@@ -122,6 +121,7 @@ public abstract class Monster : SkeletonAnimationSystem
         MonsterRenderer.material.SetFloat("Injuried", 0);
         yield break;
     }
+
     IEnumerator DieDroplIEnum()
     {
         while (DropMoney > 100)

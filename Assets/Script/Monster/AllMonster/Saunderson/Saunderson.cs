@@ -238,6 +238,7 @@ public class Saunderson : Monster
             StopCoroutine(C);
         Attack[0].SetActive(false);
         Attack[1].SetActive(false);
+        Attack[2].SetActive(false);
         Attack2.gameObject.SetActive(false);
         Fly_1.gameObject.SetActive(false);
         Fly_2.gameObject.SetActive(false);

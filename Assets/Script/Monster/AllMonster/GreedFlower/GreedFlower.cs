@@ -53,7 +53,6 @@ public class GreedFlower : Monster
     }
     protected override void CustomHurt()
     {
-        Attack[0].SetActive(false);
         StartCoroutine(HurtIEnum());
     }
     IEnumerator HurtIEnum()
@@ -62,6 +61,7 @@ public class GreedFlower : Monster
         GetPlayer.SetCanJump(true);
         GetPlayer.SetCanFlash(true);
         Col.SetActive(false);
+        Attack[0].SetActive(false);
         if (D != null)
             StopCoroutine(D);
         yield return new WaitForSeconds(3);
@@ -74,25 +74,28 @@ public class GreedFlower : Monster
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (Super == false)
         {
-            if (Attacking == false)
+            if (other.CompareTag("Player"))
             {
-                IsPlayer = true;
-                GetPlayer.SetCanControl(false);
-                skeletonAnimation.AnimationState.SetAnimation(0, "Attack", false);
+                if (Attacking == false)
+                {
+                    IsPlayer = true;
+                    GetPlayer.SetCanControl(false);
+                    skeletonAnimation.AnimationState.SetAnimation(0, "Attack", false);
+                }
             }
+            if (other.CompareTag("Monster"))
+            {
+                BoomFish bf = other.GetComponent<BoomFish>();
+                if (bf != null)
+                {
+                    IsPlayer = false;
+                    skeletonAnimation.AnimationState.SetAnimation(0, "Attack", false);
+                }
+            }
+        }
 
-        }
-        if (other.CompareTag("Monster"))
-        {
-            BoomFish bf = other.GetComponent<BoomFish>();
-            if (bf != null)
-            {
-                IsPlayer = false;
-                skeletonAnimation.AnimationState.SetAnimation(0, "Attack", false);
-            }
-        }
     }
     Coroutine D;
     IEnumerator DamageIEnum()

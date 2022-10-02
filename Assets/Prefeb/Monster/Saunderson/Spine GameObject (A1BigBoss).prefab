@@ -6466,7 +6466,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 588769411
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &8675026787412198873
@@ -6607,6 +6607,7 @@ GameObject:
   - component: {fileID: 8675026788360708554}
   - component: {fileID: 8675026788360708552}
   - component: {fileID: 8675026788360708555}
+  - component: {fileID: 2417866632979459005}
   m_Layer: 0
   m_Name: Hurt
   m_TagString: Untagged
@@ -6621,9 +6622,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8675026788360708557}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.0040549957, w: 0.9999918}
+  m_LocalPosition: {x: 2.3910275, y: 0.54059523, z: 0}
+  m_LocalScale: {x: 1, y: -1, z: 1}
   m_Children: []
   m_Father: {fileID: 8675026787412198868}
   m_RootOrder: 0
@@ -6641,7 +6642,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 8.635257}
+  m_Offset: {x: -1.8, y: -0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6652,7 +6653,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10.237951, y: 8.854155}
+  m_Size: {x: 6.5, y: 1.5}
   m_EdgeRadius: 0
 --- !u!114 &8675026788360708555
 MonoBehaviour:
@@ -6666,6 +6667,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d7089d1cb075984e9b52dcf82bbec71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2417866632979459005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8675026788360708557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1fd8daaed7b64148a34acb96ba14ce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonRenderer: {fileID: 8675026787412198873}
+  boneName: bone26
+  followXYPosition: 1
+  followZPosition: 1
+  followBoneRotation: 1
+  followSkeletonFlip: 1
+  followLocalScale: 0
+  followParentWorldScale: 0
+  maintainedAxisOrientation: 1
+  initializeOnAwake: 1
 --- !u!1 &8852609223540746318
 GameObject:
   m_ObjectHideFlags: 0

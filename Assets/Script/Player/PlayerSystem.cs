@@ -188,6 +188,18 @@ public class PlayerSystem : SkeletonAnimationSystem
             WhichAttack = 1;
             return;
         }
+        if (e.Data.Name == "M_OrderTrigger")
+        {
+            Attack[5].SetActive(true);
+            return;
+        }
+        if (e.Data.Name == "M_OrderOut")
+        {
+            CanControl = true;
+            CanMagic = true;
+            Attack[5].SetActive(false);
+            return;
+        }
     }
     private PlayerSystem GetPlayer()
     {
@@ -279,6 +291,7 @@ public class PlayerSystem : SkeletonAnimationSystem
     [HideInInspector] public bool FastRestore;//* 恢復生命的動作是否加快(配合某個技能)
     int WhichAttack = 1;
     bool CanAttack = true;//* 可以攻擊
+    bool CanMagic = true;//* 可以魔法
     bool _CanFind = true;//* 怪物是否能找到玩家
     public bool CanFind { get => _CanFind; private set { _CanFind = value; } }
     public void SetCanFind(bool value)
@@ -312,6 +325,9 @@ public class PlayerSystem : SkeletonAnimationSystem
         GetInput.Player.Flash.started += OnFlash;
         GetInput.Player.Restore.started += OnRestore;
         GetInput.Player.Attack.started += OnAttack;
+        GetInput.Player.Magic1.started += OnMagic1;
+        GetInput.Player.Magic2.started += OnMagic2;
+        GetInput.Player.Magic3.started += OnMagic3;
     }
     private void OnDisable()
     {
@@ -322,6 +338,9 @@ public class PlayerSystem : SkeletonAnimationSystem
         GetInput.Player.Flash.started -= OnFlash;
         GetInput.Player.Restore.started -= OnRestore;
         GetInput.Player.Attack.started -= OnAttack;
+        GetInput.Player.Magic1.started -= OnMagic1;
+        GetInput.Player.Magic2.started -= OnMagic2;
+        GetInput.Player.Magic3.started -= OnMagic3;
     }
     private void Start()
     {
@@ -482,6 +501,32 @@ public class PlayerSystem : SkeletonAnimationSystem
                     Effect[2].SetActive(true);
                     break;
             }
+        }
+    }
+    //? 魔法
+    private void OnMagic1(InputAction.CallbackContext context)
+    {
+        if (CanControl && CanMagic)
+        {
+            CanControl = false;
+            CanMagic = false;
+            skeletonAnimation.AnimationState.SetAnimation(0, "M_Order", false);
+        }
+    }
+    private void OnMagic2(InputAction.CallbackContext context)
+    {
+        if (CanControl && CanMagic)
+        {
+            CanControl = false;
+            CanMagic = false;
+        }
+    }
+    private void OnMagic3(InputAction.CallbackContext context)
+    {
+        if (CanControl && CanMagic)
+        {
+            CanControl = false;
+            CanMagic = false;
         }
     }
     //? 受傷事件
@@ -658,11 +703,13 @@ public class PlayerSystem : SkeletonAnimationSystem
         CanFlash = true;
         CanRestore = true;
         CanAttack = true;
+        CanMagic = true;
         WhichAttack = 1;
         skeletonRootMotion.rootMotionScaleY = 1;
         Attack[0].SetActive(false);
         Attack[1].SetActive(false);
         Attack[2].SetActive(false);
+        Attack[5].SetActive(false);
         Effect[0].SetActive(false);
         Effect[1].SetActive(false);
         Effect[2].SetActive(false);

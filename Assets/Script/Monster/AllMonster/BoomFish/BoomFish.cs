@@ -19,11 +19,24 @@ public class BoomFish : Monster
             }
             else
             {
-                Attack[0].SetActive(true);
-                Attack[1].SetActive(true);
+                Hurt(Hp + 1, 0);
             }
             return;
         }
+        if (e.Data.Name == "DieTrigger")
+        {
+            StartCoroutine(DieIEnum());
+            return;
+        }
+    }
+    IEnumerator DieIEnum()
+    {
+        Attack[0].SetActive(true);
+        Attack[1].SetActive(true);
+        yield return new WaitForFixedUpdate();
+        yield return 0;
+        Attack[0].SetActive(false);
+        Attack[1].SetActive(false);
     }
     protected override IEnumerator CustomAction()
     {
@@ -52,7 +65,6 @@ public class BoomFish : Monster
     }
     protected override void CustomHurt()
     {
-        Attack[0].SetActive(false);
-        Attack[1].SetActive(false);
+
     }
 }

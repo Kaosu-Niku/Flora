@@ -44,9 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GetAllObject:
-  - Tag: NpcTalk
-    Obj: {fileID: 5485263967369959543, guid: 8163dac8c3d69774aa652f10cf452431, type: 3}
-    SetCount: 1
   - Tag: EnemyHpSlider
     Obj: {fileID: -6845912067219583698, guid: da2fe76341f1a3d43a1a9231bdcb8054, type: 3}
     SetCount: 5
@@ -69,5 +66,5 @@ MonoBehaviour:
     Obj: {fileID: 2386908791773490264, guid: 916029b29f155e944991632be76fcd99, type: 3}
     SetCount: 0
   - Tag: EnemyInjuriedPartical
-    Obj: {fileID: 7395193164509893635, guid: 65024630fbab8fe45a889c1d5eea30fa, type: 3}
+    Obj: {fileID: 7395193164509893635, guid: 56c2aba7507de2744b4ffea7d2613b20, type: 3}
     SetCount: 1

@@ -647,7 +647,7 @@
     "m_Guid": {
         "m_GuidSerialized": "c1ad4480-eb97-4f32-a46f-12009a851bff"
     },
-    "m_Name": "Float",
+    "m_Name": "飄動速度",
     "m_DefaultReferenceName": "Vector1_18045fab6b9540ddb0ba86f841d839d6",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
@@ -2025,7 +2025,7 @@
     "m_Guid": {
         "m_GuidSerialized": "887f5693-83f6-4ae5-91d4-f7323e26cc68"
     },
-    "m_Name": "Float (2)",
+    "m_Name": "飄動力度",
     "m_DefaultReferenceName": "Vector1_957ec1f3974c42c2943678b55dbfd7cb",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
@@ -2638,7 +2638,7 @@
     "m_Guid": {
         "m_GuidSerialized": "6e3a3ac4-e45e-4f25-993b-74f43b91be26"
     },
-    "m_Name": "Float (1)",
+    "m_Name": "漂動折數",
     "m_DefaultReferenceName": "Vector1_d2cf988ee1b84c178b52fc4299dbaa9f",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,

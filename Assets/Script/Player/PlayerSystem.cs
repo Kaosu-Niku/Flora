@@ -15,12 +15,7 @@ public class PlayerSystem : SkeletonAnimationSystem
     {
         if (e.Data.Name == "WalkOpen")
         {
-            Effect[3].SetActive(true);
-            return;
-        }
-        if (e.Data.Name == "WalkClose")
-        {
-            Effect[3].SetActive(false);
+            GameManagerSO.GetPoolInvoke().GetObject("PlayerWalkEffect", transform.position, Quaternion.identity);
             return;
         }
         if (e.Data.Name == "HitFlyDownOut")
@@ -54,7 +49,6 @@ public class PlayerSystem : SkeletonAnimationSystem
             Rigid.gravityScale = 10;
             skeletonRootMotion.rootMotionScaleY = 1;
             skeletonAnimation.AnimationState.SetAnimation(0, "JumpLoop", true);
-            Effect[4].SetActive(false);
             return;
         }
         if (e.Data.Name == "WallJumpTrigger")
@@ -296,6 +290,7 @@ public class PlayerSystem : SkeletonAnimationSystem
     {
         CanFind = value;
     }
+    bool HitFlyCheck;//* 擊飛狀態落地確認
     [HideInInspector] public Rigidbody2D Rigid;
     Collider2D Col;
     public CircleCollider2D SuckAwardCol;//* 吸取道具用的圓形碰撞體
@@ -305,7 +300,9 @@ public class PlayerSystem : SkeletonAnimationSystem
     [SerializeField] List<GameObject> Effect = new List<GameObject>();
     [HideInInspector] public bool Skill6Check;//* 無形攻擊是否使用
     [HideInInspector] public bool Skill8Check;//* 荊棘之身是否使用
-    bool HitFlyCheck;//* 擊飛狀態落地確認
+    [SerializeField] IPoolObject WalkEffect;
+    [SerializeField] IPoolObject JumpUpEffect;
+    [SerializeField] IPoolObject JumpDownEffect;
 
     new void Awake()
     {
@@ -348,7 +345,11 @@ public class PlayerSystem : SkeletonAnimationSystem
         MaxAtk = PlayerDataSO.MaxAtk;
         MaxHit = PlayerDataSO.MaxHit;
         MaxSpeed = PlayerDataSO.MaxSpeed;
+        Skill6Check = PlayerSystemSO.SkillUse[6];
         StartCoroutine(LateTrigger());
+        GameManagerSO.GetPoolInvoke().AddObject("PlayerWalkEffect", WalkEffect);
+        GameManagerSO.GetPoolInvoke().AddObject("PlayerJumpUpEffect", JumpUpEffect);
+        GameManagerSO.GetPoolInvoke().AddObject("PlayerJumpDownEffect", JumpDownEffect);
     }
     IEnumerator LateTrigger()
     {
@@ -411,7 +412,7 @@ public class PlayerSystem : SkeletonAnimationSystem
             Rigid.gravityScale = 0;
             skeletonRootMotion.rootMotionScaleY = jumpPower;
             skeletonAnimation.AnimationState.SetAnimation(0, "Jump", false);
-            Effect[4].SetActive(true);
+            GameManagerSO.GetPoolInvoke().GetObject("PlayerJumpUpEffect", transform.position, Quaternion.identity);
             if (IsWall == true)//? 蹬牆跳
             {
                 IsWall = false;
@@ -439,6 +440,7 @@ public class PlayerSystem : SkeletonAnimationSystem
             Super = true;
             CanFlash = false;
             Rigid.gravityScale = 0;
+            Debug.Log(Skill6Check);
             if (Skill6Check == true)//? 無形攻擊
                 Attack[3].SetActive(true);
             skeletonAnimation.AnimationState.SetAnimation(0, "Flash", false);
@@ -648,6 +650,7 @@ public class PlayerSystem : SkeletonAnimationSystem
         Vector2 contactsNormal = other.contacts[0].normal;
         float colAngle = (Mathf.Atan(contactsNormal.y / contactsNormal.x)) * 180 / Mathf.PI;
         Debug.Log("法線角度:" + Mathf.Abs(colAngle));
+        GameManagerSO.GetPoolInvoke().GetObject("PlayerJumpDownEffect", transform.position, Quaternion.identity);
     }
     private void OnCollisionStay2D(Collision2D other)
     {
@@ -673,7 +676,6 @@ public class PlayerSystem : SkeletonAnimationSystem
                 skeletonRootMotion.rootMotionScaleY = 1;
                 skeletonAnimation.AnimationState.SetAnimation(0, "Idle", false);
             }
-            Effect[5].SetActive(true);
         }
         if (colAngle < 10 && colAngle > -10 && transform.position.y > FloorHigh + 3)//? 檢查角度與高度判定是否可以蹬牆跳
         {
@@ -697,7 +699,31 @@ public class PlayerSystem : SkeletonAnimationSystem
     }
     private void OnCollisionExit2D(Collision2D other)
     {
-        Effect[5].SetActive(false);
+        var pr = Physics2D.RaycastAll(transform.position, Vector2.down, 10);
+        bool isHigh = false;
+        if (pr.Length < 2)
+        {
+            isHigh = true;
+        }
+        else
+        {
+            bool haveFloor = false;
+            for (int x = 0; x < pr.Length; x++)
+            {
+                if (pr[x].collider.isTrigger == false)
+                {
+                    haveFloor = true;
+                }
+            }
+            if (haveFloor == false)
+                isHigh = true;
+        }
+        if (isHigh == true)
+        {
+            Debug.Log("高處");
+            Jumping = true;
+            skeletonAnimation.AnimationState.SetAnimation(0, "JumpLoop", true);
+        }
         if (IsWall == true)//? 離開牆壁解除蹭牆狀態
         {
             IsWall = false;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class IDefaultObject : MonoBehaviour
 {
+    //? 該物件被開啟時會等待事情執行完畢或是提前被關閉
     Coroutine C;
     protected abstract IEnumerator Doing();
     IEnumerator Do()
@@ -12,11 +13,11 @@ public abstract class IDefaultObject : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void OnEnable()
+    protected void OnEnable()
     {
         C = StartCoroutine(Do());
     }
-    private void OnDisable()
+    protected void OnDisable()
     {
         if (C != null)
             StopCoroutine(C);

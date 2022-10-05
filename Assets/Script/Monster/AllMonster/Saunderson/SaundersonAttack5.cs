@@ -6,7 +6,7 @@ public class SaundersonAttack5 : IPoolObject
 {
     bool IsCol;
     Collider2D Col;
-    protected override IEnumerator Doing()
+    protected override IEnumerator Doing2()
     {
         IsCol = false;
         Col.enabled = true;

@@ -727,7 +727,7 @@ public class PlayerSystem : SkeletonAnimationSystem
             if (haveFloor == false)
                 isHigh = true;
         }
-        if (isHigh == true)
+        if (isHigh == true && CanControl == true)
         {
             Debug.Log("高處");
             Jumping = true;

@@ -18,6 +18,16 @@ public class PlayerSystem : SkeletonAnimationSystem
             GameManagerSO.GetPoolInvoke().GetObject("PlayerWalkEffect", transform.position, Quaternion.identity);
             return;
         }
+        if (e.Data.Name == "HurtOut")
+        {
+            CanControl = true;
+            Super = false;
+            return;
+        }
+        if (e.Data.Name == "DieOut")
+        {
+            return;
+        }
         if (e.Data.Name == "HitFlyDownOut")
         {
             CanControl = true;
@@ -345,7 +355,6 @@ public class PlayerSystem : SkeletonAnimationSystem
         MaxAtk = PlayerDataSO.MaxAtk;
         MaxHit = PlayerDataSO.MaxHit;
         MaxSpeed = PlayerDataSO.MaxSpeed;
-        Skill6Check = PlayerSystemSO.SkillUse[6];
         StartCoroutine(LateTrigger());
         GameManagerSO.GetPoolInvoke().AddObject("PlayerWalkEffect", WalkEffect);
         GameManagerSO.GetPoolInvoke().AddObject("PlayerJumpUpEffect", JumpUpEffect);
@@ -362,6 +371,7 @@ public class PlayerSystem : SkeletonAnimationSystem
         NowHit = MaxHit;
         NowSpeed = MaxSpeed;
         CanControl = true;
+        StateReset();
     }
     private void FixedUpdate()
     {
@@ -440,7 +450,6 @@ public class PlayerSystem : SkeletonAnimationSystem
             Super = true;
             CanFlash = false;
             Rigid.gravityScale = 0;
-            Debug.Log(Skill6Check);
             if (Skill6Check == true)//? 無形攻擊
                 Attack[3].SetActive(true);
             skeletonAnimation.AnimationState.SetAnimation(0, "Flash", false);

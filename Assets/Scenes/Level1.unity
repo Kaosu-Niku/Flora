@@ -432,7 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dbc05ee766c2204aa7085024f88e486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "\u904B\u884C\u6642\u9593": 0.2
+  "\u904B\u884C\u6642\u9593": 1
   "\u73A9\u5BB6\u6700\u5927\u8840\u91CF": 10
   "\u73A9\u5BB6\u6700\u5927\u9B54\u529B": 100
   "\u73A9\u5BB6\u6700\u5927\u653B\u64CA\u529B": 10
@@ -445,7 +445,7 @@ MonoBehaviour:
   "\u589E\u50B7": 0
   "\u9B54\u529B\u6210\u9577": 0
   "\u62DC\u91D1": 0
-  "\u7121\u5F62\u653B\u64CA": 0
+  "\u7121\u5F62\u653B\u64CA": 1
   "\u5149\u83EF\u5200\u5203": 0
   "\u834A\u68D8\u4E4B\u8EAB": 0
   "\u9B54\u529B\u589E\u52A0": 0
@@ -1729,7 +1729,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 673388349}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 427, y: 7.5, z: -10}
+  m_LocalPosition: {x: 408.4, y: 5.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5170,7 +5170,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1761786803}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 427, y: 7.5, z: -10}
+  m_LocalPosition: {x: 408.4, y: 5.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2123929063}
@@ -6277,11 +6277,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5977903479375229840, guid: 567054877cc42e947ac25a40fbd5265e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 427
+      value: 408.4
       objectReference: {fileID: 0}
     - target: {fileID: 5977903479375229840, guid: 567054877cc42e947ac25a40fbd5265e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5977903479375229840, guid: 567054877cc42e947ac25a40fbd5265e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6574,7 +6574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 303554476015466133, guid: 2c35a7e516eb01147a6c5bce9fc72b47, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 303554476015466134, guid: 2c35a7e516eb01147a6c5bce9fc72b47, type: 3}
       propertyPath: m_Mesh
@@ -6811,90 +6811,6 @@ PrefabInstance:
     - target: {fileID: 951363352628112170, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}
       propertyPath: m_Name
       value: DefaultGameObjectPool
-      objectReference: {fileID: 0}
-    - target: {fileID: 8425587049951209220, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}
-      propertyPath: GetAllObject.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8425587049951209220, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}
-      propertyPath: GetAllObject.Array.data[0].Obj
-      value: 
-      objectReference: {fileID: -6845912067219583698, guid: da2fe76341f1a3d43a1a9231bdcb8054, type: 3}
-    - target: {fileID: 8425587049951209220, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}
-      propertyPath: GetAllObject.Array.data[0].Tag
-      value: EnemyHpSlider
-      objectReference: {fileID: 0}
-    - target: {fileID: 8425587049951209220, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}
-      propertyPath: GetAllObject.Array.data[1].Obj
-      value: 
-      objectReference: {fileID: 442738859744267513, guid: 58c4f67bd4ac1594fb1d2819d82d8ecc, type: 3}
-    - target: {fileID: 8425587049951209220, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}
-      propertyPath: GetAllObject.Array.data[1].Tag
-      value: SmallMoney
-      objectReference: {fileID: 0}
-    - target: {fileID: 8425587049951209220, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}
-      propertyPath: GetAllObject.Array.data[2].Obj
-      value: 
-      objectReference: {fileID: 69773983289305559, guid: fb9595e97e5a7ce40966c2163e1b7943, type: 3}
-    - target: {fileID: 8425587049951209220, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}
-      propertyPath: GetAllObject.Array.data[2].Tag
-      value: MiddleMoney
-      objectReference: {fileID: 0}
-    - target: {fileID: 8425587049951209220, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}
-      propertyPath: GetAllObject.Array.data[3].Obj
-      value: 
-      objectReference: {fileID: 1427035446991321184, guid: 8f72279347ce3ed48aa9f1d846b38565, type: 3}
-    - target: {fileID: 8425587049951209220, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}
-      propertyPath: GetAllObject.Array.data[3].Tag
-      value: BigMoney
-      objectReference: {fileID: 0}
-    - target: {fileID: 8425587049951209220, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}
-      propertyPath: GetAllObject.Array.data[4].Obj
-      value: 
-      objectReference: {fileID: 2386908791773490264, guid: 003bb8b9572e1674b9677d4eb06ce3f1, type: 3}
-    - target: {fileID: 8425587049951209220, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}
-      propertyPath: GetAllObject.Array.data[4].Tag
-      value: SmallMp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8425587049951209220, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}
-      propertyPath: GetAllObject.Array.data[5].Obj
-      value: 
-      objectReference: {fileID: 2386908791773490264, guid: a98cbf4e34bd52c449d751cbabae0699, type: 3}
-    - target: {fileID: 8425587049951209220, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}
-      propertyPath: GetAllObject.Array.data[5].Tag
-      value: MiddleMp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8425587049951209220, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}
-      propertyPath: GetAllObject.Array.data[6].Obj
-      value: 
-      objectReference: {fileID: 2386908791773490264, guid: 916029b29f155e944991632be76fcd99, type: 3}
-    - target: {fileID: 8425587049951209220, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}
-      propertyPath: GetAllObject.Array.data[6].Tag
-      value: BigMp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8425587049951209220, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}
-      propertyPath: GetAllObject.Array.data[7].Obj
-      value: 
-      objectReference: {fileID: 7395193164509893635, guid: 56c2aba7507de2744b4ffea7d2613b20, type: 3}
-    - target: {fileID: 8425587049951209220, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}
-      propertyPath: GetAllObject.Array.data[7].Tag
-      value: EnemyInjuriedPartical
-      objectReference: {fileID: 0}
-    - target: {fileID: 8425587049951209220, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}
-      propertyPath: GetAllObject.Array.data[0].SetCount
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8425587049951209220, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}
-      propertyPath: GetAllObject.Array.data[1].SetCount
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8425587049951209220, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}
-      propertyPath: GetAllObject.Array.data[2].SetCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8425587049951209220, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}
-      propertyPath: GetAllObject.Array.data[7].SetCount
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57696215ea24fcd4fa8a6df40597c8ca, type: 3}

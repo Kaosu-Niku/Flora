@@ -2,28 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class IPoolObject : MonoBehaviour
+public abstract class IPoolObject : IDefaultObject
 {
     //? 該物件屬於和物件池共存的，必須在物件池創建時才能被生成
-    //? 該物件被開啟時會等待事情執行完畢或是提前被關閉時自動回歸物件池
     [HideInInspector] public GameObjectPool MyPool;
     [HideInInspector] public string MyTag;
     Coroutine C;
-    protected abstract IEnumerator Doing();
-    IEnumerator Do()
+    protected override IEnumerator Doing()
     {
-        yield return StartCoroutine(Doing());
-        gameObject.SetActive(false);
+        yield return StartCoroutine(Doing2());
     }
-
-    private void OnEnable()
+    protected abstract IEnumerator Doing2();
+    new void OnDisable()
     {
-        C = StartCoroutine(Do());
-    }
-    private void OnDisable()
-    {
-        if (C != null)
-            StopCoroutine(C);
+        base.OnDisable();
         if (MyPool != null)
             MyPool.BackObject(MyTag, this);
     }

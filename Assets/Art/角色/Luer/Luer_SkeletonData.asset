@@ -37,6 +37,7 @@ MonoBehaviour:
   - Attack2
   - Attack3
   - WallJump
+  - Walk
   toAnimation:
   - Walk
   - Idle
@@ -50,7 +51,9 @@ MonoBehaviour:
   - Idle
   - Idle
   - JumpLoop
+  - JumpLoop
   duration:
+  - 0.2
   - 0.2
   - 0.2
   - 0.2

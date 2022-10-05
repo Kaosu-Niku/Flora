@@ -9,6 +9,9 @@ public class PlayerMpUI : MonoBehaviour
     private void ChangePlayerMp()
     {
         PlayerMpImage.fillAmount = ((float)(PlayerSystemSO.GetPlayerInvoke().NowMp)) / ((float)(PlayerSystemSO.GetPlayerInvoke().MaxMp));
+        Debug.Log((float)(PlayerSystemSO.GetPlayerInvoke().NowMp));
+        Debug.Log((float)(PlayerSystemSO.GetPlayerInvoke().MaxMp));
+        Debug.Log(((float)(PlayerSystemSO.GetPlayerInvoke().NowMp)) / ((float)(PlayerSystemSO.GetPlayerInvoke().MaxMp)));
     }
     private void OnEnable()
     {

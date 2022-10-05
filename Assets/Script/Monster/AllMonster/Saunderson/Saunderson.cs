@@ -173,14 +173,14 @@ public class Saunderson : Monster
     }
     protected override IEnumerator CustomAction()
     {
-        switch (4)
-        {
-            case 1: skeletonAnimation.AnimationState.SetAnimation(0, "Attack3", false); break;
-            case 2: WhichFlyAttack = 0; skeletonAnimation.AnimationState.SetAnimation(0, "Fly", false); break;
-            case 3: WhichFlyAttack = 1; skeletonAnimation.AnimationState.SetAnimation(0, "Fly", false); break;
-            case 4: WhichFlyAttack = 2; skeletonAnimation.AnimationState.SetAnimation(0, "Fly", false); break;
-        }
-        yield break;
+        // switch (4)
+        // {
+        //     case 1: skeletonAnimation.AnimationState.SetAnimation(0, "Attack3", false); break;
+        //     case 2: WhichFlyAttack = 0; skeletonAnimation.AnimationState.SetAnimation(0, "Fly", false); break;
+        //     case 3: WhichFlyAttack = 1; skeletonAnimation.AnimationState.SetAnimation(0, "Fly", false); break;
+        //     case 4: WhichFlyAttack = 2; skeletonAnimation.AnimationState.SetAnimation(0, "Fly", false); break;
+        // }
+        // yield break;
         if (Hp < MaxHp / 2 && HpLost50Check == false)//? 血量低於50%必定施放一次抓技
         {
             IsAngry = true;

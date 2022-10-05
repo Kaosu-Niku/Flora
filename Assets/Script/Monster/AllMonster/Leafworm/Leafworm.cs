@@ -53,10 +53,23 @@ public class Leafworm : Monster
     }
     protected override IEnumerator CustomAction()
     {
-        if (GetPlayerDistance() < 10)
+        if (GetPlayerDistance() < 20)
         {
-            LookPlayer();
-            skeletonAnimation.AnimationState.SetAnimation(0, "Intimidate", false);
+            if (GetPlayerDistance() < 10)
+            {
+                LookPlayer();
+                skeletonAnimation.AnimationState.SetAnimation(0, "Intimidate", false);
+            }
+            else
+            {
+                LookPlayer();
+                //? 左右隨機移動
+                skeletonAnimation.AnimationState.SetAnimation(0, "Walk", true);
+                int moveTime = Random.Range(1, 4);
+                yield return new WaitForSeconds(moveTime);
+                OnAction();
+            }
+            
         }
         else
         {
@@ -65,19 +78,12 @@ public class Leafworm : Monster
             transform.Rotate(0, 180, 0);
             int moveTime = Random.Range(1, 4);
             yield return new WaitForSeconds(moveTime);
-            if (GetPlayerDistance() < 10)
-            {
-                LookPlayer();
-                skeletonAnimation.AnimationState.SetAnimation(0, "Intimidate", false);
-            }
-            else
-            {
-                //? 停在原地
-                skeletonAnimation.AnimationState.SetAnimation(0, "Idle", true);
-                int waitTime = Random.Range(1, 4);
-                yield return new WaitForSeconds(waitTime);
-                OnAction();
-            }
+            //? 停在原地
+            skeletonAnimation.AnimationState.SetAnimation(0, "Idle", true);
+            int waitTime = Random.Range(1, 4);
+            yield return new WaitForSeconds(waitTime);
+            OnAction();
+            
         }
         yield break;
     }

@@ -74,4 +74,19 @@ public class GameObjectPool : MonoBehaviour
             obj.gameObject.SetActive(false);
         }
     }
+    public void AddObject(string tag, IPoolObject iPoolObj)
+    {
+        NewObject no = new NewObject();
+        no.Tag = tag;
+        no.Obj = iPoolObj;
+        no.SetCount = 1;
+        GetAllObject.Add(no);
+        IPoolObject g = Instantiate(no.Obj);
+        g.MyPool = this;
+        g.MyTag = no.Tag;
+        Queue<IPoolObject> ThisObj = new Queue<IPoolObject>();
+        ThisObj.Enqueue(g);
+        g.gameObject.SetActive(false);
+        AllObject.Add(no.Tag, ThisObj);
+    }
 }

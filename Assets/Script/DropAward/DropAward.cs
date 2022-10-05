@@ -6,7 +6,7 @@ public abstract class DropAward : PoolObject
 {
     [SerializeField] float CloseTime;
     Vector3 MovePos;
-    protected override IEnumerator Doing()
+    protected override IEnumerator Doing2()
     {
         yield return 0;
         transform.rotation = Quaternion.Euler(0, 0, Random.Range(4, 33) * 5);

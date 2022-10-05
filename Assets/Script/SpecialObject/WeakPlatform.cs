@@ -5,6 +5,7 @@ using UnityEngine;
 public class WeakPlatform : MonoBehaviour
 {
     [SerializeField] float WeakTime;
+    [SerializeField] GameObject g;
     bool CanGo = true;
     Collider2D MyCol;
     private void Start()
@@ -24,8 +25,10 @@ public class WeakPlatform : MonoBehaviour
         CanGo = false;
         yield return new WaitForSeconds(WeakTime);
         MyCol.enabled = false;
+        g.SetActive(false);
         yield return new WaitForSeconds(3);
         MyCol.enabled = true;
+        g.SetActive(true);
         CanGo = true;
     }
 }

@@ -13,11 +13,19 @@ public class PlayerSystem : SkeletonAnimationSystem
     [SerializeField] SkeletonRootMotion skeletonRootMotion;
     protected override void AnimationEventCallBack(TrackEntry trackEntry, Spine.Event e)
     {
+        if (e.Data.Name == "WalkOpen")
+        {
+            GameManagerSO.GetPoolInvoke().GetObject("PlayerWalkEffect", transform.position, Quaternion.identity);
+            return;
+        }
         if (e.Data.Name == "HurtOut")
         {
             CanControl = true;
             Super = false;
-            Attack[4].SetActive(false);
+            return;
+        }
+        if (e.Data.Name == "DieOut")
+        {
             return;
         }
         if (e.Data.Name == "HitFlyDownOut")
@@ -111,8 +119,6 @@ public class PlayerSystem : SkeletonAnimationSystem
         {
             Attack[0].SetActive(false);
             Effect[0].SetActive(false);
-            Effect[1].SetActive(false);
-            Effect[2].SetActive(false);
             return;
         }
         if (e.Data.Name == "Attack1Can")
@@ -143,9 +149,7 @@ public class PlayerSystem : SkeletonAnimationSystem
         if (e.Data.Name == "Attack2Close")
         {
             Attack[1].SetActive(false);
-            Effect[0].SetActive(false);
             Effect[1].SetActive(false);
-            Effect[2].SetActive(false);
             return;
         }
         if (e.Data.Name == "Attack2Can")
@@ -176,8 +180,6 @@ public class PlayerSystem : SkeletonAnimationSystem
         if (e.Data.Name == "Attack3Close")
         {
             Attack[2].SetActive(false);
-            Effect[0].SetActive(false);
-            Effect[1].SetActive(false);
             Effect[2].SetActive(false);
             return;
         }
@@ -213,7 +215,7 @@ public class PlayerSystem : SkeletonAnimationSystem
         MaxHp += much;
     }
     int _NowHp;//* 當前血量
-    public int NowHp { get => _NowHp; private set { if (_NowHp > PlayerDataSO.MaxHp) _NowHp = PlayerDataSO.MaxHp; else _NowHp = value; UiSystemSO.ChangePlayerHpInvoke(); } }
+    public int NowHp { get => _NowHp; private set { if (value > PlayerDataSO.MaxHp) _NowHp = PlayerDataSO.MaxHp; else _NowHp = value; UiSystemSO.ChangePlayerHpInvoke(); } }
     public void AddNowHp(int much)
     {
         NowHp += much;
@@ -225,7 +227,7 @@ public class PlayerSystem : SkeletonAnimationSystem
         MaxMp = much;
     }
     int _NowMp;//* 當前魔力
-    public int NowMp { get => _NowMp; private set { if (_NowMp > PlayerDataSO.MaxMp) _NowMp = PlayerDataSO.MaxMp; else if (NowMp > 0) _NowMp = value; else _NowMp = 0; UiSystemSO.ChangePlayerMpInvoke(); } }
+    public int NowMp { get => _NowMp; private set { if (value > PlayerDataSO.MaxMp) _NowMp = PlayerDataSO.MaxMp; else if (value > 0) _NowMp = value; else _NowMp = 0; UiSystemSO.ChangePlayerMpInvoke(); } }
     public void AddNowMp(int much)
     {
         NowMp += much;
@@ -298,6 +300,7 @@ public class PlayerSystem : SkeletonAnimationSystem
     {
         CanFind = value;
     }
+    bool HitFlyCheck;//* 擊飛狀態落地確認
     [HideInInspector] public Rigidbody2D Rigid;
     Collider2D Col;
     public CircleCollider2D SuckAwardCol;//* 吸取道具用的圓形碰撞體
@@ -307,7 +310,9 @@ public class PlayerSystem : SkeletonAnimationSystem
     [SerializeField] List<GameObject> Effect = new List<GameObject>();
     [HideInInspector] public bool Skill6Check;//* 無形攻擊是否使用
     [HideInInspector] public bool Skill8Check;//* 荊棘之身是否使用
-    bool HitFlyCheck;//* 擊飛狀態落地確認
+    [SerializeField] IPoolObject WalkEffect;
+    [SerializeField] IPoolObject JumpUpEffect;
+    [SerializeField] IPoolObject JumpDownEffect;
 
     new void Awake()
     {
@@ -351,6 +356,9 @@ public class PlayerSystem : SkeletonAnimationSystem
         MaxHit = PlayerDataSO.MaxHit;
         MaxSpeed = PlayerDataSO.MaxSpeed;
         StartCoroutine(LateTrigger());
+        GameManagerSO.GetPoolInvoke().AddObject("PlayerWalkEffect", WalkEffect);
+        GameManagerSO.GetPoolInvoke().AddObject("PlayerJumpUpEffect", JumpUpEffect);
+        GameManagerSO.GetPoolInvoke().AddObject("PlayerJumpDownEffect", JumpDownEffect);
     }
     IEnumerator LateTrigger()
     {
@@ -358,11 +366,12 @@ public class PlayerSystem : SkeletonAnimationSystem
         yield return 0;
         yield return 0;
         NowHp = 0;
-        NowMp = MaxMp;
+        NowMp = PlayerDataSO.MaxMp;
         NowAtk = MaxAtk;
         NowHit = MaxHit;
         NowSpeed = MaxSpeed;
         CanControl = true;
+        StateReset();
     }
     private void FixedUpdate()
     {
@@ -413,6 +422,7 @@ public class PlayerSystem : SkeletonAnimationSystem
             Rigid.gravityScale = 0;
             skeletonRootMotion.rootMotionScaleY = jumpPower;
             skeletonAnimation.AnimationState.SetAnimation(0, "Jump", false);
+            GameManagerSO.GetPoolInvoke().GetObject("PlayerJumpUpEffect", transform.position, Quaternion.identity);
             if (IsWall == true)//? 蹬牆跳
             {
                 IsWall = false;
@@ -450,7 +460,7 @@ public class PlayerSystem : SkeletonAnimationSystem
     {
         if (CanControl && CanRestore)
         {
-            if (true)//NowMp > 9
+            if (NowMp > 9)
             {
                 NowMp -= 10;
                 CanControl = false;
@@ -486,6 +496,18 @@ public class PlayerSystem : SkeletonAnimationSystem
         {
             CanControl = false;
             CanAttack = false;
+            if (Attack[0].activeInHierarchy == true)
+                Attack[0].SetActive(false);
+            if (Attack[1].activeInHierarchy == true)
+                Attack[1].SetActive(false);
+            if (Attack[2].activeInHierarchy == true)
+                Attack[2].SetActive(false);
+            if (Effect[0].activeInHierarchy == true)
+                Effect[0].SetActive(false);
+            if (Effect[1].activeInHierarchy == true)
+                Effect[1].SetActive(false);
+            if (Effect[2].activeInHierarchy == true)
+                Effect[2].SetActive(false);
             switch (WhichAttack)
             {
                 case 1:
@@ -637,12 +659,13 @@ public class PlayerSystem : SkeletonAnimationSystem
         Vector2 contactsNormal = other.contacts[0].normal;
         float colAngle = (Mathf.Atan(contactsNormal.y / contactsNormal.x)) * 180 / Mathf.PI;
         Debug.Log("法線角度:" + Mathf.Abs(colAngle));
+        GameManagerSO.GetPoolInvoke().GetObject("PlayerJumpDownEffect", transform.position, Quaternion.identity);
     }
     private void OnCollisionStay2D(Collision2D other)
     {
         Vector2 contactsNormal = other.contacts[0].normal;//? 取得碰撞點的法線向量 other.contacts[0].point.y < transform.position.y && 
         float colAngle = (Mathf.Atan(contactsNormal.y / contactsNormal.x)) * 180 / Mathf.PI;//? 換算成能理解的角度
-        if (colAngle < 120 && colAngle > 60)//? 檢查角度判定是否是踩到地板(頂到天花板不算)
+        if (colAngle < 150 && colAngle > 30)//? 檢查角度判定是否是踩到地板(頂到天花板不算)
         {
             FloorHigh = transform.position.y;//? 記錄當前地板的高度(用做允許鄧牆跳的高度判斷)
             if (Jumping == true)//? 跳躍的落地處理
@@ -685,6 +708,31 @@ public class PlayerSystem : SkeletonAnimationSystem
     }
     private void OnCollisionExit2D(Collision2D other)
     {
+        var pr = Physics2D.RaycastAll(transform.position, Vector2.down, 10);
+        bool isHigh = false;
+        if (pr.Length < 2)
+        {
+            isHigh = true;
+        }
+        else
+        {
+            bool haveFloor = false;
+            for (int x = 0; x < pr.Length; x++)
+            {
+                if (pr[x].collider.isTrigger == false)
+                {
+                    haveFloor = true;
+                }
+            }
+            if (haveFloor == false)
+                isHigh = true;
+        }
+        if (isHigh == true && CanControl == true)
+        {
+            Debug.Log("高處");
+            Jumping = true;
+            skeletonAnimation.AnimationState.SetAnimation(0, "JumpLoop", true);
+        }
         if (IsWall == true)//? 離開牆壁解除蹭牆狀態
         {
             IsWall = false;
@@ -706,13 +754,10 @@ public class PlayerSystem : SkeletonAnimationSystem
         CanMagic = true;
         WhichAttack = 1;
         skeletonRootMotion.rootMotionScaleY = 1;
-        Attack[0].SetActive(false);
-        Attack[1].SetActive(false);
-        Attack[2].SetActive(false);
-        Attack[5].SetActive(false);
-        Effect[0].SetActive(false);
-        Effect[1].SetActive(false);
-        Effect[2].SetActive(false);
+        for (int x = 0; x < Attack.Count; x++)
+            Attack[x].SetActive(false);
+        for (int x = 0; x < Effect.Count; x++)
+            Effect[x].SetActive(false);
         if (BondageCoroutine != null)
             StopCoroutine(BondageCoroutine);
         if (HitFlyCoroutine != null)

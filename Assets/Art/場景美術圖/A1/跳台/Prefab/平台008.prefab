@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6326964021647992699}
   - component: {fileID: 7151485223062207428}
-  - component: {fileID: 760714165293801023}
+  - component: {fileID: 6713720844455222274}
+  - component: {fileID: 2134597655306158849}
   m_Layer: 0
   m_Name: "\u5E73\u53F0008"
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6476241014699773159}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 153.9, y: -34.4, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,7 +84,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &760714165293801023
+--- !u!61 &6713720844455222274
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6476241014699773159}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.31116915, y: 2.3696766}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 20.16, y: 9.55}
+    newSize: {x: 20.16, y: 9.55}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 17.814259, y: 1.5553322}
+  m_EdgeRadius: 0
+--- !u!60 &2134597655306158849
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,7 +135,6 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.5812621, y: -1.015131}
-      - {x: -9.405043, y: 2.9098375}
-      - {x: 7.758316, y: 2.542204}
-      - {x: 9.551226, y: 2.5037997}
+    - - {x: -0.17447066, y: -1.8728757}
+      - {x: -8.340628, y: 1.8581827}
+      - {x: 8.414664, y: 2.0400994}

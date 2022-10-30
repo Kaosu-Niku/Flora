@@ -10,6 +10,7 @@ public class Saunderson : Monster
     AreaEffector2D Attack2;
     AreaEffector2D Fly_1;
     AreaEffector2D Fly_2;
+    bool FirstAttack = true;
     int WhichFlyAttack;//? 使出哪一個空中攻擊(不同的空中攻擊，飛行高度有差) 1.下墜戳擊。2.空中射羽毛。3.抓技。
     bool FlyCheck = false;//? 使出空中攻擊後的落地判定(落地後才接OnAction重置行動)
     bool Attack4Check;
@@ -142,7 +143,6 @@ public class Saunderson : Monster
                 Attack[2].SetActive(false);
                 skeletonAnimation.AnimationState.SetAnimation(0, "Rest", false);
             }
-
             return;
         }
         if (e.Data.Name == "Attack7Out")
@@ -170,6 +170,31 @@ public class Saunderson : Monster
             skeletonAnimation.AnimationState.SetAnimation(0, "Rest", false);
             return;
         }
+        if (e.Data.Name == "Attack9Open")
+        {
+            Attack[1].SetActive(true);
+            return;
+        }
+        if (e.Data.Name == "Attack9Close")
+        {
+            Attack[1].SetActive(false);
+            return;
+        }
+        if (e.Data.Name == "Attack9Out")
+        {
+            OnAction();
+            return;
+        }
+        if (e.Data.Name == "YellTrigger")
+        {
+            
+            return;
+        }
+        if (e.Data.Name == "YellOut")
+        {
+            OnAction();
+            return;
+        }
     }
     protected override IEnumerator CustomAction()
     {
@@ -181,6 +206,13 @@ public class Saunderson : Monster
         //     case 4: WhichFlyAttack = 2; skeletonAnimation.AnimationState.SetAnimation(0, "Fly", false); break;
         // }
         // yield break;
+        if(FirstAttack == true)
+        {
+            FirstAttack = false;
+            skeletonAnimation.AnimationState.SetAnimation(0, "Yell", false);
+            yield break;
+        }
+        
         if (Hp < MaxHp / 2 && HpLost50Check == false)//? 血量低於50%必定施放一次抓技
         {
             IsAngry = true;
@@ -219,7 +251,8 @@ public class Saunderson : Monster
                 }
                 else
                 {
-                    skeletonAnimation.AnimationState.SetAnimation(0, "Attack2", true);
+                    //? 嘴戳
+                    skeletonAnimation.AnimationState.SetAnimation(0, "Attack9", false);
                 }
             }
         }

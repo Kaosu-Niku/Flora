@@ -2154,7 +2154,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "6329cc60e5e845dfbf64a7693ef01e67",
     "m_Id": 0,
-    "m_DisplayName": "Color",
+    "m_DisplayName": "溶解邊框顏色",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
